@@ -19,11 +19,15 @@
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
+        <testsuite name="core">
+            <directory>albomon/core/tests</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
             <directory>src</directory>
+            <directory>albomon/core/src</directory>
         </whitelist>
     </filter>
 
