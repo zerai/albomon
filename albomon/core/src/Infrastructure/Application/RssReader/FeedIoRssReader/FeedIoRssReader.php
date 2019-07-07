@@ -9,9 +9,11 @@ use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use FeedIo\FeedIo;
 use FeedIo\Reader\ReadErrorException;
-use FeedIo\Reader\Result;
 use InvalidArgumentException;
 
+/**
+ * Class FeedIoRssReader.
+ */
 class FeedIoRssReader implements RssReaderInterface
 {
     /** @var FeedIo */
@@ -20,6 +22,9 @@ class FeedIoRssReader implements RssReaderInterface
     /** @var string */
     private $targetUrl;
 
+    /**
+     * FeedIoRssReader constructor.
+     */
     public function __construct()
     {
         $this->feedIo = \FeedIo\Factory::create()->getFeedIo();
@@ -59,19 +64,15 @@ class FeedIoRssReader implements RssReaderInterface
         return $this->targetUrl;
     }
 
-    public function readRss()
+    private function readRss()
     {
         try {
             $result = $this->feedIo->read($this->targetUrl);
 
-            //$transformerResult = $this->resultTrasformer($result);
-
             return $result;
         } catch (ReadErrorException $exception) {
             // TODO log in file?
-            // TODO put in STDOUT
             //$this->logger->error('Error appear during user creation. Reason: ' . $exception->getMessage());
-            //echo 'Error ...... ';
 
             $rssReaderResult = new RssReaderResult(false);
             $rssReaderResult->setHttpError($exception->getMessage());
@@ -79,18 +80,4 @@ class FeedIoRssReader implements RssReaderInterface
             return $rssReaderResult;
         }
     }
-
-//    /**
-//     * @param Result $result
-//     * @return RssReaderResult
-//     */
-//    public function resultTrasformer(Result $result): RssReaderResult
-//    {
-//
-//        //TODO remove param
-//        $rssReaderResult = new RssReaderResult( true);
-//
-//        return $rssReaderResult;
-//    }
-//
 }
