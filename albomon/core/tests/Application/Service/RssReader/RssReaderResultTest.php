@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Albomon\Tests\Core\Application\Service\RssReader;
 
-
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use PHPUnit\Framework\TestCase;
@@ -52,7 +51,7 @@ class RssReaderResultTest extends TestCase
     public function it_cant_add_http_error_when_httpStatus_is_true(): void
     {
         // TODO
-        self::markTestSkipped("implement in code");
+        self::markTestSkipped('implement in code');
 
         $httpStatus = true;
 
@@ -62,5 +61,4 @@ class RssReaderResultTest extends TestCase
 
         $rssReaderResult->setHttpError($httpError);
     }
-
 }

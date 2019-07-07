@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Albomon\Core\Application\Service\RssReader;
 
-
 /**
- * Class RssReaderResult
- * @package Albomon\Core\Application\Service\RssReader
+ * Class RssReaderResult.
  */
 class RssReaderResult implements RssReaderResultInterface
 {
-
     /** @var bool */
     private $httpStatus;
 
@@ -20,6 +17,7 @@ class RssReaderResult implements RssReaderResultInterface
 
     /**
      * RssReaderResult constructor.
+     *
      * @param bool $httpStatus
      */
     public function __construct(bool $httpStatus)
@@ -50,5 +48,4 @@ class RssReaderResult implements RssReaderResultInterface
     {
         $this->httpError = $httpError;
     }
-
 }
