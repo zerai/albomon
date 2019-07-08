@@ -13,14 +13,20 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckAlboListComand extends Command
 {
+    private const CATALOG_FILE_NAME = 'custom-catalog.json';
+
     /** @var MonitorApplicationService */
     private $monitorService;
 
-    public function __construct(MonitorApplicationService $monitorService)
+    /** @var string */
+    private $catalogDir;
+
+    public function __construct(MonitorApplicationService $monitorService, string $catalogDir)
     {
         parent::__construct('albomon:monitor:check-albo-list');
 
         $this->monitorService = $monitorService;
+        $this->catalogDir = $catalogDir;
 
         $this->setDescription('Console command check a list of albi');
     }
@@ -34,27 +40,21 @@ class CheckAlboListComand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        // TODO remove
-        $alboList = [
-            'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml',
-            'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml',
-        ];
+        $alboList = $this->getCustomCatalog();
 
         $io = new SymfonyStyle($input, $output);
 
         $io->text('Check RSS feed list...');
 
-        //$feedUrl = $input->getArgument('feed_url'); //var_dump($feedUrl);
-
-        //$output->writeln("<info>Albo: $feedUrl</info>");
+        // TODO cambiare formattazione risultati, usare tabella....
 
         $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
 
+        // TODO remove
         $AlboPopSpecValidation = 'Non Rilevato';
 
         if ($input->isInteractive()) {
             foreach ($monitorResultCollection as $monitorResult) {
-                //$output->writeln("<info>Albo: $monitorResult[0]</info>");
                 if (!$monitorResult->httpStatus()) {
                     $output->writeln('<info>Feed Status: NON ATTIVO</info>');
                     $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
@@ -67,5 +67,15 @@ class CheckAlboListComand extends Command
         }
 
         return null;
+    }
+
+    public function getCustomCatalog(): array
+    {
+        // TODO check exist before open throw exception or message in console
+        $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
+
+        $customCatalog = json_decode($strJsonFileContents, true);
+
+        return $customCatalog;
     }
 }

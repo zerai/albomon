@@ -39,7 +39,9 @@ class MonitorApplicationService
         $resultCollection = [];
 
         foreach ($alboList as $alboUrl) {
-            $resultCollection[] = $this->checkAlbo($alboUrl);
+            foreach ($alboUrl as $valueUrl) {
+                $resultCollection[] = $this->checkAlbo($valueUrl);
+            }
         }
 
         return $resultCollection;

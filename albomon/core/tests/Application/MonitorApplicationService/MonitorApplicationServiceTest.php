@@ -62,8 +62,8 @@ class MonitorApplicationServiceTest extends TestCase
     public function it_can_check_a_multiple_albo(): void
     {
         $alboList = [
-            'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml',
-            'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml',
+            ['Muccia' => 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml'],
+            ['Muccia' => 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml'],
         ];
 
         $this->feedReader->expects($this->exactly(2))->method('execute');
