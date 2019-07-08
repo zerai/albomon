@@ -19,5 +19,6 @@ parameters:
         - '*/vendor/*'
         - '*/extra/*'
 
-        # REMOVE
+        # REMOVE dopo installazione di phpstan/phpunit
+        - 'albomon/core/tests/Application/MonitorApplicationService/MonitorApplicationServiceTest.php'
         
