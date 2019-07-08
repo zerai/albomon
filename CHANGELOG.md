@@ -9,7 +9,7 @@
  - cli command check catalogo di albi
  - cli command check singolo albo
  
- ## [0.0.x] -  2019-XX-XX
+ ## [0.1.0] -  2019-07-08
  ##### Added
  - cli command check singolo albo
  
