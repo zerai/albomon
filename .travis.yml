@@ -1,0 +1,21 @@
+language: php
+
+
+php:
+  - 7.2
+
+
+install:
+  - composer install
+
+
+before_script:
+  - ls -al
+
+
+script:
+  - php bin/phpunit
+
+  - php vendor/bin/php-cs-fixer fix --dry-run -vvv
+
+  - php vendor/bin/phpstan analyse
