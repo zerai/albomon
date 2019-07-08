@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Albomon\Tests\Core\Infrastructure\Application\RssReader\FeedIoRssReader;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
+use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader;
 use PHPUnit\Framework\TestCase;
 
@@ -49,12 +50,25 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
+    public function it_handle_execution(): void
+    {
+        $rssReader = new FeedIoRssReader();
+
+        $readerResult = $rssReader->execute(self::FEED_URL);
+
+        self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
+        self::assertTrue($readerResult->httpStatus());
+        //self::assertNotNull($readerResult->httpError());
+    }
+
+    /** @test */
     public function it_handle_http_exception(): void
     {
         $rssReader = new FeedIoRssReader();
 
         $readerResult = $rssReader->execute(self::WRONG_FEED_URL);
 
+        self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
         self::assertFalse($readerResult->httpStatus());
         self::assertNotNull($readerResult->httpError());
     }

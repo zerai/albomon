@@ -3,7 +3,7 @@
     #- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
-    level: 7
+    level: 5
     autoload_files:
         - bin/.phpunit/phpunit-6.5/vendor/autoload.php
     paths:

@@ -1,0 +1,3 @@
+imports:
+    - { resource: '../albomon/core/src/Infrastructure/Framework/Resources/config/core_services.yaml' }
+
