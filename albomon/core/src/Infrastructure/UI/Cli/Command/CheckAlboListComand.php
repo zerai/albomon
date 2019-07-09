@@ -6,6 +6,7 @@ namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,9 +43,9 @@ class CheckAlboListComand extends Command
     {
         $alboList = $this->getCustomCatalog();
 
-        $io = new SymfonyStyle($input, $output);
+        //$io = new SymfonyStyle($input, $output);
 
-        $io->text('Check RSS feed list...');
+        //$io->text('Check RSS feed list...');
 
         // TODO cambiare formattazione risultati, usare tabella....
 
@@ -54,14 +55,18 @@ class CheckAlboListComand extends Command
         $AlboPopSpecValidation = 'Non Rilevato';
 
         if ($input->isInteractive()) {
+            $section = $output->section();
+            $table = new Table($section);
+            $table
+                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Error'])
+            ;
+            $table->render();
+
             foreach ($monitorResultCollection as $monitorResult) {
                 if (!$monitorResult->httpStatus()) {
-                    $output->writeln('<info>Feed Status: NON ATTIVO</info>');
-                    $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
-                    $output->writeln("<error>Error Message: {$monitorResult->httpError()}</error>");
+                    $table->appendRow(['NOME', 'NON ATTIVO', $AlboPopSpecValidation, $monitorResult->httpError()]);
                 } else {
-                    $output->writeln('<info>Feed Status: ATTIVO</info>');
-                    $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
+                    $table->appendRow(['NOME', 'ATTIVO', $AlboPopSpecValidation, '']);
                 }
             }
         }

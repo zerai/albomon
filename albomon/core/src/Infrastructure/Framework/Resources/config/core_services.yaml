@@ -60,6 +60,5 @@ services:
     Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboListComand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
-            #- '$catalogDir'
         tags:
             - { name: 'console.command' }
