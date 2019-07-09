@@ -9,6 +9,7 @@ use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use FeedIo\FeedIo;
 use FeedIo\Reader\ReadErrorException;
+use FeedIo\Reader\Result;
 use InvalidArgumentException;
 
 /**
@@ -71,6 +72,9 @@ class FeedIoRssReader implements RssReaderInterface
 
             $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
 
+            // TODO assign xml to result object
+            $rssReaderResult->setXmlDocument($this->getDomDocument($result));
+
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {
             // TODO log in file?
@@ -81,5 +85,14 @@ class FeedIoRssReader implements RssReaderInterface
 
             return $rssReaderResult;
         }
+    }
+
+    private function getDomDocument(Result $rssReaderResult): ?\DOMDocument
+    {
+        if (!$rssReaderResult->getDocument()->isXml()) {
+            return null;
+        }
+
+        return $rssReaderResult->getDocument()->getDOMDocument();
     }
 }

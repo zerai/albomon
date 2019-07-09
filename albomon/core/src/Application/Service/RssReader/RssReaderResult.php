@@ -18,6 +18,9 @@ class RssReaderResult implements RssReaderResultInterface
     /** @var string */
     private $feedUrl;
 
+    /** @var \DOMDocument */
+    private $xmlDocument;
+
     /**
      * RssReaderResult constructor.
      *
@@ -60,5 +63,16 @@ class RssReaderResult implements RssReaderResultInterface
     public function feedUrl(): string
     {
         return $this->feedUrl;
+    }
+
+    public function setXmlDocument(\DOMDocument $xmlDocument): void
+    {
+        $this->xmlDocument = $xmlDocument;
+    }
+
+    /** @return \DOMDocument */
+    public function xmlDocument(): \DOMDocument
+    {
+        return $this->xmlDocument;
     }
 }
