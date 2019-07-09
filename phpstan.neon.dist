@@ -12,6 +12,8 @@ parameters:
 
     ignoreErrors:
         #- '##'
+        - '#Call to an undefined method Symfony\\Component\\Console\\Output\\OutputInterface::section().#'
+        #- '##'
 
 
 
@@ -21,4 +23,7 @@ parameters:
 
         # REMOVE dopo installazione di phpstan/phpunit
         - 'albomon/core/tests/Application/MonitorApplicationService/MonitorApplicationServiceTest.php'
+
+        # REMOVE
+        - 'albomon/src/Infrastructure/UI/Cli/Command/CheckAlboListComand.php'
         
