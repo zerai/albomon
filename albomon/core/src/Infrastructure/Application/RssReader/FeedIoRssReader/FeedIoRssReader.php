@@ -69,14 +69,14 @@ class FeedIoRssReader implements RssReaderInterface
         try {
             $result = $this->feedIo->read($this->targetUrl);
 
-            $rssReaderResult = new RssReaderResult(true);
+            $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {
             // TODO log in file?
             //$this->logger->error('Error appear during user creation. Reason: ' . $exception->getMessage());
 
-            $rssReaderResult = new RssReaderResult(false);
+            $rssReaderResult = new RssReaderResult(false, $this->targetUrl);
             $rssReaderResult->setHttpError($exception->getMessage());
 
             return $rssReaderResult;

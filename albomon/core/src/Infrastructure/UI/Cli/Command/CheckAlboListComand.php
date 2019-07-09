@@ -64,9 +64,9 @@ class CheckAlboListComand extends Command
 
             foreach ($monitorResultCollection as $monitorResult) {
                 if (!$monitorResult->httpStatus()) {
-                    $table->appendRow(['NOME', 'NON ATTIVO', $AlboPopSpecValidation, $monitorResult->httpError()]);
+                    $table->appendRow([$monitorResult->feedUrl(), 'NON ATTIVO', $AlboPopSpecValidation, $monitorResult->httpError()]);
                 } else {
-                    $table->appendRow(['NOME', 'ATTIVO', $AlboPopSpecValidation, '']);
+                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, '']);
                 }
             }
         }

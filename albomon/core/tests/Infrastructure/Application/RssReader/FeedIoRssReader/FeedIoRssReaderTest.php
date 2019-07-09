@@ -58,7 +58,7 @@ class FeedIoRssReaderTest extends TestCase
 
         self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
         self::assertTrue($readerResult->httpStatus());
-        //self::assertNotNull($readerResult->httpError());
+        self::assertEquals(self::FEED_URL, $readerResult->feedUrl());
     }
 
     /** @test */
@@ -70,6 +70,7 @@ class FeedIoRssReaderTest extends TestCase
 
         self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
         self::assertFalse($readerResult->httpStatus());
+        self::assertEquals(self::WRONG_FEED_URL, $readerResult->feedUrl());
         self::assertNotNull($readerResult->httpError());
     }
 }

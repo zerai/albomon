@@ -10,12 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 class RssReaderResultTest extends TestCase
 {
+    private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
+
     /** @test */
     public function it_can_be_created(): void
     {
         $httpStatus = true;
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         self::assertInstanceOf(RssReaderResultInterface::class, $rssReaderResult);
     }
@@ -25,7 +27,7 @@ class RssReaderResultTest extends TestCase
     {
         $httpStatus = true;
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         self::assertEquals($httpStatus, $rssReaderResult->httpStatus());
     }
@@ -37,7 +39,7 @@ class RssReaderResultTest extends TestCase
 
         $httpError = 'Not Found.';
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         $rssReaderResult->setHttpError($httpError);
 
@@ -57,7 +59,7 @@ class RssReaderResultTest extends TestCase
 
         $httpError = 'Not Found.';
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         $rssReaderResult->setHttpError($httpError);
     }

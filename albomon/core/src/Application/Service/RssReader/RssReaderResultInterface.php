@@ -18,4 +18,9 @@ interface RssReaderResultInterface
      * @return string
      */
     public function httpError(): string;
+
+    /**
+     * @return string
+     */
+    public function feedUrl(): string;
 }
