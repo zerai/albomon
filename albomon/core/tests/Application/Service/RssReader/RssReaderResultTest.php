@@ -60,6 +60,20 @@ class RssReaderResultTest extends TestCase
         self::assertEquals($xmlDocument, $rssReaderResult->xmlDocument());
     }
 
+    /** @test */
+    public function it_can_add_last_item_feed_date(): void
+    {
+        $httpStatus = true;
+
+        $date = new \DateTime('now');
+
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
+
+        $rssReaderResult->setlastFeedItemDate($date);
+
+        self::assertEquals($date, $rssReaderResult->lastFeedItemDate());
+    }
+
     /**
      * @test
      * @expectedException \RuntimeException

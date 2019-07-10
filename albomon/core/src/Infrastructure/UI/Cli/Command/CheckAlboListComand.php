@@ -58,15 +58,15 @@ class CheckAlboListComand extends Command
             $section = $output->section();
             $table = new Table($section);
             $table
-                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Error'])
+                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error'])
             ;
             $table->render();
 
             foreach ($monitorResultCollection as $monitorResult) {
                 if (!$monitorResult->httpStatus()) {
-                    $table->appendRow([$monitorResult->feedUrl(), 'NON ATTIVO', $AlboPopSpecValidation, $monitorResult->httpError()]);
+                    $table->appendRow([$monitorResult->feedUrl(), 'NON ATTIVO', $AlboPopSpecValidation, '', 'server error']);
                 } else {
-                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, '']);
+                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $monitorResult->lastFeedItemDate()->format('Y-m-d'), '']);
                 }
             }
         }

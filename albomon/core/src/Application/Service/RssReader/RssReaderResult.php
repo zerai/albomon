@@ -21,6 +21,9 @@ class RssReaderResult implements RssReaderResultInterface
     /** @var \DOMDocument */
     private $xmlDocument;
 
+    /** @var \DateTime */
+    private $lastFeedItemDate;
+
     /**
      * RssReaderResult constructor.
      *
@@ -74,5 +77,16 @@ class RssReaderResult implements RssReaderResultInterface
     public function xmlDocument(): \DOMDocument
     {
         return $this->xmlDocument;
+    }
+
+    public function setlastFeedItemDate($lastFeedItemDate): void
+    {
+        $this->lastFeedItemDate = $lastFeedItemDate;
+    }
+
+    /** @return \DateTime */
+    public function lastFeedItemDate(): \DateTime
+    {
+        return $this->lastFeedItemDate;
     }
 }

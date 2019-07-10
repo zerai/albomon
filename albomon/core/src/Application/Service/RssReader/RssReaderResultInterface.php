@@ -26,4 +26,7 @@ interface RssReaderResultInterface
 
     /** @return \DOMDocument */
     public function xmlDocument(): \DOMDocument;
+
+    /** @return \DateTime */
+    public function lastFeedItemDate(): \DateTime;
 }
