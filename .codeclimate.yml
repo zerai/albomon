@@ -9,3 +9,6 @@ plugins:
 exclude_patterns:
   - "extra/"
   - "catalog/"
+  - "bin/"
+  - "config/"
+  - "public/"
