@@ -11,14 +11,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class CheckAlboComand extends Command
+class CheckFeedComand extends Command
 {
     /** @var MonitorApplicationService */
     private $monitorService;
 
     public function __construct(MonitorApplicationService $monitorService)
     {
-        parent::__construct('albomon:monitor:check-albo');
+        parent::__construct('albomon:check:feed');
 
         $this->monitorService = $monitorService;
 
@@ -28,7 +28,7 @@ class CheckAlboComand extends Command
     protected function configure()
     {
         $this
-            ->addArgument('feed_url', InputArgument::REQUIRED, 'albo url?')
+            ->addArgument('feed_url', InputArgument::REQUIRED, 'feed url dell\'albo?')
         ;
     }
 

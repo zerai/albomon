@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class CheckAlboListComand extends Command
+class CheckCustomCatalogComand extends Command
 {
     private const CATALOG_FILE_NAME = 'custom-catalog.json';
 
@@ -24,7 +24,7 @@ class CheckAlboListComand extends Command
 
     public function __construct(MonitorApplicationService $monitorService, string $catalogDir)
     {
-        parent::__construct('albomon:monitor:check-albo-list');
+        parent::__construct('albomon:check:custom-catalog');
 
         $this->monitorService = $monitorService;
         $this->catalogDir = $catalogDir;
