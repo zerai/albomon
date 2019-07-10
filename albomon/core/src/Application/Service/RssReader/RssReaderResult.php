@@ -15,14 +15,22 @@ class RssReaderResult implements RssReaderResultInterface
     /** @var string */
     private $httpError;
 
+    /** @var string */
+    private $feedUrl;
+
+    /** @var \DOMDocument */
+    private $xmlDocument;
+
     /**
      * RssReaderResult constructor.
      *
-     * @param bool $httpStatus
+     * @param bool   $httpStatus
+     * @param string $feedUrl
      */
-    public function __construct(bool $httpStatus)
+    public function __construct(bool $httpStatus, string $feedUrl)
     {
         $this->httpStatus = $httpStatus;
+        $this->feedUrl = $feedUrl;
     }
 
     /**
@@ -47,5 +55,24 @@ class RssReaderResult implements RssReaderResultInterface
     public function setHttpError(string $httpError): void
     {
         $this->httpError = $httpError;
+    }
+
+    /**
+     * @return string
+     */
+    public function feedUrl(): string
+    {
+        return $this->feedUrl;
+    }
+
+    public function setXmlDocument(\DOMDocument $xmlDocument): void
+    {
+        $this->xmlDocument = $xmlDocument;
+    }
+
+    /** @return \DOMDocument */
+    public function xmlDocument(): \DOMDocument
+    {
+        return $this->xmlDocument;
     }
 }

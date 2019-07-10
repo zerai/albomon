@@ -6,16 +6,19 @@ namespace Albomon\Tests\Core\Application\Service\RssReader;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 
 class RssReaderResultTest extends TestCase
 {
+    private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
+
     /** @test */
     public function it_can_be_created(): void
     {
         $httpStatus = true;
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         self::assertInstanceOf(RssReaderResultInterface::class, $rssReaderResult);
     }
@@ -25,7 +28,7 @@ class RssReaderResultTest extends TestCase
     {
         $httpStatus = true;
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         self::assertEquals($httpStatus, $rssReaderResult->httpStatus());
     }
@@ -37,11 +40,24 @@ class RssReaderResultTest extends TestCase
 
         $httpError = 'Not Found.';
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         $rssReaderResult->setHttpError($httpError);
 
         self::assertEquals($httpError, $rssReaderResult->httpError());
+    }
+
+    /** @test */
+    public function it_can_add_xml_document(): void
+    {
+        $httpStatus = true;
+        $xmlDocument = new DOMDocument('1.0', 'ISO-8859-15');
+
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
+
+        $rssReaderResult->setXmlDocument($xmlDocument);
+
+        self::assertEquals($xmlDocument, $rssReaderResult->xmlDocument());
     }
 
     /**
@@ -57,7 +73,7 @@ class RssReaderResultTest extends TestCase
 
         $httpError = 'Not Found.';
 
-        $rssReaderResult = new RssReaderResult($httpStatus);
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         $rssReaderResult->setHttpError($httpError);
     }

@@ -17,3 +17,5 @@ Console application per il monitoraggio dei feed RSS prodotti dal progetto [Albo
 ## Console Command:
 
 php bin/console albomon:monitor:check <http://www.mio-feed.com/feed.xml>
+
+php bin/console albo:monitor:check-albo-list

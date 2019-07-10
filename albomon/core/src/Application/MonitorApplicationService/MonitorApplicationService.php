@@ -33,4 +33,17 @@ class MonitorApplicationService
 
         return $readerResult;
     }
+
+    public function checkAlboList(array $alboList): array
+    {
+        $resultCollection = [];
+
+        foreach ($alboList as $alboUrl) {
+            foreach ($alboUrl as $valueUrl) {
+                $resultCollection[] = $this->checkAlbo($valueUrl);
+            }
+        }
+
+        return $resultCollection;
+    }
 }

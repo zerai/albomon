@@ -6,9 +6,12 @@
  
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP
- - cli command check catalogo di albi
- - cli command check singolo albo
  
+ 
+ ## [0.2.0] -  2019-07-10
+ ##### Added
+ - cli command multi check da catalogo albi personale
+
  ## [0.1.0] -  2019-07-08
  ##### Added
  - cli command check singolo albo

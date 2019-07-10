@@ -18,4 +18,12 @@ interface RssReaderResultInterface
      * @return string
      */
     public function httpError(): string;
+
+    /**
+     * @return string
+     */
+    public function feedUrl(): string;
+
+    /** @return \DOMDocument */
+    public function xmlDocument(): \DOMDocument;
 }

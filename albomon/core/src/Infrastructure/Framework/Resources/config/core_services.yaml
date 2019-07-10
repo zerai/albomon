@@ -4,12 +4,17 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    alobopop_catalog: 'albopop-catalog.json'
+    custom_catalog: 'albopop-catalog.json'
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+        bind:
+            $catalogDir: '%kernel.project_dir%/catalog'
 
 
 
@@ -47,6 +52,12 @@ services:
     #######################################################################
 
     Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboComand:
+        arguments:
+            - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+        tags:
+            - { name: 'console.command' }
+
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboListComand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
         tags:

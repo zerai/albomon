@@ -1,0 +1,11 @@
+version: "2"
+
+
+plugins:
+  [SonarPHP]:
+    enabled: true
+
+
+exclude_patterns:
+  - "extra/"
+  - "catalog/"
