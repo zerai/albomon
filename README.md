@@ -13,6 +13,12 @@ Console application per il monitoraggio dei feed RSS prodotti dal progetto [Albo
 
 ## Installazione:
 
+$ git clone https://github.com/zerai/albomon.git
+
+$ cd albomon/
+
+$ composer install
+
 
 ## Console Command:
 
