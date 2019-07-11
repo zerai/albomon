@@ -5,9 +5,13 @@
  and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
  
  ## [Unreleased] -  XXXX-XX-XX
- - validazione specifiche AlboPOP
+ - check catalogo ufficiale AlboPOP 
+ - validazione specifiche AlboPOP 
  
- 
+ ## [0.3.0] -  2019-07-11
+ ##### Changed
+ - semantica comandi console
+  
  ## [0.2.0] -  2019-07-10
  ##### Added
  - cli command multi check da catalogo albi personale
