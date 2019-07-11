@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
+use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -42,17 +43,20 @@ class CheckCustomCatalogComand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $alboList = $this->getCustomCatalog();
-
-        //$io = new SymfonyStyle($input, $output);
-
-        //$io->text('Check RSS feed list...');
-
-        // TODO cambiare formattazione risultati, usare tabella....
-
-        $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
-
         // TODO remove
         $AlboPopSpecValidation = 'Non Rilevato';
+
+        $io = new SymfonyStyle($input, $output);
+
+        if ($input->isInteractive()) {
+            $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
+
+            $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+
+            $io->note('Il tempo necessario alla scansione poò variare in base al tipo di connessione e  alle condizioni della rete.');
+        }
+
+        $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
 
         if ($input->isInteractive()) {
             $section = $output->section();
@@ -64,17 +68,23 @@ class CheckCustomCatalogComand extends Command
 
             foreach ($monitorResultCollection as $monitorResult) {
                 if (!$monitorResult->httpStatus()) {
-                    $table->appendRow([$monitorResult->feedUrl(), 'NON ATTIVO', $AlboPopSpecValidation, '', 'server error']);
+                    $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), $AlboPopSpecValidation, '', 'server error']);
                 } else {
-                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $monitorResult->lastFeedItemDate()->format('Y-m-d'), '']);
+                    // TODO format output per data aggiornamento visualizzare colore diverso per ritardo maggiore di 1 settimana  1 mese 1 anno
+                    $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
+
+                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $lastFeedItemDateWithDifference, '']);
+                    ///$table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $monitorResult->lastFeedItemDate()->format('Y-m-d'), '']);
                 }
             }
+
+            $io->text('Processo di scasione terminato.');
         }
 
         return null;
     }
 
-    public function getCustomCatalog(): array
+    private function getCustomCatalog(): array
     {
         // TODO check exist before open throw exception or message in console
         $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
@@ -82,5 +92,14 @@ class CheckCustomCatalogComand extends Command
         $customCatalog = json_decode($strJsonFileContents, true);
 
         return $customCatalog;
+    }
+
+    private function formatContentUpdatedAt(DateTime $contenteDateTime): string
+    {
+        $dateNow = new DateTime('now');
+
+        $diff = $dateNow->diff($contenteDateTime)->days;
+
+        return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
     }
 }
