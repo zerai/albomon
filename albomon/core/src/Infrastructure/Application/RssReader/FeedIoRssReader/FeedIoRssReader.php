@@ -68,12 +68,16 @@ class FeedIoRssReader implements RssReaderInterface
     private function readRss()
     {
         try {
+            // TODO rename this var
             $result = $this->feedIo->read($this->targetUrl);
 
             $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
 
             // TODO assign xml to result object
             $rssReaderResult->setXmlDocument($this->getDomDocument($result));
+
+            // TODO assign lastFeedItemDate to result object
+            $rssReaderResult->setlastFeedItemDate($this->getLastFeedItemDate($result));
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {
@@ -94,5 +98,12 @@ class FeedIoRssReader implements RssReaderInterface
         }
 
         return $rssReaderResult->getDocument()->getDOMDocument();
+    }
+
+    private function getLastFeedItemDate(Result $rssReaderResult): \DateTime
+    {
+        // TODO check before
+
+        return $rssReaderResult->getFeed()->getLastModified();
     }
 }

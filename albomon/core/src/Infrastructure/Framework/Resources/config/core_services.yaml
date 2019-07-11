@@ -51,13 +51,13 @@ services:
     ##
     #######################################################################
 
-    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboComand:
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckFeedComand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
         tags:
             - { name: 'console.command' }
 
-    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboListComand:
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckCustomCatalogComand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
         tags:
