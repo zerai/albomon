@@ -53,7 +53,7 @@ class CheckCustomCatalogComand extends Command
 
             $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
-            $io->note('Il tempo necessario alla scansione poò variare in base al tipo di connessione e  alle condizioni della rete.');
+            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione e  alle condizioni della rete.');
         }
 
         $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
