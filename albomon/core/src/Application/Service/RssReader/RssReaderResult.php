@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Albomon\Core\Application\Service\RssReader;
 
+use RuntimeException;
+
 /**
  * Class RssReaderResult.
  */
@@ -57,6 +59,9 @@ class RssReaderResult implements RssReaderResultInterface
      */
     public function setHttpError(string $httpError): void
     {
+        if ($this->isActiveFeed()) {
+            throw new RuntimeException('Can\'t set httpError property in active feed');
+        }
         $this->httpError = $httpError;
     }
 
@@ -70,6 +75,9 @@ class RssReaderResult implements RssReaderResultInterface
 
     public function setXmlDocument(\DOMDocument $xmlDocument): void
     {
+        if (!$this->isActiveFeed()) {
+            throw new RuntimeException('Can\'t set xml property on inactive feed');
+        }
         $this->xmlDocument = $xmlDocument;
     }
 
@@ -81,6 +89,9 @@ class RssReaderResult implements RssReaderResultInterface
 
     public function setlastFeedItemDate($lastFeedItemDate): void
     {
+        if (!$this->isActiveFeed()) {
+            throw new RuntimeException('Can\'t set lastFeedItemDate property on inactive feed');
+        }
         $this->lastFeedItemDate = $lastFeedItemDate;
     }
 
@@ -88,5 +99,10 @@ class RssReaderResult implements RssReaderResultInterface
     public function lastFeedItemDate(): \DateTime
     {
         return $this->lastFeedItemDate;
+    }
+
+    private function isActiveFeed(): bool
+    {
+        return $this->httpStatus;
     }
 }
