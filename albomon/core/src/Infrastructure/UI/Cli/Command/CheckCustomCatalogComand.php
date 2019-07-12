@@ -90,10 +90,21 @@ class CheckCustomCatalogComand extends Command
 
     private function getCustomCatalog(): array
     {
+        $catalogFile = $this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME;
+
+        if (!file_exists($catalogFile)) {
+            throw new \RuntimeException('Catalog file not found. file: '.$catalogFile);
+        }
         // TODO check exist before open throw exception or message in console
         $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
 
-        $customCatalog = json_decode($strJsonFileContents, true);
+        $customCatalog = json_decode((string) $strJsonFileContents, true);
+
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new \RuntimeException('Unable to parse response body into JSON: '.json_last_error());
+        }
+
+        //$customCatalog = json_decode($strJsonFileContents, true);
 
         return $customCatalog;
     }
