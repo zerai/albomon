@@ -28,6 +28,7 @@ class CheckCustomCatalogComand extends Command
         parent::__construct('albomon:check:custom-catalog');
 
         $this->monitorService = $monitorService;
+
         $this->catalogDir = $catalogDir;
 
         $this->setDescription('Console command check a list of albi');
@@ -60,10 +61,13 @@ class CheckCustomCatalogComand extends Command
 
         if ($input->isInteractive()) {
             $section = $output->section();
+
             $table = new Table($section);
+
             $table
                 ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error'])
             ;
+
             $table->render();
 
             foreach ($monitorResultCollection as $monitorResult) {

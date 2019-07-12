@@ -41,7 +41,6 @@ class CheckFeedComand extends Command
         $io = new SymfonyStyle($input, $output);
 
         if ($input->isInteractive()) {
-
             $io->text('Inizio scansione feed albo...');
 
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione e  alle condizioni della rete.');
@@ -54,17 +53,13 @@ class CheckFeedComand extends Command
         $monitorResult = $this->monitorService->checkAlbo($feedUrl);
 
         if ($input->isInteractive()) {
-
             if (!$monitorResult->httpStatus()) {
-
                 $output->writeln('<info>Feed Status: </info> <error>NON ATTIVO</error>');
 
                 $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
 
                 $output->writeln("<error>Error Message: {$monitorResult->httpError()}</error>");
-
             } else {
-
                 $output->writeln('<info>Feed Status: ATTIVO</info>');
 
                 $output->writeln("<info>Content Updated At: {$this->formatContentUpdatedAt($monitorResult->lastFeedItemDate())}</info>");
