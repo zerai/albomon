@@ -8,7 +8,6 @@ use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService
 use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -32,13 +31,6 @@ class CheckCustomCatalogComand extends Command
         $this->catalogDir = $catalogDir;
 
         $this->setDescription('Console command check a list of albi');
-    }
-
-    protected function configure()
-    {
-//        $this
-//            ->addArgument('feed_url', InputArgument::REQUIRED, 'albo url?')
-//        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
@@ -78,7 +70,6 @@ class CheckCustomCatalogComand extends Command
                     $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
                     $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $lastFeedItemDateWithDifference, '']);
-                    ///$table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $monitorResult->lastFeedItemDate()->format('Y-m-d'), '']);
                 }
             }
 
@@ -103,8 +94,6 @@ class CheckCustomCatalogComand extends Command
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new \RuntimeException('Unable to parse response body into JSON: '.json_last_error());
         }
-
-        //$customCatalog = json_decode($strJsonFileContents, true);
 
         return $customCatalog;
     }
