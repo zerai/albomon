@@ -12,9 +12,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class CheckCustomCatalogComand extends Command
+class CheckAlboPopCatalogComand extends Command
 {
-    private const CATALOG_FILE_NAME = 'custom-catalog.json';
+    private const CATALOG_FILE_NAME = 'albopop-catalog.json';
 
     /** @var MonitorApplicationService */
     private $monitorService;
@@ -24,13 +24,13 @@ class CheckCustomCatalogComand extends Command
 
     public function __construct(MonitorApplicationService $monitorService, string $catalogDir)
     {
-        parent::__construct('albomon:check:custom-catalog');
+        parent::__construct('albomon:check:albopop-catalog');
 
         $this->monitorService = $monitorService;
 
         $this->catalogDir = $catalogDir;
 
-        $this->setDescription('Console command check a list of albi');
+        $this->setDescription('Scansione del catalogo albi ufficiale di AlboPOP');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
@@ -86,7 +86,7 @@ class CheckCustomCatalogComand extends Command
         if (!file_exists($catalogFile)) {
             throw new \RuntimeException('Catalog file not found. file: '.$catalogFile);
         }
-        // TODO check exist before open throw exception or message in console
+
         $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
 
         $customCatalog = json_decode((string) $strJsonFileContents, true);

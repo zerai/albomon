@@ -2,6 +2,7 @@ env:
   global:
     - CC_TEST_REPORTER_ID=721e19591944a2b03d54b18bac024cb12cf060e5367f538d729ba32fb3fc519e
 
+    - TEST_COVERAGE=true
 
 language: php
 
@@ -9,6 +10,10 @@ language: php
 php:
   - 7.2
 
+
+cache:
+  directories:
+  - $HOME/.composer/cache
 
 install:
   - composer install
@@ -22,8 +27,15 @@ before_script:
 
 script:
   - php bin/phpunit --coverage-clover clover.xml --log-junit junit.xml
+
   - ./cc-test-reporter after-build --coverage-input-type clover --id $CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
 
   - php vendor/bin/php-cs-fixer fix --dry-run -vvv
 
   - php vendor/bin/phpstan analyse
+
+
+after_success:
+  #- if [[ $TEST_COVERAGE == 'true' ]]; then php vendor/bin/php-coveralls -v; fi
+
+  - travis_retry php vendor/bin/php-coveralls
