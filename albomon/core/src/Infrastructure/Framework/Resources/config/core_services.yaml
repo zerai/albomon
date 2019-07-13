@@ -62,3 +62,9 @@ services:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
         tags:
             - { name: 'console.command' }
+
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboPopCatalogComand:
+        arguments:
+            - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+        tags:
+            - { name: 'console.command' }
