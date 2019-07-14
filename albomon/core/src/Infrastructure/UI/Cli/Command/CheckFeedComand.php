@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
+use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckFeedComand extends Command
 {
+    // Traits
+    use SymfonyStyleTrait;
+
     /** @var MonitorApplicationService */
     private $monitorService;
 
@@ -38,12 +41,12 @@ class CheckFeedComand extends Command
         // TODO remove
         $AlboPopSpecValidation = 'Non Rilevato';
 
-        $io = new SymfonyStyle($input, $output);
+        $io = $this->getSymfonyStyle($input, $output);
 
         if ($input->isInteractive()) {
             $io->text('Inizio scansione feed albo...');
 
-            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione e  alle condizioni della rete.');
+            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
         }
 
         $feedUrl = $input->getArgument('feed_url'); //var_dump($feedUrl);

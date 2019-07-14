@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
+use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckCustomCatalogComand extends Command
 {
+    // Traits
+    use SymfonyStyleTrait;
+
     private const CATALOG_FILE_NAME = 'custom-catalog.json';
 
     /** @var MonitorApplicationService */
@@ -39,14 +42,14 @@ class CheckCustomCatalogComand extends Command
         // TODO remove
         $AlboPopSpecValidation = 'Non Rilevato';
 
-        $io = new SymfonyStyle($input, $output);
+        $io = $this->getSymfonyStyle($input, $output);
 
         if ($input->isInteractive()) {
             $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
             $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
-            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione e  alle condizioni della rete.');
+            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
         }
 
         $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
