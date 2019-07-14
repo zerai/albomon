@@ -7,6 +7,11 @@
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
  
+ ## [0.x.x] -  XXXX-XX-XX
+ ##### Changed
+  - formattazione console output
+  - code refactor
+  
  ## [0.4.0] -  2019-07-13
  ##### Added
  - cli command per scansione albi ufficiali AlboPOP

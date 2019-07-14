@@ -68,16 +68,13 @@ class FeedIoRssReader implements RssReaderInterface
     private function readRss()
     {
         try {
-            // TODO rename this var
-            $result = $this->feedIo->read($this->targetUrl);
+            $feed = $this->feedIo->read($this->targetUrl);
 
             $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
 
-            // TODO assign xml to result object
-            $rssReaderResult->setXmlDocument($this->getDomDocument($result));
+            $rssReaderResult->setXmlDocument($this->getDomDocument($feed));
 
-            // TODO assign lastFeedItemDate to result object
-            $rssReaderResult->setlastFeedItemDate($this->getLastFeedItemDate($result));
+            $rssReaderResult->setlastFeedItemDate($this->getLastFeedItemDate($feed));
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {

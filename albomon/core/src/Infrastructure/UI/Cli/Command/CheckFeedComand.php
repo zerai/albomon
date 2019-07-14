@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckFeedComand extends Command
 {
-    // Traits
     use SymfonyStyleTrait;
 
     /** @var MonitorApplicationService */
@@ -38,7 +37,6 @@ class CheckFeedComand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        // TODO remove
         $AlboPopSpecValidation = 'Non Rilevato';
 
         $io = $this->getSymfonyStyle($input, $output);
@@ -49,7 +47,7 @@ class CheckFeedComand extends Command
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
         }
 
-        $feedUrl = $input->getArgument('feed_url'); //var_dump($feedUrl);
+        $feedUrl = $input->getArgument('feed_url');
 
         $output->writeln("<info>Albo: $feedUrl</info>");
 

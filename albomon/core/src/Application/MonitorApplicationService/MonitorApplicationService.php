@@ -26,9 +26,6 @@ class MonitorApplicationService
     {
         $readerResult = $this->feedReader->execute($alboUrl);
 
-        // TODO
-        // persist history records?
-        // build MonitorRepositoryResult object
         // logging InactiveFeedDetection event...
 
         return $readerResult;

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/zerai/albomon.svg?branch=master)](https://travis-ci.com/zerai/albomon)
+[![Build Status](https://travis-ci.org/zerai/albomon.svg?branch=master)](https://travis-ci.org/zerai/albomon)
 
 # AlboMON  -  AlboPOP Monitoring application
 

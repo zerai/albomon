@@ -14,7 +14,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckCustomCatalogComand extends Command
 {
-    // Traits
     use SymfonyStyleTrait;
 
     private const CATALOG_FILE_NAME = 'custom-catalog.json';
@@ -39,7 +38,7 @@ class CheckCustomCatalogComand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
         $alboList = $this->getCustomCatalog();
-        // TODO remove
+
         $AlboPopSpecValidation = 'Non Rilevato';
 
         $io = $this->getSymfonyStyle($input, $output);
@@ -69,7 +68,6 @@ class CheckCustomCatalogComand extends Command
                 if (!$monitorResult->httpStatus()) {
                     $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), $AlboPopSpecValidation, '', 'server error']);
                 } else {
-                    // TODO format output per data aggiornamento visualizzare colore diverso per ritardo maggiore di 1 settimana  1 mese 1 anno
                     $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
                     $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $lastFeedItemDateWithDifference, '']);
@@ -89,7 +87,7 @@ class CheckCustomCatalogComand extends Command
         if (!file_exists($catalogFile)) {
             throw new \RuntimeException('Catalog file not found. file: '.$catalogFile);
         }
-        // TODO check exist before open throw exception or message in console
+
         $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
 
         $customCatalog = json_decode((string) $strJsonFileContents, true);
