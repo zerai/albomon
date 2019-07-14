@@ -9,6 +9,7 @@
  
  ## [0.x.x] -  XXXX-XX-XX
  ##### Changed
+  - update catalogo AlboPOP
   - formattazione console output
   - code refactor
   
