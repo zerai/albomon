@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckCustomCatalogComand extends Command
 {
@@ -41,14 +42,16 @@ class CheckCustomCatalogComand extends Command
 
         $AlboPopSpecValidation = 'Non Rilevato';
 
-        $io = $this->getSymfonyStyle($input, $output);
-
         if ($input->isInteractive()) {
+            $io = $this->getSymfonyStyle($input, $output);
+
             $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
             $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
+
+            $io = new SymfonyStyle($input, $output);
         }
 
         $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
