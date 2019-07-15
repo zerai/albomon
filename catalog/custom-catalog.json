@@ -1,7 +1,6 @@
 [
-  {"aggiungi-il-tuo-feed-da-monitorare": "http://aggiungi.mio.feed-da-monitorare.it/comune/mio-feed/"},
-  {"Accumoli-fake": "http://dev.albopop.it/comune/accumoli/"},
   {"Accumoli": "http://feeds.ricostruzionetrasparente.it/albi_pretori/Accumoli_feed.xml"},
+  {"Accumoli-fake": "http://dev.albopop.it/comune/accumoli/"},
   {"Acquasanta Terme": "http://feeds.ricostruzionetrasparente.it/albi_pretori/Acquasanta%20Terme_feed.xml"},
   {"Agira": "http://feeds.feedburner.com/AlbopopAgira"},
   {"Agliano Terme": "https://script.google.com/macros/s/AKfycbyJ9bY6uFVX1pccFp-3B9-_B27DPpss4nQPmVRh/exec"},
