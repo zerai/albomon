@@ -44,7 +44,7 @@ $ php bin/console albomon:check:custom-catalog
 #### - scansione feed da catalogo ufficiale AlboPOP:
 $ php bin/console albomon:check:albopop-catalog
 
-[NB.] Attualmente il catalogo ufficiale gestito dall'applicazione contiene solo i primi 100 feed di [questo elenco](https://albopop.it/comune/).
+[NB.] Attualmente il catalogo ufficiale gestito dall'applicazione contiene solo i primi 150 feed di [questo elenco](https://albopop.it/comune/).
 
 
 #### Gestione cataloghi:
