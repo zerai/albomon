@@ -8,7 +8,6 @@ use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,8 +18,6 @@ class CheckAlboPopCatalogComand extends Command
     use SymfonyStyleTrait;
 
     private const CATALOG_FILE_NAME = 'albopop-catalog.json';
-
-    private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
     /** @var MonitorApplicationService */
     private $monitorService;
@@ -43,6 +40,8 @@ class CheckAlboPopCatalogComand extends Command
     {
         $alboList = $this->getCustomCatalog();
 
+        $AlboPopSpecValidation = 'Non Rilevato';
+
         if ($input->isInteractive()) {
             $io = $this->getSymfonyStyle($input, $output);
 
@@ -53,7 +52,12 @@ class CheckAlboPopCatalogComand extends Command
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
             $io = new SymfonyStyle($input, $output);
+        }
 
+        $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
+
+        if ($input->isInteractive()) {
+            //$io = new SymfonyStyle($input, $output);
             $section = $output->section();
 
             $table = new Table($section);
@@ -64,37 +68,20 @@ class CheckAlboPopCatalogComand extends Command
 
             $table->render();
 
-            $section2 = $output->section();
-            $progressBar = new ProgressBar($section2, count($alboList));
+            foreach ($monitorResultCollection as $monitorResult) {
+                if (!$monitorResult->httpStatus()) {
+                    $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), $AlboPopSpecValidation, '', 'server error']);
+                } else {
+                    $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
-            $progressBar->start();
-        }
-
-        foreach ($alboList as $alboUrl) {
-            foreach ($alboUrl as $valueUrl) {
-                $this->checkFeed($valueUrl, $table, $output, $input->isInteractive(), $io);
+                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $lastFeedItemDateWithDifference, '']);
+                }
             }
-            $progressBar->advance();
+
+            $io->text('Processo di scasione terminato.');
         }
-
-        $progressBar->finish();
-
-        $io->text('Processo di scasione terminato.');
 
         return null;
-    }
-
-    private function checkFeed(string $alboUrl, Table $table, OutputInterface $output, bool $interactive, SymfonyStyle $io): void
-    {
-        $monitorResult = $this->monitorService->checkAlbo($alboUrl);
-
-        if (!$monitorResult->httpStatus()) {
-            $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
-        } else {
-            $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
-
-            $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
-        }
     }
 
     private function getCustomCatalog(): array
