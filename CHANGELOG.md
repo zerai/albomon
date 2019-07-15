@@ -7,6 +7,11 @@
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
  
+ ## [0.x.x] -  XXXX-XX-XX
+ ##### Changed
+  - realtime updates in console output
+  - update catalogo AlboPOP
+ 
  ## [0.4.1] -  2019-07-14
  ##### Changed
   - update catalogo AlboPOP
