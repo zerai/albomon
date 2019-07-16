@@ -41,6 +41,8 @@ class CheckAlboPopCatalogComand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
+        //TODO 'Console BUG'    https://github.com/symfony/symfony/issues/29746
+
         $alboList = $this->getCustomCatalog();
 
         if ($input->isInteractive()) {
@@ -52,49 +54,46 @@ class CheckAlboPopCatalogComand extends Command
 
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-            $io = new SymfonyStyle($input, $output);
+            $sectionProgressBar = $output->section();
 
-            $section = $output->section();
-
-            $table = new Table($section);
-
-            $table
-                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error'])
-            ;
-
-            $table->render();
-
-            $section2 = $output->section();
-            $progressBar = new ProgressBar($section2, count($alboList));
+            $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
 
             $progressBar->start();
+
+            $table = new Table($output);
+
+            $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
         }
 
         foreach ($alboList as $alboUrl) {
             foreach ($alboUrl as $valueUrl) {
-                $this->checkFeed($valueUrl, $table, $output, $input->isInteractive(), $io);
+                $table = $this->checkFeed($valueUrl, $table, $output, $input->isInteractive(), $io);
             }
             $progressBar->advance();
         }
 
         $progressBar->finish();
 
+        $table->render();
+
         $io->text('Processo di scasione terminato.');
 
         return null;
     }
 
-    private function checkFeed(string $alboUrl, Table $table, OutputInterface $output, bool $interactive, SymfonyStyle $io): void
+    private function checkFeed(string $alboUrl, Table $table, OutputInterface $output, bool $interactive, SymfonyStyle $io): Table
     {
         $monitorResult = $this->monitorService->checkAlbo($alboUrl);
 
         if (!$monitorResult->httpStatus()) {
-            $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
+            $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
         } else {
             $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
-            $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
+            $table->addRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
         }
+
+        return $table;
     }
 
     private function getCustomCatalog(): array
