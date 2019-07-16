@@ -11,9 +11,9 @@ AlboMON valuta, e restituisce in output, i seguenti parametri:
 
 - Spec. Status: 'Non Rilevato'  <- valore di default la feature è da implementare
 
-- Content Update At: data di aggiornamento feed ed il numero di giorni di ritarto esempio '2019-05-20  -53 gg.'
+- Content Update At: data di aggiornamento del feed ed il numero di giorni di ritarto esempio '2019-05-20  -53 gg.'
 
-- Error: 'server error' se ci sono problemi rigurdanti la rete (404 500 e simili). 
+- Error: 'server error' indica problemi rigurdanti la rete (404 500 e simili). 
 
 
 ## Requisiti:
@@ -44,7 +44,7 @@ $ php bin/console albomon:check:custom-catalog
 #### - scansione feed da catalogo ufficiale AlboPOP:
 $ php bin/console albomon:check:albopop-catalog
 
-[NB.] Attualmente il catalogo ufficiale gestito dall'applicazione contiene solo i primi 150 feed di [questo elenco](https://albopop.it/comune/).
+[NB.] Il catalogo ufficiale del progetto AlboPOP è reperibile in [questa pagina](https://albopop.it/comune/).
 
 
 #### Gestione cataloghi:
