@@ -12,7 +12,6 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckAlboPopCatalogComand extends Command
 {
@@ -45,29 +44,27 @@ class CheckAlboPopCatalogComand extends Command
 
         $alboList = $this->getCustomCatalog();
 
-        if ($input->isInteractive()) {
-            $io = $this->getSymfonyStyle($input, $output);
+        $io = $this->getSymfonyStyle($input, $output);
 
-            $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
+        $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
-            $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+        $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
-            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
+        $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-            $sectionProgressBar = $output->section();
+        $sectionProgressBar = $output->section();
 
-            $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
+        $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
 
-            $progressBar->start();
+        $progressBar->start();
 
-            $table = new Table($output);
+        $table = new Table($output);
 
-            $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
-        }
+        $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
 
         foreach ($alboList as $alboUrl) {
             foreach ($alboUrl as $valueUrl) {
-                $table = $this->checkFeed($valueUrl, $table, $output, $input->isInteractive(), $io);
+                $table = $this->checkFeed($valueUrl, $table);
             }
             $progressBar->advance();
         }
@@ -81,7 +78,7 @@ class CheckAlboPopCatalogComand extends Command
         return null;
     }
 
-    private function checkFeed(string $alboUrl, Table $table, OutputInterface $output, bool $interactive, SymfonyStyle $io): Table
+    private function checkFeed(string $alboUrl, Table $table): Table
     {
         $monitorResult = $this->monitorService->checkAlbo($alboUrl);
 
