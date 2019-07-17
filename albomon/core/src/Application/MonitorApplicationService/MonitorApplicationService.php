@@ -24,11 +24,7 @@ class MonitorApplicationService
 
     public function checkAlbo(string $alboUrl): RssReaderResultInterface
     {
-        $readerResult = $this->feedReader->execute($alboUrl);
-
-        // logging InactiveFeedDetection event...
-
-        return $readerResult;
+        return $this->feedReader->execute($alboUrl);
     }
 
     public function checkAlboList(array $alboList): array

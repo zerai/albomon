@@ -8,18 +8,16 @@ use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckCustomCatalogComand extends Command
 {
     use SymfonyStyleTrait;
 
     private const CATALOG_FILE_NAME = 'custom-catalog.json';
-
-    private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
     /** @var MonitorApplicationService */
     private $monitorService;
@@ -40,57 +38,49 @@ class CheckCustomCatalogComand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        //TODO 'Console BUG'    https://github.com/symfony/symfony/issues/29746
-
         $alboList = $this->getCustomCatalog();
 
-        $io = $this->getSymfonyStyle($input, $output);
+        $AlboPopSpecValidation = 'Non Rilevato';
 
-        $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
+        if ($input->isInteractive()) {
+            $io = $this->getSymfonyStyle($input, $output);
 
-        $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+            $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
-        $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
+            $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
-        $sectionProgressBar = $output->section();
+            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-        $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
-
-        $progressBar->start();
-
-        $table = new Table($output);
-
-        $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
-
-        foreach ($alboList as $alboUrl) {
-            foreach ($alboUrl as $valueUrl) {
-                $this->checkFeed($valueUrl, $table);
-            }
-            $progressBar->advance();
+            $io = new SymfonyStyle($input, $output);
         }
 
-        $progressBar->finish();
+        $monitorResultCollection = $this->monitorService->checkAlboList($alboList);
 
-        $table->render();
+        if ($input->isInteractive()) {
+            $section = $output->section();
 
-        $io->text('Processo di scasione terminato.');
+            $table = new Table($section);
+
+            $table
+                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error'])
+            ;
+
+            $table->render();
+
+            foreach ($monitorResultCollection as $monitorResult) {
+                if (!$monitorResult->httpStatus()) {
+                    $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), $AlboPopSpecValidation, '', 'server error']);
+                } else {
+                    $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
+
+                    $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', $AlboPopSpecValidation, $lastFeedItemDateWithDifference, '']);
+                }
+            }
+
+            $io->text('Processo di scasione terminato.');
+        }
 
         return null;
-    }
-
-    private function checkFeed(string $alboUrl, Table $table): Table
-    {
-        $monitorResult = $this->monitorService->checkAlbo($alboUrl);
-
-        if (!$monitorResult->httpStatus()) {
-            $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
-        } else {
-            $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
-
-            $table->addRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
-        }
-
-        return $table;
     }
 
     private function getCustomCatalog(): array

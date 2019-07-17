@@ -7,6 +7,13 @@
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
  
+ ## [0.4.2] -  2017-07-17
+ ##### Added
+  - realtime progress bar in console output
+
+ ##### Changed
+  - update catalogo AlboPOP
+ 
  ## [0.4.1] -  2019-07-14
  ##### Changed
   - update catalogo AlboPOP

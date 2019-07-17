@@ -1,6 +1,9 @@
 ###> develop ###
 .idea/
 /extra/
+.scannerwork/
+sonar-project.properties
+sonar-project.properties_
 ###< develop ###
 ###> symfony/framework-bundle ###
 /.env.local
