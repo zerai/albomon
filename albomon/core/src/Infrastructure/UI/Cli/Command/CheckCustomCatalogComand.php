@@ -12,7 +12,6 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CheckCustomCatalogComand extends Command
 {
@@ -41,60 +40,57 @@ class CheckCustomCatalogComand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
+        //TODO 'Console BUG'    https://github.com/symfony/symfony/issues/29746
+
         $alboList = $this->getCustomCatalog();
 
-        if ($input->isInteractive()) {
-            $io = $this->getSymfonyStyle($input, $output);
+        $io = $this->getSymfonyStyle($input, $output);
 
-            $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
+        $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
-            $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+        $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
 
-            $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
+        $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-            $io = new SymfonyStyle($input, $output);
+        $sectionProgressBar = $output->section();
 
-            $section = $output->section();
+        $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
 
-            $table = new Table($section);
+        $progressBar->start();
 
-            $table
-                ->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error'])
-            ;
+        $table = new Table($output);
 
-            $table->render();
-
-            $section2 = $output->section();
-            $progressBar = new ProgressBar($section2, count($alboList));
-
-            $progressBar->start();
-        }
+        $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
 
         foreach ($alboList as $alboUrl) {
             foreach ($alboUrl as $valueUrl) {
-                $this->checkFeed($valueUrl, $table, $output, $input->isInteractive(), $io);
+                $this->checkFeed($valueUrl, $table);
             }
             $progressBar->advance();
         }
 
         $progressBar->finish();
 
+        $table->render();
+
         $io->text('Processo di scasione terminato.');
 
         return null;
     }
 
-    private function checkFeed(string $alboUrl, Table $table, OutputInterface $output, bool $interactive, SymfonyStyle $io): void
+    private function checkFeed(string $alboUrl, Table $table): Table
     {
         $monitorResult = $this->monitorService->checkAlbo($alboUrl);
 
         if (!$monitorResult->httpStatus()) {
-            $table->appendRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
+            $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
         } else {
             $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
-            $table->appendRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
+            $table->addRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
         }
+
+        return $table;
     }
 
     private function getCustomCatalog(): array

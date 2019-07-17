@@ -13,10 +13,6 @@ parameters:
     ignoreErrors:
         #- '##'
         - '#Call to an undefined method Symfony\\Component\\Console\\Output\\OutputInterface::section().#'
-        - '#Variable \$io might not be defined.#'
-        - '#Variable \$table might not be defined.#'
-        - '#Variable \$progressBar might not be defined.#'
-
 
 
     excludes_analyse:
