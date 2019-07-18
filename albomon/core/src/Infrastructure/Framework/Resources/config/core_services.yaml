@@ -15,6 +15,7 @@ services:
 
         bind:
             $catalogDir: '%kernel.project_dir%/catalog'
+            $reportDir: '%kernel.project_dir%/report'
 
 
 
@@ -27,6 +28,7 @@ services:
     Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService:
         arguments:
             - '@core.feed_reader'
+
 
 
 
@@ -43,6 +45,8 @@ services:
     core.feedio_reader:
         class: Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader
 
+    core.report_manager:
+        class: Albomon\Core\Application\Service\ReportManager\ReportManager
 
 
     #######################################################################
@@ -51,20 +55,22 @@ services:
     ##
     #######################################################################
 
-    Albomon\Core\Infrastructure\UI\Cli\Command\CheckFeedComand:
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckFeedCommand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
         tags:
             - { name: 'console.command' }
 
-    Albomon\Core\Infrastructure\UI\Cli\Command\CheckCustomCatalogComand:
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckCustomCatalogCommand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+            - '@core.report_manager'
         tags:
             - { name: 'console.command' }
 
-    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboPopCatalogComand:
+    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboPopCatalogCommand:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+            - '@core.report_manager'
         tags:
             - { name: 'console.command' }

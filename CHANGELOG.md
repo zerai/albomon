@@ -7,6 +7,10 @@
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
  
+ ## [0.4.3] -  2017-07-18
+ #### Added
+  - csv report in cli command
+ 
  ## [0.4.2] -  2017-07-17
  ##### Added
   - realtime progress bar in console output

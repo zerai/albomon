@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
+use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CheckCustomCatalogComand extends Command
+class CheckCustomCatalogCommand extends Command
 {
     use SymfonyStyleTrait;
 
@@ -24,18 +25,28 @@ class CheckCustomCatalogComand extends Command
     /** @var MonitorApplicationService */
     private $monitorService;
 
+    /** @var ReportManagerInterface */
+    private $reportManager;
+
     /** @var string */
     private $catalogDir;
 
-    public function __construct(MonitorApplicationService $monitorService, string $catalogDir)
+    /** @var string */
+    private $reportDir;
+
+    public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
     {
         parent::__construct('albomon:check:custom-catalog');
 
         $this->monitorService = $monitorService;
 
+        $this->reportManager = $reportManager;
+
         $this->catalogDir = $catalogDir;
 
-        $this->setDescription('Console command check a list of albi');
+        $this->reportDir = $reportDir;
+
+        $this->setDescription('Scansione del catalogo albi personale');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): ?int
@@ -73,6 +84,8 @@ class CheckCustomCatalogComand extends Command
 
         $table->render();
 
+        $this->reportManager->generateReport();
+
         $io->text('Processo di scasione terminato.');
 
         return null;
@@ -81,6 +94,8 @@ class CheckCustomCatalogComand extends Command
     private function checkFeed(string $alboUrl, Table $table): Table
     {
         $monitorResult = $this->monitorService->checkAlbo($alboUrl);
+
+        $this->reportManager->addReportItem($monitorResult);
 
         if (!$monitorResult->httpStatus()) {
             $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);

@@ -47,6 +47,12 @@
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
+    "league/csv": {
+        "version": "8.2.3"
+    },
+    "mikey179/vfsstream": {
+        "version": "v1.6.6"
+    },
     "nette/bootstrap": {
         "version": "v3.0.0"
     },
@@ -235,6 +241,9 @@
             "config/packages/test/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/serializer": {
+        "version": "v4.2.10"
     },
     "symfony/stopwatch": {
         "version": "v4.2.10"
