@@ -99,8 +99,6 @@ class FeedIoRssReader implements RssReaderInterface
 
     private function getLastFeedItemDate(Result $rssReaderResult): \DateTime
     {
-        // TODO check before
-
         return $rssReaderResult->getFeed()->getLastModified();
     }
 }

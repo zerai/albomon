@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
-use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
+use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
-use League\Csv\Writer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CheckAlboPopCatalogComand extends Command
+class CheckAlboPopCatalogCommand extends Command
 {
     use SymfonyStyleTrait;
 
@@ -26,26 +25,26 @@ class CheckAlboPopCatalogComand extends Command
     /** @var MonitorApplicationService */
     private $monitorService;
 
-    /** @var string */
-    private $catalogDir;
+    /** @var ReportManagerInterface */
+    private $reportManager;
 
     /** @var string */
     private $reportDir;
 
-    /** @var array */
-    private $reportArray;
+    /** @var string */
+    private $catalogDir;
 
-    public function __construct(MonitorApplicationService $monitorService, string $catalogDir, string $reportDir)
+    public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
     {
         parent::__construct('albomon:check:albopop-catalog');
 
         $this->monitorService = $monitorService;
 
+        $this->reportManager = $reportManager;
+
         $this->catalogDir = $catalogDir;
 
         $this->reportDir = $reportDir;
-
-        $this->reportArray = [];
 
         $this->setDescription('Scansione del catalogo albi ufficiale di AlboPOP');
     }
@@ -85,7 +84,7 @@ class CheckAlboPopCatalogComand extends Command
 
         $table->render();
 
-        $this->exportReportCSV();
+        $this->reportManager->generateReport();
 
         $io->text('Processo di scasione terminato.');
 
@@ -96,7 +95,7 @@ class CheckAlboPopCatalogComand extends Command
     {
         $monitorResult = $this->monitorService->checkAlbo($alboUrl);
 
-        $this->addItemToReportArray($this->monitorService->checkAlbo($alboUrl));
+        $this->reportManager->addReportItem($monitorResult);
 
         if (!$monitorResult->httpStatus()) {
             $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
@@ -135,45 +134,5 @@ class CheckAlboPopCatalogComand extends Command
         $diff = $dateNow->diff($contenteDateTime)->days;
 
         return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
-    }
-
-    /**
-     * @return array
-     */
-    private function getReportArray(): array
-    {
-        return $this->reportArray;
-    }
-
-    public function addItemToReportArray(RssReaderResultInterface $result): void
-    {
-//        if ($this->containsId($result->feedUrl())) {
-//            //throw UserAlreadyExistsException::withUserId($user->id());
-//        }
-        $this->reportArray[] = $result;
-    }
-
-    private function containsId(string $url): bool
-    {
-        return array_key_exists($url, $this->reportArray);
-    }
-
-    public function exportReportCSV()
-    {
-        $outputFile = $this->reportDir.DIRECTORY_SEPARATOR.'prova.csv';
-
-        $writer = Writer::createFromPath($outputFile, 'w+');
-
-        $writer->insertOne(['Feed', 'Feed_status', 'Spec_status', 'Content_Updated_At', 'Error']);
-
-        foreach ($this->reportArray as $alboResult) {
-            $writer->insertOne([
-                $alboResult->feedUrl(),
-                $alboResult->httpStatus() ? 'ATTIVO' : 'NON ATTIVO',
-                self::XML_SPEC_VALIDATION,
-                $alboResult->httpStatus() ? $this->formatContentUpdatedAt($alboResult->lastFeedItemDate()) : '',
-                $alboResult->httpStatus() ? '' : $alboResult->httpError(),
-                ]);
-        }
     }
 }
