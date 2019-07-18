@@ -15,6 +15,7 @@ services:
 
         bind:
             $catalogDir: '%kernel.project_dir%/catalog'
+            $reportDir: '%kernel.project_dir%/report'
 
 
 
