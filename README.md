@@ -52,3 +52,8 @@ $ php bin/console albomon:check:albopop-catalog
 Per aggiungere o rimuovere un feed dal catalogo personale modificare il file 'catalog/custom-catalog.json'.
 
 Per aggiungere o rimuovere un feed dal catalogo ufficiale AlboPOP modificare il file 'catalog/albopop-catalog.json'.
+
+
+#### Report:
+
+L' applicazione genera un report in formato CSV, il file viene salvato nella directory 'report'.
