@@ -28,6 +28,10 @@
         <whitelist>
             <directory>src</directory>
             <directory>albomon/core/src</directory>
+            <exclude>
+                <directory>src/Migrations/</directory>
+                <file>src/Kernel.php</file>
+            </exclude>
         </whitelist>
     </filter>
 

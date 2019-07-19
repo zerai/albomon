@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Albomon\Tests\Core\Infrastructure\UI\Cli\Command;
 
-
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
@@ -25,6 +24,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
         $this->command = $application->find('albomon:check:custom-catalog');
         $this->commandTester = new CommandTester($this->command);
     }
+
     /** @test */
     public function it_can_execute()
     {
@@ -43,5 +43,4 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
         $this->assertContains('Inizio scansione feed albo...', $output);
         $this->assertContains('AlboPOP Spec. Validation', $output);
     }
-
 }
