@@ -12,6 +12,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 class CheckFeedCommandTest extends KernelTestCase
 {
     private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
+    private const WRONG_FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xmlllll';
 
     /** @var CommandTester|null */
     private $commandTester;
@@ -27,7 +28,8 @@ class CheckFeedCommandTest extends KernelTestCase
         $this->commandTester = new CommandTester($this->command);
     }
 
-    public function testExecute()
+    /** @test */
+    public function it_can_execute()
     {
         $this->commandTester->execute([
             'command' => $this->command->getName(),
@@ -41,6 +43,23 @@ class CheckFeedCommandTest extends KernelTestCase
 
         $this->assertContains('Inizio scansione feed albo...', $output);
         $this->assertContains('AlboPOP Spec. Validation', $output);
+    }
+
+    /** @test */
+    public function it_can_execute_with_wrong_url()
+    {
+        $this->commandTester->execute([
+            'command' => $this->command->getName(),
+            // pass arguments to the helper
+            'feed_url' => self::WRONG_FEED_URL,
+            // prefix the key with two dashes when passing options,
+            // e.g: '--some-option' => 'option_value',
+        ]);
+
+        $output = $this->commandTester->getDisplay();
+
+        $this->assertContains('Inizio scansione feed albo...', $output);
+        $this->assertContains('NON ATTIVO', $output);
     }
 
     protected function tearDown()
