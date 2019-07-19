@@ -6,6 +6,9 @@
  
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
+
+ ## [0.x.x] -  2017-XX-XX
+ - migliorata gestione delle eccezzioni (catalog file)
  
  ## [0.4.3] -  2017-07-18
  #### Added
