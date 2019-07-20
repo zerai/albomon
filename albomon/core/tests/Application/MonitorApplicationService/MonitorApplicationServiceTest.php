@@ -28,14 +28,12 @@ class MonitorApplicationServiceTest extends TestCase
     /** @test */
     public function it_can_check_a_single_albo(): void
     {
-        $url = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
-
         $rssPositiveResult = new RssReaderResult(true, self::FEED_URL);
 
         $this->feedReader->method('execute')
             ->willReturn($rssPositiveResult);
 
-        $monitorResponse = $this->monitorApplicationService->checkAlbo($url);
+        $monitorResponse = $this->monitorApplicationService->checkAlbo(self::FEED_URL);
 
         self::assertInstanceOf(RssReaderResult::class, $monitorResponse);
 
@@ -64,8 +62,8 @@ class MonitorApplicationServiceTest extends TestCase
     public function it_can_check_a_multiple_albo(): void
     {
         $alboList = [
-            ['Muccia' => 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml'],
-            ['Muccia' => 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml'],
+            ['Muccia' => self::FEED_URL],
+            ['Muccia' => self::FEED_URL],
         ];
 
         $this->feedReader->expects($this->exactly(2))->method('execute');

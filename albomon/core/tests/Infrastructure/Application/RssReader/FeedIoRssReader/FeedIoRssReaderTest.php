@@ -62,7 +62,7 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
-    public function it_handle_http_exception(): void
+    public function it_handle_inactive_feed(): void
     {
         $rssReader = new FeedIoRssReader();
 
@@ -72,5 +72,18 @@ class FeedIoRssReaderTest extends TestCase
         self::assertFalse($readerResult->httpStatus());
         self::assertEquals(self::WRONG_FEED_URL, $readerResult->feedUrl());
         self::assertNotNull($readerResult->httpError());
+    }
+
+    /** @test */
+    public function it_handle_xmlDom(): void
+    {
+        self::markTestSkipped();
+        $rssReader = new FeedIoRssReader();
+
+        $readerResult = $rssReader->execute(self::FEED_URL);
+
+        self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
+        self::assertTrue($readerResult->httpStatus());
+        self::assertNull($readerResult->xmlDocument());
     }
 }

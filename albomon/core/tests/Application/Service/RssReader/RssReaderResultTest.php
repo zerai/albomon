@@ -69,20 +69,17 @@ class RssReaderResultTest extends TestCase
 
         $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
-        $rssReaderResult->setlastFeedItemDate($date);
+        $rssReaderResult->setLastFeedItemDate($date);
 
         self::assertEquals($date, $rssReaderResult->lastFeedItemDate());
     }
 
     /**
      * @test
-     * @expectedException \RuntimeException
+     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
      */
-    public function it_cant_add_http_error_when_httpStatus_is_true(): void
+    public function it_cant_set_http_error_on_active_feed(): void
     {
-        // TODO
-        self::markTestSkipped('implement in code');
-
         $httpStatus = true;
 
         $httpError = 'Not Found.';
@@ -90,5 +87,31 @@ class RssReaderResultTest extends TestCase
         $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
 
         $rssReaderResult->setHttpError($httpError);
+    }
+
+    /**
+     * @test
+     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     */
+    public function it_cant_set_last_feed_date_on_inactive_feed(): void
+    {
+        $httpStatus = false;
+
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
+
+        $rssReaderResult->setLastFeedItemDate(new \DateTime('now'));
+    }
+
+    /**
+     * @test
+     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     */
+    public function it_cant_set_xml_document_on_inactive_feed(): void
+    {
+        $httpStatus = false;
+
+        $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
+
+        $rssReaderResult->setXmlDocument(new DOMDocument('1.0', 'ISO-8859-15'));
     }
 }

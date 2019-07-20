@@ -49,12 +49,12 @@ class ReportManagerTest extends TestCase
         $reportDataItem = new RssReaderResult(
             true,
             'http://feed.irrelevant.com/1');
-        $reportDataItem->setlastFeedItemDate(new \DateTime('now'));
+        $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $newReportDataItem = new RssReaderResult(
             true,
             'http://feed.irrelevant.com/new');
-        $newReportDataItem->setlastFeedItemDate(new \DateTime('now'));
+        $newReportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $reportManager = new ReportManager('directory');
 
@@ -75,7 +75,7 @@ class ReportManagerTest extends TestCase
         $reportDataItem = new RssReaderResult(
             true,
             'http://feed.irrelevant.com/1');
-        $reportDataItem->setlastFeedItemDate(new \DateTime('now'));
+        $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $reportManager = new ReportManager(vfsStream::url('exampleDir'));
 

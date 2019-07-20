@@ -40,9 +40,7 @@ class FeedIoRssReader implements RssReaderInterface
     {
         $this->setTargetUrl($targetUrl);
 
-        $rssReaderResult = $this->readRss();
-
-        return $rssReaderResult;
+        return $this->readRss();
     }
 
     /**
@@ -74,7 +72,7 @@ class FeedIoRssReader implements RssReaderInterface
 
             $rssReaderResult->setXmlDocument($this->getDomDocument($feed));
 
-            $rssReaderResult->setlastFeedItemDate($this->getLastFeedItemDate($feed));
+            $rssReaderResult->setLastFeedItemDate($this->getLastFeedItemDate($feed));
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {

@@ -6,6 +6,7 @@ namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
 use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
+use Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
 use DateTime;
 use Symfony\Component\Console\Command\Command;
@@ -108,12 +109,17 @@ class CheckAlboPopCatalogCommand extends Command
         return $table;
     }
 
+    /**
+     * @return array
+     *
+     * @throws CatalogFileNotFoundException
+     */
     private function getCustomCatalog(): array
     {
         $catalogFile = $this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME;
 
         if (!file_exists($catalogFile)) {
-            throw new \RuntimeException('Catalog file not found. file: '.$catalogFile);
+            throw CatalogFileNotFoundException::withFilename($catalogFile);
         }
 
         $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);

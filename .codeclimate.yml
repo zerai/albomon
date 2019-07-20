@@ -12,3 +12,4 @@ exclude_patterns:
   - "bin/"
   - "config/"
   - "public/"
+  - "src/Kernel.php"
