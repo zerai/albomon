@@ -35,6 +35,8 @@ class FeedIoRssReader implements RssReaderInterface
      * @param string $targetUrl
      *
      * @return RssReaderResultInterface
+     *
+     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
      */
     public function execute(string $targetUrl): RssReaderResultInterface
     {
@@ -63,6 +65,11 @@ class FeedIoRssReader implements RssReaderInterface
         return $this->targetUrl;
     }
 
+    /**
+     * @return RssReaderResult
+     *
+     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     */
     private function readRss()
     {
         try {
@@ -76,16 +83,19 @@ class FeedIoRssReader implements RssReaderInterface
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {
-            // TODO log in file?
-            //$this->logger->error('Error appear during user creation. Reason: ' . $exception->getMessage());
-
             $rssReaderResult = new RssReaderResult(false, $this->targetUrl);
+
             $rssReaderResult->setHttpError($exception->getMessage());
 
             return $rssReaderResult;
         }
     }
 
+    /**
+     * @param Result $rssReaderResult
+     *
+     * @return \DOMDocument|null
+     */
     private function getDomDocument(Result $rssReaderResult): ?\DOMDocument
     {
         if (!$rssReaderResult->getDocument()->isXml()) {
@@ -95,6 +105,11 @@ class FeedIoRssReader implements RssReaderInterface
         return $rssReaderResult->getDocument()->getDOMDocument();
     }
 
+    /**
+     * @param Result $rssReaderResult
+     *
+     * @return \DateTime
+     */
     private function getLastFeedItemDate(Result $rssReaderResult): \DateTime
     {
         return $rssReaderResult->getFeed()->getLastModified();
