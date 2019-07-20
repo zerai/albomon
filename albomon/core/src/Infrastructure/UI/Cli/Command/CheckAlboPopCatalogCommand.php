@@ -6,9 +6,9 @@ namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
 use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
-use Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException;
+use Albomon\Core\Infrastructure\UI\Cli\Traits\AlboResultStyleTrait;
+use Albomon\Core\Infrastructure\UI\Cli\Traits\CatalogFileTrait;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
-use DateTime;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
@@ -18,6 +18,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class CheckAlboPopCatalogCommand extends Command
 {
     use SymfonyStyleTrait;
+    use CatalogFileTrait;
+    use AlboResultStyleTrait;
 
     private const CATALOG_FILE_NAME = 'albopop-catalog.json';
 
@@ -54,7 +56,7 @@ class CheckAlboPopCatalogCommand extends Command
     {
         //TODO 'Console BUG'    https://github.com/symfony/symfony/issues/29746
 
-        $alboList = $this->getCustomCatalog();
+        $alboList = $this->getCatalog($this->catalogDir, self::CATALOG_FILE_NAME);
 
         $io = $this->getSymfonyStyle($input, $output);
 
@@ -107,38 +109,5 @@ class CheckAlboPopCatalogCommand extends Command
         }
 
         return $table;
-    }
-
-    /**
-     * @return array
-     *
-     * @throws CatalogFileNotFoundException
-     */
-    private function getCustomCatalog(): array
-    {
-        $catalogFile = $this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME;
-
-        if (!file_exists($catalogFile)) {
-            throw CatalogFileNotFoundException::withFilename($catalogFile);
-        }
-
-        $strJsonFileContents = file_get_contents($this->catalogDir.DIRECTORY_SEPARATOR.self::CATALOG_FILE_NAME);
-
-        $customCatalog = json_decode((string) $strJsonFileContents, true);
-
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new \RuntimeException('Unable to parse response body into JSON: '.json_last_error());
-        }
-
-        return $customCatalog;
-    }
-
-    private function formatContentUpdatedAt(DateTime $contenteDateTime): string
-    {
-        $dateNow = new DateTime('now');
-
-        $diff = $dateNow->diff($contenteDateTime)->days;
-
-        return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
     }
 }
