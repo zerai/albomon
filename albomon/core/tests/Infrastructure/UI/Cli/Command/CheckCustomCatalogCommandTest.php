@@ -28,9 +28,6 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
     /** @test */
     public function it_can_execute()
     {
-        //TODO
-        self::markTestSkipped('https://github.com/symfony/symfony/issues/27998');
-
         $this->commandTester->execute([
             'command' => $this->command->getName(),
 //            // pass arguments to the helper
