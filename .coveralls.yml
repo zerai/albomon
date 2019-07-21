@@ -1,6 +1,3 @@
-#service_name: travis-pro
-#repo_token: NormzN2Kex1VGNK5z4WxKm3K6HRXdE7bs
-
-service_name: travis-ci
-repo_token: NormzN2Kex1VGNK5z4WxKm3K6HRXdE7bs
+service_name: travis-pro
+repo_token: mmAPRAEQ8PWNAcVnyApZLmrkZIth3fkT7
 coverage_clover: clover.xml
