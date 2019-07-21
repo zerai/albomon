@@ -40,7 +40,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('AlboPOP Spec. Validation', $output);
+        $this->assertContains('Inizio scansione albi, origine dati: custom-catalog.json', $output);
+        $this->assertContains('Content Updated At', $output);
     }
 }
