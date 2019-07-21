@@ -28,9 +28,6 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
     /** @test */
     public function it_can_execute()
     {
-        //TODO
-        self::markTestSkipped('https://github.com/symfony/symfony/issues/27998');
-
         $this->commandTester->execute([
             'command' => $this->command->getName(),
 //            // pass arguments to the helper
@@ -40,7 +37,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('AlboPOP Spec. Validation', $output);
+        $this->assertContains('Inizio scansione albi, origine dati: custom-catalog.json', $output);
+        $this->assertContains('Content Updated At', $output);
     }
 }

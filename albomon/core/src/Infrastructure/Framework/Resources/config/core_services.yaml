@@ -4,8 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    ##alobopop_catalog: 'albopop-catalog.json'
-    custom_catalog: 'custom-catalog.json'
+    custom_catalog_filename: 'custom-catalog.json'
+    albopop_catalog_filename: 'albopop-catalog.json'
+
+    catalog_dir: '%kernel.project_dir%/catalog'
+    report_dir: '%kernel.project_dir%/report'
 
 services:
     # default configuration for services in *this* file
@@ -14,8 +17,8 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $catalogDir: '%kernel.project_dir%/catalog'
-            $reportDir: '%kernel.project_dir%/report'
+            $catalogDir: '%catalog_dir%'
+            $reportDir: '%report_dir%'
 
 
 

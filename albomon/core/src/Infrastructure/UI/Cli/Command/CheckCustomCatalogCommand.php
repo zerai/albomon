@@ -66,9 +66,7 @@ class CheckCustomCatalogCommand extends Command
 
         $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-        $sectionProgressBar = $output->section();
-
-        $progressBar = new ProgressBar($sectionProgressBar, count($alboList));
+        $progressBar = new ProgressBar($output, count($alboList));
 
         $progressBar->start();
 
