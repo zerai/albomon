@@ -4,16 +4,29 @@ env:
 
     - TEST_COVERAGE=true
 
+    - RUN_SONAR_SCANNER=1
+
+
 language: php
 
 
 php:
   - 7.2
+  #env: RUN_SONAR_SCANNER=1
 
 
 cache:
   directories:
   - $HOME/.composer/cache
+  - $HOME/.sonar/cache
+
+addons:
+  sonarcloud:
+    organization: "zerai"
+    token:
+      secure: "5cca5600ecd28c2e5a5e7e7707ab76c7da8f360b"
+
+
 
 install:
   - composer install
@@ -39,3 +52,5 @@ after_success:
   #- if [[ $TEST_COVERAGE == 'true' ]]; then php vendor/bin/php-coveralls -v; fi
 
   - travis_retry php vendor/bin/php-coveralls --coverage_clover clover.xml --json_path coveralls.json
+
+  - if [[ $RUN_SONAR_SCANNER == "1" ]]; then sonar-scanner -Dsonar.projectKey=albomon -Dproject.settings=sonar-project.properties -Dsonar.projectVersion=$TRAVIS_TAG; fi
