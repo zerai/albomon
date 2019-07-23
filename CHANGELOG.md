@@ -7,6 +7,11 @@
  ## [Unreleased] -  XXXX-XX-XX
  - validazione specifiche AlboPOP 
 
+ ## [0.x.x] -  2017-xx-xx
+ ###### (Maintenance release)
+  - cosmetic fix in code
+  - better cli output
+
  ## [0.4.6] -  2017-07-21
  ###### (Maintenance release)
   - cosmetic fix in code
