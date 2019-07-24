@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "debril/feed-io": "^4.3",
+        "flagception/flagception-bundle": "^3.2",
         "league/csv": "^8.0",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
