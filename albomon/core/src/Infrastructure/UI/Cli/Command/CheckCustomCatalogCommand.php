@@ -6,9 +6,11 @@ namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
 use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
+use Albomon\Core\Infrastructure\Application\GoogleSheetsClient\GoogleSheetsClient;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\AlboResultStyleTrait;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\CatalogFileTrait;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
+use Flagception\Manager\FeatureManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Helper\Table;
@@ -37,13 +39,23 @@ class CheckCustomCatalogCommand extends Command
     /** @var string */
     private $reportDir;
 
-    public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
-    {
+    /** @var FeatureManagerInterface */
+    private $featureManager;
+
+    public function __construct(
+        MonitorApplicationService $monitorService,
+        ReportManagerInterface $reportManager,
+        FeatureManagerInterface $featureManager,
+        string $catalogDir,
+        string $reportDir
+    ) {
         parent::__construct('albomon:check:custom-catalog');
 
         $this->monitorService = $monitorService;
 
         $this->reportManager = $reportManager;
+
+        $this->featureManager = $featureManager;
 
         $this->catalogDir = $catalogDir;
 
@@ -74,10 +86,21 @@ class CheckCustomCatalogCommand extends Command
 
         $table->setHeaders(['Feed', 'Feed Status', 'Spec Status', 'Content Updated At', 'Error']);
 
+        $resultBag = [];
+
         foreach ($alboList as $alboUrl) {
             foreach ($alboUrl as $valueUrl) {
                 $monitorResult = $this->monitorService->checkAlbo($valueUrl);
                 $this->formatTableRow($monitorResult, $table);
+                $this->reportManager->addReportItem($monitorResult);
+                if ($this->featureManager->isActive('google_sheet')) {
+                    $resultBag[] = [
+                        $monitorResult->feedUrl(),
+                        $monitorResult->httpStatus(),
+                        $monitorResult->httpStatus() ? $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate()) : '',
+                        $monitorResult->httpStatus() ? '' : $monitorResult->httpError(),
+                    ];
+                }
             }
             $progressBar->advance();
         }
@@ -92,6 +115,39 @@ class CheckCustomCatalogCommand extends Command
 
         $io->text('Processo di scasione terminato.');
 
+        if ($this->featureManager->isActive('google_sheet')) {
+            $this->publishReport($resultBag);
+            $io->text('Pubblicazione on Gdrive.');
+        }
+
         return null;
+    }
+
+    public function publishReport(array $resultBag): void
+    {
+        $sheetClient = new GoogleSheetsClient();
+        $spreadsheetId = '1qftoGeuqq7sKxxPBR6h8lCtTb-VxdzyzM4F1JtBWelw';
+
+        $headersRange = 'Report!A1:D5';
+
+        $header = [
+            [
+                'Feed Url',
+                'Feed Status',
+                'Update At',
+                'Error',
+            ],
+        ];
+        $sheetClient->updateSheet($header, $headersRange, $spreadsheetId);
+
+        foreach ($resultBag as $key => $value) {
+            ++$key;
+            ++$key;
+            $values = [];
+            $range = 'Report!A'.$key.':D'.$key;
+            array_push($values, $value);
+            $sheetClient->updateSheet($values, $range, $spreadsheetId);
+            usleep(1000000);
+        }
     }
 }

@@ -4,6 +4,21 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    env(GOOGLE_APPLICATION_CREDENTIALS): 'configure_your_GOOGLE_APPLICATION_CREDENTIALS'
+    google_application_credentials: '%env(resolve:GOOGLE_APPLICATION_CREDENTIALS)%'
+
+    env(GOOGLE_API_KEY): 'configure_your_GOOGLE_API_KEY'
+    google_api_key: '%env(resolve:GOOGLE_API_KEY)%'
+
+    env(GOOGLE_SERVICE_ACCOUNT_NAME): 'GOOGLE_SERVICE_ACCOUNT_NAME'
+    google_service_account_name: '%env(resolve:GOOGLE_SERVICE_ACCOUNT_NAME)%'
+
+    env(GOOGLE_SERVICE_KEY): 'configure_your_GOOGLE_SERVICE_KEY'
+    google_service_key: '%env(resolve:GOOGLE_SERVICE_KEY)%'
+
+    env(SPREADSHEET_ID): 'configure_your_SPREADSHEET_ID'
+    spreadsheet_id: '%env(resolve:SPREADSHEET_ID)%'
+
     custom_catalog_filename: 'custom-catalog.json'
     albopop_catalog_filename: 'albopop-catalog.json'
 
@@ -68,6 +83,7 @@ services:
         arguments:
             - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
             - '@core.report_manager'
+            - '@flagception.manager.feature_manager'
         tags:
             - { name: 'console.command' }
 

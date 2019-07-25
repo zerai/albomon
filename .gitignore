@@ -4,6 +4,7 @@
 .scannerwork/
 #sonar-project.properties
 #sonar-project.properties_
+credentials.json
 ###< develop ###
 ###> symfony/framework-bundle ###
 /.env.local
