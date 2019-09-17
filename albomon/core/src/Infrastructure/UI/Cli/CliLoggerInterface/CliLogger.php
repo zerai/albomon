@@ -1,0 +1,147 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Albomon\Core\Infrastructure\UI\Cli\CliLoggerInterface;
+
+use PHPUnit\Framework\MockObject\BadMethodCallException;
+use Symfony\Component\Console\Style\SymfonyStyle;
+
+class CliLogger implements CliLoggerInterface
+{
+    /** @var SymfonyStyle */
+    private $io;
+
+    /**
+     * CliLogger constructor.
+     *
+     * @param SymfonyStyle $io
+     */
+    public function __construct(SymfonyStyle $io)
+    {
+        $this->io = $io;
+    }
+
+    /**
+     * System is unusable.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function emergency($message, array $context = [])
+    {
+        // TODO: Implement emergency() method.
+
+        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+    }
+
+    /**
+     * Action must be taken immediately.
+     *
+     * Example: Entire website down, database unavailable, etc. This should
+     * trigger the SMS alerts and wake you up.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function alert($message, array $context = [])
+    {
+        // TODO: Implement alert() method.
+
+        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+    }
+
+    /**
+     * Critical conditions.
+     *
+     * Example: Application component unavailable, unexpected exception.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function critical($message, array $context = [])
+    {
+        // TODO: Implement critical() method.
+
+        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+    }
+
+    /**
+     * Runtime errors that do not require immediate action but should typically
+     * be logged and monitored.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function error($message, array $context = [])
+    {
+        // TODO: Implement error() method.
+        $this->io->error($message);
+    }
+
+    /**
+     * Exceptional occurrences that are not errors.
+     *
+     * Example: Use of deprecated APIs, poor use of an API, undesirable things
+     * that are not necessarily wrong.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function warning($message, array $context = [])
+    {
+        // TODO: Implement warning() method.
+        $this->io->warning($message);
+    }
+
+    /**
+     * Normal but significant events.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function notice($message, array $context = [])
+    {
+        // TODO: Implement notice() method.
+        $this->io->text($message);
+    }
+
+    /**
+     * Interesting events.
+     *
+     * Example: User logs in, SQL logs.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function info($message, array $context = [])
+    {
+        // TODO: Implement info() method.
+        $this->io->text($message);
+    }
+
+    /**
+     * Detailed debug information.
+     *
+     * @param string $message
+     * @param array  $context
+     */
+    public function debug($message, array $context = [])
+    {
+        // TODO: Implement debug() method.
+        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+    }
+
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed  $level
+     * @param string $message
+     * @param array  $context
+     */
+    public function log($level, $message, array $context = [])
+    {
+        // TODO: Implement log() method.
+        $this->io->text($message);
+    }
+}

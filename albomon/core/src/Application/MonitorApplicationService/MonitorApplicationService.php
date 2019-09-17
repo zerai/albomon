@@ -5,26 +5,49 @@ declare(strict_types=1);
 namespace Albomon\Core\Application\MonitorApplicationService;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
+use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
+use Psr\Log\LoggerInterface;
 
 class MonitorApplicationService
 {
     /** @var RssReaderInterface */
     private $feedReader;
 
+    /** @var LoggerInterface */
+    private $logger;
+
     /**
      * MonitorApplicationService constructor.
      *
      * @param RssReaderInterface $feedReader
+     * @param LoggerInterface    $logger
      */
-    public function __construct(RssReaderInterface $feedReader)
+    public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
     {
         $this->feedReader = $feedReader;
+        $this->logger = $logger;
     }
 
     public function checkAlbo(string $alboUrl): RssReaderResultInterface
     {
-        return $this->feedReader->execute($alboUrl);
+        $this->logger->info(
+            'Check albo: '.$alboUrl, []
+            //sprintf('Check albo: %s', $alboUrl)
+        );
+
+        /** @var RssReaderResult $result */
+        $result = $this->feedReader->execute($alboUrl);
+
+        if (!$result->httpStatus()) {
+            $this->logger->info(
+                'Check failed for albo: '.$alboUrl, []
+                //sprintf('Check failed for albo: %s', $alboUrl)
+            );
+        }
+
+        //return $this->feedReader->execute($alboUrl);
+        return $result;
     }
 
     public function checkAlboList(array $alboList): array
