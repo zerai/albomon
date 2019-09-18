@@ -77,13 +77,13 @@ class FeedIoRssReaderTest extends TestCase
     /** @test */
     public function it_handle_xmlDom(): void
     {
-        self::markTestSkipped();
+        //self::markTestSkipped();
         $rssReader = new FeedIoRssReader();
 
         $readerResult = $rssReader->execute(self::FEED_URL);
 
         self::assertInstanceOf(RssReaderResultInterface::class, $readerResult);
         self::assertTrue($readerResult->httpStatus());
-        self::assertNull($readerResult->xmlDocument());
+        self::assertNotNull($readerResult->xmlDocument());
     }
 }

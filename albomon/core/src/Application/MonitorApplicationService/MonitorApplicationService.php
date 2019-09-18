@@ -33,7 +33,6 @@ class MonitorApplicationService
     {
         $this->logger->info(
             'Check albo: '.$alboUrl, []
-            //sprintf('Check albo: %s', $alboUrl)
         );
 
         /** @var RssReaderResult $result */
@@ -42,11 +41,9 @@ class MonitorApplicationService
         if (!$result->httpStatus()) {
             $this->logger->info(
                 'Check failed for albo: '.$alboUrl, []
-                //sprintf('Check failed for albo: %s', $alboUrl)
             );
         }
 
-        //return $this->feedReader->execute($alboUrl);
         return $result;
     }
 

@@ -30,8 +30,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function emergency($message, array $context = [])
     {
-        // TODO: Implement emergency() method.
-
         throw new BadMethodCallException('CliLogger don\'t implement this method.');
     }
 
@@ -46,8 +44,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function alert($message, array $context = [])
     {
-        // TODO: Implement alert() method.
-
         throw new BadMethodCallException('CliLogger don\'t implement this method.');
     }
 
@@ -61,8 +57,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function critical($message, array $context = [])
     {
-        // TODO: Implement critical() method.
-
         throw new BadMethodCallException('CliLogger don\'t implement this method.');
     }
 
@@ -75,7 +69,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function error($message, array $context = [])
     {
-        // TODO: Implement error() method.
         $this->io->error($message);
     }
 
@@ -90,7 +83,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function warning($message, array $context = [])
     {
-        // TODO: Implement warning() method.
         $this->io->warning($message);
     }
 
@@ -102,7 +94,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function notice($message, array $context = [])
     {
-        // TODO: Implement notice() method.
         $this->io->text($message);
     }
 
@@ -116,7 +107,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function info($message, array $context = [])
     {
-        // TODO: Implement info() method.
         $this->io->text($message);
     }
 
@@ -128,7 +118,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function debug($message, array $context = [])
     {
-        // TODO: Implement debug() method.
         throw new BadMethodCallException('CliLogger don\'t implement this method.');
     }
 
@@ -141,7 +130,6 @@ class CliLogger implements CliLoggerInterface
      */
     public function log($level, $message, array $context = [])
     {
-        // TODO: Implement log() method.
         $this->io->text($message);
     }
 }
