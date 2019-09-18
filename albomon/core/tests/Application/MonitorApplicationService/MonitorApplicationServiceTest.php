@@ -8,6 +8,7 @@ use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 
 class MonitorApplicationServiceTest extends TestCase
 {
@@ -19,10 +20,14 @@ class MonitorApplicationServiceTest extends TestCase
     /** @var FeedIoRssReader */
     private $feedReader;
 
+    /** @var LoggerInterface */
+    private $logger;
+
     public function setUp()
     {
         $this->feedReader = $this->createMock(FeedIoRssReader::class);
-        $this->monitorApplicationService = new monitorApplicationService($this->feedReader);
+        $this->logger = $this->createMock(LoggerInterface::class);
+        $this->monitorApplicationService = new monitorApplicationService($this->feedReader, $this->logger);
     }
 
     /** @test */

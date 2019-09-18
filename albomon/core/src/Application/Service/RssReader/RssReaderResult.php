@@ -86,8 +86,8 @@ class RssReaderResult implements RssReaderResultInterface
         $this->xmlDocument = $xmlDocument;
     }
 
-    /** @return \DOMDocument */
-    public function xmlDocument(): \DOMDocument
+    /** @return \DOMDocument|null */
+    public function xmlDocument(): ?\DOMDocument
     {
         return $this->xmlDocument;
     }

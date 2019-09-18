@@ -114,4 +114,14 @@ class RssReaderResultTest extends TestCase
 
         $rssReaderResult->setXmlDocument(new DOMDocument('1.0', 'ISO-8859-15'));
     }
+
+    /** @test */
+    public function unset_property_xmlDocument_should_return_null(): void
+    {
+        $httpStatus = false;
+
+        $rssReaderResult = new RssReaderResult($httpStatus, 'http://fake-feeds.fake-feeds.com/');
+
+        self::assertNull($rssReaderResult->xmlDocument());
+    }
 }

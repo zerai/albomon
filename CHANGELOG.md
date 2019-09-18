@@ -11,6 +11,7 @@
  ###### (Maintenance release)
   - cosmetic fix in code
   - better cli output
+  - migliorato application logging
 
  ## [0.4.6] -  2017-07-21
  ###### (Maintenance release)
