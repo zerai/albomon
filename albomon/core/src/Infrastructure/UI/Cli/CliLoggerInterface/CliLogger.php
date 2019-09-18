@@ -9,6 +9,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CliLogger implements CliLoggerInterface
 {
+    private const BAD_METHOD_CALL_EXCEPTION_MESSAGE = 'CliLogger don\'t implement this method.';
+
     /** @var SymfonyStyle */
     private $io;
 
@@ -30,7 +32,7 @@ class CliLogger implements CliLoggerInterface
      */
     public function emergency($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -44,7 +46,7 @@ class CliLogger implements CliLoggerInterface
      */
     public function alert($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -57,7 +59,7 @@ class CliLogger implements CliLoggerInterface
      */
     public function critical($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -118,7 +120,7 @@ class CliLogger implements CliLoggerInterface
      */
     public function debug($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
