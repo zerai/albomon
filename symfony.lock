@@ -53,6 +53,9 @@
     "mikey179/vfsstream": {
         "version": "v1.6.6"
     },
+    "monolog/monolog": {
+        "version": "1.25.1"
+    },
     "nette/bootstrap": {
         "version": "v3.0.0"
     },
@@ -94,6 +97,9 @@
     },
     "phpstan/phpstan": {
         "version": "0.11.10"
+    },
+    "phpstan/phpstan-phpunit": {
+        "version": "0.11.2"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -198,6 +204,23 @@
     },
     "symfony/http-kernel": {
         "version": "v4.2.10"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v4.2.11"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6240c6d43e8237a32452f057f81816820fd56ab6"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
     },
     "symfony/options-resolver": {
         "version": "v4.2.10"

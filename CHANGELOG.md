@@ -5,27 +5,39 @@
  and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
  
  ## [Unreleased] -  XXXX-XX-XX
- - validazione specifiche AlboPOP 
+ - [#07](https://github.com/zerai/albomon/issues/7) validazione specifiche AlboPOP
+ - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
- ## [0.4.6] -  2017-07-21
+ ## [0.x.x] -  2019-xx-xx
+
+ ## [0.4.7] -  2019-09-18
+ ###### (Maintenance release)
+ #### Added
+  - migliorato application logging
+  - file policy codice di condotta
+ ##### Changed
+  - cosmetic fix in code
+  - better cli output
+
+ ## [0.4.6] -  2019-07-21
  ###### (Maintenance release)
   - cosmetic fix in code
   - more tests coverage
 
- ## [0.4.5] -  2017-07-20
+ ## [0.4.5] -  2019-07-20
  ###### (Maintenance release)
   - cosmetic fix in code
  
- ## [0.4.4] -  2017-07-20
+ ## [0.4.4] -  2019-07-20
  ###### (Maintenance release)
  - migliorata gestione delle eccezzioni (catalog file)
  - migliorato code coverage
  
- ## [0.4.3] -  2017-07-18
+ ## [0.4.3] -  2019-07-18
  #### Added
   - csv report in cli command
  
- ## [0.4.2] -  2017-07-17
+ ## [0.4.2] -  2019-07-17
  ##### Added
   - realtime progress bar in console output
 

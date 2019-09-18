@@ -76,12 +76,15 @@ class CheckAlboPopCatalogCommand extends Command
 
         foreach ($alboList as $alboUrl) {
             foreach ($alboUrl as $valueUrl) {
-                $table = $this->checkFeed($valueUrl, $table);
+                $monitorResult = $this->monitorService->checkAlbo($valueUrl);
+                $this->formatTableRow($monitorResult, $table);
             }
             $progressBar->advance();
         }
 
         $progressBar->finish();
+
+        $output->writeln('');
 
         $table->render();
 
@@ -90,22 +93,5 @@ class CheckAlboPopCatalogCommand extends Command
         $io->text('Processo di scasione terminato.');
 
         return null;
-    }
-
-    private function checkFeed(string $alboUrl, Table $table): Table
-    {
-        $monitorResult = $this->monitorService->checkAlbo($alboUrl);
-
-        $this->reportManager->addReportItem($monitorResult);
-
-        if (!$monitorResult->httpStatus()) {
-            $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
-        } else {
-            $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
-
-            $table->addRow([$monitorResult->feedUrl(), 'ATTIVO', self::XML_SPEC_VALIDATION, $lastFeedItemDateWithDifference, '']);
-        }
-
-        return $table;
     }
 }
