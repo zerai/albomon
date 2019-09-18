@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/zerai/albomon.svg?branch=master)](https://travis-ci.org/zerai/albomon)
-
+[![Coverage Status](https://coveralls.io/repos/github/zerai/albomon/badge.svg?branch=%28no+branch%29)](https://coveralls.io/github/zerai/albomon?branch=%28no+branch%29)
 # AlboMON  -  AlboPOP Monitoring application
 
 
