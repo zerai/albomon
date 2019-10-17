@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.3.9",
+            "version": "v4.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "e713055e1c56704191bf20883c9d8b4c541ecf84"
+                "reference": "9cf96491f562efd0ef0d397694c75a36b6ebef6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/e713055e1c56704191bf20883c9d8b4c541ecf84",
-                "reference": "e713055e1c56704191bf20883c9d8b4c541ecf84",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/9cf96491f562efd0ef0d397694c75a36b6ebef6e",
+                "reference": "9cf96491f562efd0ef0d397694c75a36b6ebef6e",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 "news",
                 "rss"
             ],
-            "time": "2019-09-03T11:29:11+00:00"
+            "time": "2019-10-17T11:07:58+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3440,9 +3440,9 @@
             "authors": [
                 {
                     "name": "Kitamura Satoshi",
-                    "role": "Original creator",
                     "email": "with.no.parachute@gmail.com",
-                    "homepage": "https://www.facebook.com/satooshi.jp"
+                    "homepage": "https://www.facebook.com/satooshi.jp",
+                    "role": "Original creator"
                 },
                 {
                     "name": "Takashi Matsuo",
