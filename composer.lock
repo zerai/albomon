@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c60022fc8ba6fb16e8a0ba8ece787f6d",
+    "content-hash": "6e4a126a6e58b1af60278cc63946839f",
     "packages": [
         {
             "name": "debril/feed-io",
@@ -2286,16 +2286,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.2.10",
+            "version": "v4.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1"
+                "reference": "324cf4b19c345465fad14f3602050519e09e361d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
-                "reference": "6712daf03ee25b53abb14e7e8e0ede1a770efdb1",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/324cf4b19c345465fad14f3602050519e09e361d",
+                "reference": "324cf4b19c345465fad14f3602050519e09e361d",
                 "shasum": ""
             },
             "require": {
@@ -2314,7 +2314,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -2341,7 +2341,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-30T15:58:42+00:00"
+            "time": "2019-10-30T12:58:49+00:00"
         }
     ],
     "packages-dev": [
@@ -3440,9 +3440,9 @@
             "authors": [
                 {
                     "name": "Kitamura Satoshi",
-                    "role": "Original creator",
                     "email": "with.no.parachute@gmail.com",
-                    "homepage": "https://www.facebook.com/satooshi.jp"
+                    "homepage": "https://www.facebook.com/satooshi.jp",
+                    "role": "Original creator"
                 },
                 {
                     "name": "Takashi Matsuo",
