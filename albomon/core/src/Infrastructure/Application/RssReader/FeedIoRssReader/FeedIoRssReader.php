@@ -32,10 +32,6 @@ class FeedIoRssReader implements RssReaderInterface
     }
 
     /**
-     * @param string $targetUrl
-     *
-     * @return RssReaderResultInterface
-     *
      * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
      */
     public function execute(string $targetUrl): RssReaderResultInterface
@@ -45,9 +41,6 @@ class FeedIoRssReader implements RssReaderInterface
         return $this->readRss();
     }
 
-    /**
-     * @param string $targetUrl
-     */
     public function setTargetUrl(string $targetUrl): void
     {
         if (!filter_var($targetUrl, FILTER_VALIDATE_URL)) {
@@ -57,9 +50,6 @@ class FeedIoRssReader implements RssReaderInterface
         $this->targetUrl = $targetUrl;
     }
 
-    /**
-     * @return string
-     */
     public function getTargetUrl(): string
     {
         return $this->targetUrl;
@@ -91,11 +81,6 @@ class FeedIoRssReader implements RssReaderInterface
         }
     }
 
-    /**
-     * @param Result $rssReaderResult
-     *
-     * @return \DOMDocument|null
-     */
     private function getDomDocument(Result $rssReaderResult): ?\DOMDocument
     {
         if (!$rssReaderResult->getDocument()->isXml()) {
@@ -105,11 +90,6 @@ class FeedIoRssReader implements RssReaderInterface
         return $rssReaderResult->getDocument()->getDOMDocument();
     }
 
-    /**
-     * @param Result $rssReaderResult
-     *
-     * @return \DateTime
-     */
     private function getLastFeedItemDate(Result $rssReaderResult): \DateTime
     {
         return $rssReaderResult->getFeed()->getLastModified();

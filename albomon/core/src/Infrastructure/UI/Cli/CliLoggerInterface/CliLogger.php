@@ -9,13 +9,13 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CliLogger implements CliLoggerInterface
 {
+    private const BAD_METHOD_CALL_EXCEPTION_MESSAGE = 'CliLogger don\'t implement this method.';
+
     /** @var SymfonyStyle */
     private $io;
 
     /**
      * CliLogger constructor.
-     *
-     * @param SymfonyStyle $io
      */
     public function __construct(SymfonyStyle $io)
     {
@@ -26,11 +26,10 @@ class CliLogger implements CliLoggerInterface
      * System is unusable.
      *
      * @param string $message
-     * @param array  $context
      */
     public function emergency($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -40,11 +39,10 @@ class CliLogger implements CliLoggerInterface
      * trigger the SMS alerts and wake you up.
      *
      * @param string $message
-     * @param array  $context
      */
     public function alert($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -53,11 +51,10 @@ class CliLogger implements CliLoggerInterface
      * Example: Application component unavailable, unexpected exception.
      *
      * @param string $message
-     * @param array  $context
      */
     public function critical($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -65,7 +62,6 @@ class CliLogger implements CliLoggerInterface
      * be logged and monitored.
      *
      * @param string $message
-     * @param array  $context
      */
     public function error($message, array $context = [])
     {
@@ -79,7 +75,6 @@ class CliLogger implements CliLoggerInterface
      * that are not necessarily wrong.
      *
      * @param string $message
-     * @param array  $context
      */
     public function warning($message, array $context = [])
     {
@@ -90,7 +85,6 @@ class CliLogger implements CliLoggerInterface
      * Normal but significant events.
      *
      * @param string $message
-     * @param array  $context
      */
     public function notice($message, array $context = [])
     {
@@ -103,7 +97,6 @@ class CliLogger implements CliLoggerInterface
      * Example: User logs in, SQL logs.
      *
      * @param string $message
-     * @param array  $context
      */
     public function info($message, array $context = [])
     {
@@ -114,11 +107,10 @@ class CliLogger implements CliLoggerInterface
      * Detailed debug information.
      *
      * @param string $message
-     * @param array  $context
      */
     public function debug($message, array $context = [])
     {
-        throw new BadMethodCallException('CliLogger don\'t implement this method.');
+        throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -126,7 +118,6 @@ class CliLogger implements CliLoggerInterface
      *
      * @param mixed  $level
      * @param string $message
-     * @param array  $context
      */
     public function log($level, $message, array $context = [])
     {
