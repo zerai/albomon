@@ -4,6 +4,7 @@
 .scannerwork/
 #sonar-project.properties
 #sonar-project.properties_
+deptrac
 ###< develop ###
 ###> symfony/framework-bundle ###
 /.env.local

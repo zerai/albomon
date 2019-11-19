@@ -1,0 +1,45 @@
+paths:
+  - "./albomon"
+exclude_files:
+  - .*Test.*
+
+
+layers:
+
+  - name: AllowedDependenciesInDomain
+    collectors:
+      - type: bool
+        must:
+          - type: className
+            regex: ^Psr\\.*
+          - type: className
+            regex: ^Ramsey\\.*
+          - type: className
+            regex: ^CompostDDD\\.*
+
+  - name: Domain
+    collectors:
+      - type: className
+        regex: .*Albomon\\.*\\Domain\\.*
+
+  - name: Vendor
+    collectors:
+      - type: bool
+        must:
+          - type: className
+            regex: .+\\.* # Must have a namespace, or we conside it's a PHP built in type
+        must_not:
+          - type: className
+            regex: ^ProAppointments\\.* # our project
+          - type: className
+            regex: ^Psr\\.* # its ok to depend on the PSR interfaces
+          - type: className
+            regex: ^Ramsey\\.*
+          - type: className
+            regex: ^CompostDDD\\.* # whatever local libraries
+
+ruleset:
+
+  Domain:
+    - AllowedDependenciesInDomain
+
