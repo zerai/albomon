@@ -26,9 +26,6 @@ class RssReaderResult implements RssReaderResultInterface
 
     /**
      * RssReaderResult constructor.
-     *
-     * @param bool   $httpStatus
-     * @param string $feedUrl
      */
     public function __construct(bool $httpStatus, string $feedUrl)
     {
@@ -36,25 +33,17 @@ class RssReaderResult implements RssReaderResultInterface
         $this->feedUrl = $feedUrl;
     }
 
-    /**
-     * @return bool
-     */
     public function httpStatus(): bool
     {
         return $this->httpStatus;
     }
 
-    /**
-     * @return string
-     */
     public function httpError(): string
     {
         return $this->httpError;
     }
 
     /**
-     * @param string $httpError
-     *
      * @throws RssReaderResultIllegalOperationException
      */
     public function setHttpError(string $httpError): void
@@ -65,17 +54,12 @@ class RssReaderResult implements RssReaderResultInterface
         $this->httpError = $httpError;
     }
 
-    /**
-     * @return string
-     */
     public function feedUrl(): string
     {
         return $this->feedUrl;
     }
 
     /**
-     * @param \DOMDocument $xmlDocument
-     *
      * @throws RssReaderResultIllegalOperationException
      */
     public function setXmlDocument(\DOMDocument $xmlDocument): void
@@ -93,8 +77,6 @@ class RssReaderResult implements RssReaderResultInterface
     }
 
     /**
-     * @param \DateTime $lastFeedItemDate
-     *
      * @throws RssReaderResultIllegalOperationException
      */
     public function setLastFeedItemDate(\DateTime $lastFeedItemDate): void

@@ -19,9 +19,6 @@ class MonitorApplicationService
 
     /**
      * MonitorApplicationService constructor.
-     *
-     * @param RssReaderInterface $feedReader
-     * @param LoggerInterface    $logger
      */
     public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
     {

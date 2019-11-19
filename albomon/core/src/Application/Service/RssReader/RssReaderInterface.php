@@ -9,10 +9,5 @@ namespace Albomon\Core\Application\Service\RssReader;
  */
 interface RssReaderInterface
 {
-    /**
-     * @param string $targetUrl
-     *
-     * @return RssReaderResultInterface
-     */
     public function execute(string $targetUrl): RssReaderResultInterface;
 }
