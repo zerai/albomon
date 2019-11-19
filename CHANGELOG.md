@@ -10,6 +10,12 @@
 
  ## [0.x.x] -  2019-xx-xx
 
+ ## [0.4.8] -  2019-11-19
+ ###### (Maintenance release)
+ ##### Changed
+ - Update to Symfony 4.3.
+ - Update dev dependencies. 
+ 
  ## [0.4.7] -  2019-09-18
  ###### (Maintenance release)
  #### Added
