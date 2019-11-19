@@ -9,11 +9,6 @@ use Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException;
 trait CatalogFileTrait
 {
     /**
-     * @param string $catalogDir
-     * @param string $catalogFilename
-     *
-     * @return array
-     *
      * @throws CatalogFileNotFoundException
      */
     protected function getCatalog(string $catalogDir, string $catalogFilename): array

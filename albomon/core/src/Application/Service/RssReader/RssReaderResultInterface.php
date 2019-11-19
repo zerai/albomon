@@ -9,19 +9,10 @@ namespace Albomon\Core\Application\Service\RssReader;
  */
 interface RssReaderResultInterface
 {
-    /**
-     * @return bool
-     */
     public function httpStatus(): bool;
 
-    /**
-     * @return string
-     */
     public function httpError(): string;
 
-    /**
-     * @return string
-     */
     public function feedUrl(): string;
 
     /** @return \DOMDocument|null */
