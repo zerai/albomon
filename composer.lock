@@ -1491,16 +1491,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v4.2.10",
+            "version": "v4.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "043be519a7e90c577f32e57d77c5b4af627f254a"
+                "reference": "ac12bd9f104bb2dc319b09426e767ecfa95688da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/043be519a7e90c577f32e57d77c5b4af627f254a",
-                "reference": "043be519a7e90c577f32e57d77c5b4af627f254a",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/ac12bd9f104bb2dc319b09426e767ecfa95688da",
+                "reference": "ac12bd9f104bb2dc319b09426e767ecfa95688da",
                 "shasum": ""
             },
             "require": {
@@ -1509,6 +1509,7 @@
                 "symfony/cache": "~4.2",
                 "symfony/config": "~4.2",
                 "symfony/contracts": "^1.0.2",
+                "symfony/debug": "~4.0",
                 "symfony/dependency-injection": "^4.2.5",
                 "symfony/event-dispatcher": "^4.1",
                 "symfony/filesystem": "~3.4|~4.0",
@@ -1606,7 +1607,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2019-06-26T06:46:55+00:00"
+            "time": "2019-07-24T17:13:20+00:00"
         },
         {
             "name": "symfony/http-foundation",
