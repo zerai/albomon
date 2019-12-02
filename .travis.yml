@@ -16,7 +16,8 @@ matrix:
         - php: 7.2
         - php: 7.3
           env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
-
+        - php: 7.4snapshot
+          env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
 
 cache:
   directories:
