@@ -1,4 +1,10 @@
 {
+    "amphp/amp": {
+        "version": "v2.4.0"
+    },
+    "amphp/byte-stream": {
+        "version": "v1.7.1"
+    },
     "composer/semver": {
         "version": "1.5.0"
     },
@@ -22,6 +28,12 @@
     },
     "doctrine/lexer": {
         "version": "1.0.2"
+    },
+    "felixfbecker/advanced-json-rpc": {
+        "version": "v3.0.4"
+    },
+    "felixfbecker/language-server-protocol": {
+        "version": "v1.4.0"
     },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
@@ -56,6 +68,9 @@
     "monolog/monolog": {
         "version": "1.25.1"
     },
+    "netresearch/jsonmapper": {
+        "version": "v1.6.0"
+    },
     "nette/bootstrap": {
         "version": "v3.0.0"
     },
@@ -86,6 +101,9 @@
     "ocramius/package-versions": {
         "version": "1.4.0"
     },
+    "openlss/lib-array2xml": {
+        "version": "1.0.0"
+    },
     "php": {
         "version": "7.2"
     },
@@ -94,6 +112,15 @@
     },
     "php-cs-fixer/diff": {
         "version": "v1.3.0"
+    },
+    "phpdocumentor/reflection-common": {
+        "version": "2.0.0"
+    },
+    "phpdocumentor/reflection-docblock": {
+        "version": "4.3.4"
+    },
+    "phpdocumentor/type-resolver": {
+        "version": "1.0.1"
     },
     "phpstan/phpdoc-parser": {
         "version": "0.3.5"
@@ -121,6 +148,9 @@
     },
     "ralouphie/getallheaders": {
         "version": "3.0.3"
+    },
+    "sebastian/diff": {
+        "version": "3.0.2"
     },
     "symfony/browser-kit": {
         "version": "v4.2.10"
@@ -291,5 +321,17 @@
     },
     "symfony/yaml": {
         "version": "v4.2.10"
+    },
+    "vimeo/psalm": {
+        "version": "3.8.3"
+    },
+    "webmozart/assert": {
+        "version": "1.6.0"
+    },
+    "webmozart/glob": {
+        "version": "4.1.0"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     }
 }

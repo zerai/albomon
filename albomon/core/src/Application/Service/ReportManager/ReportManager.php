@@ -10,6 +10,8 @@ use League\Csv\Writer;
 
 class ReportManager implements ReportManagerInterface
 {
+    private const DEFAULT_REPORT_DIRECTORY = 'report';
+
     private const REPORT_FILE_NAME = 'albomon-report';
 
     private const XML_SPEC_VALIDATION = 'NON RILEVATO';
@@ -18,9 +20,9 @@ class ReportManager implements ReportManagerInterface
     private $reportData;
 
     /** @var string */
-    private $reportDir;
+    private $reportDir = self::DEFAULT_REPORT_DIRECTORY;
 
-    public function __construct(?string $reportDir)
+    public function __construct(string $reportDir)
     {
         $this->reportData = [];
 
