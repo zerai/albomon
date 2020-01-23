@@ -9,7 +9,7 @@
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
 
- ## [0.4.x] [Unreleased] -  2019-xx-xx
+ ## [0.4.9] -  2020-01-23
  ###### (Maintenance release)
  ##### Changed
  - Update to Symfony 4.3.9
