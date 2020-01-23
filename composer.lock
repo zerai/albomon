@@ -8,23 +8,23 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.4.0",
+            "version": "v4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "18614efec8d93120b033f0c46fc42571d66b362a"
+                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/18614efec8d93120b033f0c46fc42571d66b362a",
-                "reference": "18614efec8d93120b033f0c46fc42571d66b362a",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
+                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "~6.2",
                 "php": ">=7.1",
                 "psr/log": "~1.0",
-                "symfony/console": "~3.4|~4.0"
+                "symfony/console": "~3.4|~4.0|~5.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.4",
@@ -64,7 +64,7 @@
                 "news",
                 "rss"
             ],
-            "time": "2019-11-05T16:25:02+00:00"
+            "time": "2020-01-10T12:26:10+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
