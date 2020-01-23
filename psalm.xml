@@ -7,10 +7,11 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="src/" />
+        <directory name="src" />
         <directory name="albomon/core/src/" />
         <ignoreFiles>
             <directory name="vendor" />
+            <directory name="albomon/core/tests/" />
         </ignoreFiles>
     </projectFiles>
 
@@ -68,7 +69,6 @@
         <PossiblyInvalidArrayAccess errorLevel="info" />
         <PossiblyInvalidArrayAssignment errorLevel="info" />
         <PossiblyInvalidArrayOffset errorLevel="info" />
-        <PossiblyInvalidCast errorLevel="info" />
         <PossiblyInvalidFunctionCall errorLevel="info" />
         <PossiblyInvalidIterator errorLevel="info" />
         <PossiblyInvalidMethodCall errorLevel="info" />
@@ -92,59 +92,5 @@
         <PossiblyUndefinedArrayOffset errorLevel="info" />
         <PossiblyUndefinedMethod errorLevel="info" />
         <PossibleRawObjectIteration errorLevel="info" />
-
-        <!-- level 5 issues - should be avoided at most costs... -->
-
-        <ForbiddenCode errorLevel="info" />
-        <ImplicitToStringCast errorLevel="info" />
-        <InvalidScalarArgument errorLevel="info" />
-        <InvalidToString errorLevel="info" />
-        <InvalidOperand errorLevel="info" />
-        <NoInterfaceProperties errorLevel="info" />
-        <TooManyArguments errorLevel="info" />
-        <TypeDoesNotContainType errorLevel="info" />
-        <TypeDoesNotContainNull errorLevel="info" />
-        <MissingDocblockType errorLevel="info" />
-        <ImplementedReturnTypeMismatch errorLevel="info" />
-        <ImplementedParamTypeMismatch errorLevel="info" />
-
-        <!-- level 6 issues - really bad things -->
-
-        <InvalidNullableReturnType errorLevel="info" />
-        <NullableReturnStatement errorLevel="info" />
-        <InvalidFalsableReturnType errorLevel="info" />
-        <FalsableReturnStatement errorLevel="info" />
-
-        <MoreSpecificImplementedParamType errorLevel="info" />
-        <LessSpecificImplementedReturnType errorLevel="info" />
-
-        <InvalidReturnStatement errorLevel="info" />
-        <InvalidReturnType errorLevel="info" />
-        <UndefinedThisPropertyAssignment errorLevel="info" />
-        <UndefinedInterfaceMethod errorLevel="info" />
-
-        <!-- level 7 issues - even worse -->
-
-        <UndefinedThisPropertyAssignment errorLevel="info" />
-        <UndefinedPropertyAssignment errorLevel="info" />
-        <UndefinedThisPropertyFetch errorLevel="info" />
-        <UndefinedPropertyFetch errorLevel="info" />
-
-        <InvalidReturnStatement errorLevel="info" />
-        <InvalidReturnType errorLevel="info" />
-        <InvalidArgument errorLevel="info" />
-        <InvalidPropertyAssignmentValue errorLevel="info" />
-        <InvalidArrayOffset errorLevel="info" />
-        <InvalidArrayAssignment errorLevel="info" />
-        <InvalidArrayAccess errorLevel="info" />
-        <InvalidClone errorLevel="info" />
-
-        <!-- level 8 issues - some fatal errors in PHP -->
-
-        <ReservedWord errorLevel="info" />
-        <MethodSignatureMismatch errorLevel="info" />
-        <OverriddenMethodAccess errorLevel="info" />
-        <InaccessibleProperty errorLevel="info" />
-
     </issueHandlers>
 </psalm>

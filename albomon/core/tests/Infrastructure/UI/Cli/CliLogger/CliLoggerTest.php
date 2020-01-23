@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Albomon\Tests\Core\Infrastructure\UI\Cli\CliLogger;
 
 use Albomon\Core\Infrastructure\UI\Cli\CliLoggerInterface\CliLogger;
-use PHPUnit\Framework\MockObject\BadMethodCallException;
+use BadMethodCallException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Style\SymfonyStyle;
 

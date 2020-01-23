@@ -28,7 +28,7 @@ class CheckFeedCommand extends Command
         $this->setDescription('Console command check a single albo');
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->addArgument('feed_url', InputArgument::REQUIRED, 'feed url dell\'albo?')
@@ -47,7 +47,7 @@ class CheckFeedCommand extends Command
             $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
         }
 
-        $feedUrl = $input->getArgument('feed_url');
+        $feedUrl = (string) $input->getArgument('feed_url');
 
         $output->writeln("<info>Albo: $feedUrl</info>");
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Albomon\Core\Infrastructure\UI\Cli\CliLoggerInterface;
 
-use PHPUnit\Framework\MockObject\BadMethodCallException;
+use BadMethodCallException;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CliLogger implements CliLoggerInterface
