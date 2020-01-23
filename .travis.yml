@@ -9,11 +9,18 @@ env:
 
 language: php
 
-
-php:
-  - 7.2
-  #env: RUN_SONAR_SCANNER=1
-
+matrix:
+    fast_finish: true
+    include:
+        - php: 7.2
+        - php: 7.3
+          env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
+        - php: 7.4snapshot
+          env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
+        - php: nightly
+          env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
+    allow_failures:
+        - php: nightly
 
 cache:
   directories:
@@ -26,10 +33,31 @@ addons:
     token:
       secure: "5cca5600ecd28c2e5a5e7e7707ab76c7da8f360b"
 
+.steps:
+  #
+  #   CI STEP
+  #
+  - &disable-php-memory-limit |
+      echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
+  - &app-clear-test-cache |
+      bin/console cache:clear -e test
+
+  - &install-deptrac-to-path |
+      curl -LS http://get.sensiolabs.de/deptrac.phar -o deptrac && chmod +x deptrac
+
+  - &run-code-architectural-analyze |
+      ./deptrac analyze depfile.boundedContext.yml --formatter-graphviz=0
+
+  - &run-domain-dependencies-analyze |
+      ./deptrac analyze depfile.domainLayer.yml --formatter-graphviz=0
 
 
 install:
   - composer install
+  - php bin/phpunit install
+
+  - *install-deptrac-to-path
 
 
 before_script:
