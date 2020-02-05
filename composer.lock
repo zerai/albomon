@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.5.1",
+            "version": "v4.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf"
+                "reference": "1909f42732918e13454ba65309c44cfaff058ab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
-                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/1909f42732918e13454ba65309c44cfaff058ab2",
+                "reference": "1909f42732918e13454ba65309c44cfaff058ab2",
                 "shasum": ""
             },
             "require": {
@@ -64,20 +64,20 @@
                 "news",
                 "rss"
             ],
-            "time": "2020-01-10T12:26:10+00:00"
+            "time": "2020-02-04T23:00:39+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.4.1",
+            "version": "6.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
+                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/43ece0e75098b7ecd8d13918293029e555a50f82",
+                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
                 "shasum": ""
             },
             "require": {
@@ -92,12 +92,13 @@
                 "psr/log": "^1.1"
             },
             "suggest": {
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.3-dev"
+                    "dev-master": "6.5-dev"
                 }
             },
             "autoload": {
@@ -130,7 +131,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-23T15:58:00+00:00"
+            "time": "2019-12-23T11:57:10+00:00"
         },
         {
             "name": "guzzlehttp/promises",
