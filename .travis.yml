@@ -52,6 +52,9 @@ addons:
   - &run-domain-dependencies-analyze |
       ./deptrac analyze depfile.domainLayer.yml --formatter-graphviz=0
 
+  - &run-backward-compatibily-check |
+      ./vendor/bin/roave-backward-compatibility-check --from=$BACKWARD_COMPATIBILITY_FROM
+
 
 install:
   - composer install
@@ -67,6 +70,8 @@ before_script:
 
 
 script:
+  - *run-backward-compatibily-check
+
   - php bin/phpunit --coverage-clover clover.xml --log-junit junit.xml
 
   - ./cc-test-reporter after-build --coverage-input-type clover --id $CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
