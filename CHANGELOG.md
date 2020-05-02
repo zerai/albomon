@@ -9,6 +9,12 @@
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
 
+ ## [0.4.10] -  2020-05-02
+ ###### (Maintenance release)
+ ##### Changed
+ - Update to Symfony tot 4.3.*.
+ - Update debril/feed-io to 4.6.0.
+ 
  ## [0.4.9] -  2020-01-23
  ###### (Maintenance release)
  ##### Changed
