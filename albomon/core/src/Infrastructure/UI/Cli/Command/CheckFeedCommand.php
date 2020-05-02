@@ -69,7 +69,7 @@ class CheckFeedCommand extends Command
             }
         }
 
-        return null;
+        return 0;
     }
 
     private function formatContentUpdatedAt(DateTime $contenteDateTime): string
