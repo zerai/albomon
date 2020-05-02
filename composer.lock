@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.5.1",
+            "version": "v4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf"
+                "reference": "3feaf0fd9350db77660a1b36f8c28c710265daa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
-                "reference": "c651b6fc8952ebf0121bc0cc06ceeb3a69d482cf",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/3feaf0fd9350db77660a1b36f8c28c710265daa1",
+                "reference": "3feaf0fd9350db77660a1b36f8c28c710265daa1",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
                 "news",
                 "rss"
             ],
-            "time": "2020-01-10T12:26:10+00:00"
+            "time": "2020-04-29T14:07:17+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
