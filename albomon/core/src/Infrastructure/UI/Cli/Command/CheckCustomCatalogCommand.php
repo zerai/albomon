@@ -92,6 +92,6 @@ class CheckCustomCatalogCommand extends Command
 
         $io->text('Processo di scasione terminato.');
 
-        return null;
+        return 0;
     }
 }
