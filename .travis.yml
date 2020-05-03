@@ -56,6 +56,13 @@ addons:
   - &run-backward-compatibily-check |
       ./vendor/bin/roave-backward-compatibility-check --from=$BACKWARD_COMPATIBILITY_FROM
 
+  - &run-phpunit-tests |
+      ./bin/phpunit --colors=always
+
+  - &run-phpunit-tests-with-coverage |
+      ./bin/phpunit --colors=always --coverage-clover=coverage-report.clover --log-junit=test-report.xml
+
+
 
 install:
   - composer install
@@ -74,6 +81,7 @@ script:
   - *run-backward-compatibily-check
 
   - php bin/phpunit --coverage-clover clover.xml --log-junit junit.xml
+  - *run-phpunit-tests-with-coverage
 
   - ./cc-test-reporter after-build --coverage-input-type clover --id $CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
 
