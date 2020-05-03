@@ -32,7 +32,6 @@ addons:
   sonarcloud:
     organization: "zerai"
     token: $SECRET_SONAR_TOKEN
-    #token: "5cca5600ecd28c2e5a5e7e7707ab76c7da8f360b"
 
 
 .steps:
