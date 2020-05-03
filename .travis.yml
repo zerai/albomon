@@ -13,6 +13,7 @@ matrix:
     fast_finish: true
     include:
         - php: 7.2
+          env: RUN_SONAR_SCANNER=1 TEST_COVERAGE=true
         - php: 7.3
           env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
         - php: 7.4snapshot
