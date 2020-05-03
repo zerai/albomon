@@ -13,6 +13,7 @@ matrix:
     fast_finish: true
     include:
         - php: 7.2
+          env: RUN_SONAR_SCANNER=1 TEST_COVERAGE=true
         - php: 7.3
           env: RUN_SONAR_SCANNER=0 TEST_COVERAGE=false
         - php: 7.4snapshot
@@ -30,8 +31,8 @@ cache:
 addons:
   sonarcloud:
     organization: "zerai"
-    token:
-      secure: "5cca5600ecd28c2e5a5e7e7707ab76c7da8f360b"
+    token: $SECRET_SONAR_TOKEN
+
 
 .steps:
   #
@@ -52,6 +53,9 @@ addons:
   - &run-domain-dependencies-analyze |
       ./deptrac analyze depfile.domainLayer.yml --formatter-graphviz=0
 
+  - &run-backward-compatibily-check |
+      ./vendor/bin/roave-backward-compatibility-check --from=$BACKWARD_COMPATIBILITY_FROM
+
 
 install:
   - composer install
@@ -67,6 +71,8 @@ before_script:
 
 
 script:
+  - *run-backward-compatibily-check
+
   - php bin/phpunit --coverage-clover clover.xml --log-junit junit.xml
 
   - ./cc-test-reporter after-build --coverage-input-type clover --id $CC_TEST_REPORTER_ID --exit-code $TRAVIS_TEST_RESULT
