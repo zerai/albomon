@@ -1,24 +1,24 @@
+#   UPDATE BASELINE FLE COMMAND
+#   vendor/bin/phpstan analyse --level 5 --configuration phpstan.neon.dist --generate-baseline
+
 includes:
-    #- vendor/phpstan/phpstan-phpunit/extension.neon
-    #- vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     level: 5
-    autoload_files:
-        - bin/.phpunit/phpunit-6.5-0/vendor/autoload.php
     paths:
         - albomon/core/src
         - albomon/core/tests
-
+    excludes_analyse:
+        - '*/vendor/*'
+        - '*/extra/*'
+        - '*/vendor-bin/*'
+    bootstrapFiles:
+        - bin/.phpunit/phpunit/vendor/autoload.php
+    symfony:
+        container_xml_path: var/cache/test/srcApp_KernelTestDebugContainer.xml
+        constant_hassers: false
     ignoreErrors:
         #- '##'
 
 
-    excludes_analyse:
-        - '*/vendor/*'
-        - '*/extra/*'
-
-        # REMOVE dopo installazione di phpstan/phpunit
-        - 'albomon/core/tests/Application/MonitorApplicationService/MonitorApplicationServiceTest.php'
-        
