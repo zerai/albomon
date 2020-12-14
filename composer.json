@@ -69,7 +69,7 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "mikey179/vfsstream": "^1.6",
         "php-coveralls/php-coveralls": "^2.1",
-        "phpstan/phpstan": "^0.11.19",
+        "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-phpunit": "*",
         "roave/backward-compatibility-check": "^3.0"
     }
