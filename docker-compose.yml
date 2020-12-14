@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  php:
+    image: webdevops/php-dev:7.2
+    user: application
+    working_dir: /app
+    environment:
+      WEB_DOCUMENT_ROOT: /app
+      WEB_DOCUMENT_INDEX: public/index.php
+    ports:
+      - "8080:80"
+      #- "127.0.0.222:8888:80"
+    volumes:
+      - .:/app
