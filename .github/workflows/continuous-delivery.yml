@@ -1,0 +1,50 @@
+name: CD
+
+on:
+  push:
+    branches: [ master, develop, feature/**, bugfix/**, hotfix/** ]
+  pull_request:
+    branches: [ master, develop ]
+env:
+  COVERAGE: '0'
+
+jobs:
+  phpunit:
+    name: PHPUnit (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - '7.2'
+          - '7.3'
+          - '7.4'
+          - '8.0'
+        include:
+          - php: '7.2'
+            coverage: pcov
+        #dependency-version: [prefer-lowest, prefer-stable]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup-php
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: ${{ matrix.coverage }}
+          tools: composer:v2
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-suggest --ansi --no-scripts
+#      - name: Enable code coverage for PHP-7.4
+#        if: ${{ matrix.php == '7.4' && matrix.dependency-version == 'prefer-stable'}}
+#        run: echo "COVERAGE=1" >> $GITHUB_ENV
+      - name: Install PHPUnit
+        run: bin/phpunit install
+      - name: Run PHPUnit tests
+        run: |
+          mkdir -p reports/phpunit
+          if [ "$COVERAGE" = '1' ]; then
+            bin/phpunit --coverage-clover reports/phpunit/clover.xml --log-junit reports/phpunit/junit.xml --colors=always
+          else
+            bin/phpunit --colors=always
+          fi
