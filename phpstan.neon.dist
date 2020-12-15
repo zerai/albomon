@@ -1,4 +1,4 @@
-#   UPDATE BASELINE FLE COMMAND
+#   UPDATE COMMAND FOR BASELINE FILE
 #   vendor/bin/phpstan analyse --level 5 --configuration phpstan.neon.dist --generate-baseline
 
 includes:
@@ -9,10 +9,16 @@ parameters:
     paths:
         - albomon/core/src
         - albomon/core/tests
+        - src
+        - tests
     excludes_analyse:
         - '*/vendor/*'
-        - '*/extra/*'
         - '*/vendor-bin/*'
+        - '*/var/*'
+        - 'bin/'
+
+        - '*/extra/*'
+        - 'tests/bootstrap.php'
     bootstrapFiles:
         - bin/.phpunit/phpunit/vendor/autoload.php
     symfony:

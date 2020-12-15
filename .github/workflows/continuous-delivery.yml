@@ -104,6 +104,4 @@ jobs:
       - name: Install Rector tool
         run: composer bin rector update
       - name: Run rector
-        run: |
-          bin/console cache:warmup -e test
-          vendor/bin/rector process --config rector.php --dry-run
+        run: vendor/bin/rector process --config rector.php --dry-run
