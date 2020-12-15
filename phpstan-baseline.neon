@@ -1,0 +1,17 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Albomon\\\\Core\\\\Infrastructure\\\\Application\\\\RssReader\\\\FeedIoRssReader\\\\FeedIoRssReader\\:\\:method\\(\\)\\.$#"
+			count: 2
+			path: albomon/core/tests/Application/MonitorApplicationService/MonitorApplicationServiceTest.php
+
+		-
+			message: "#^Call to an undefined method Albomon\\\\Core\\\\Infrastructure\\\\Application\\\\RssReader\\\\FeedIoRssReader\\\\FeedIoRssReader\\:\\:expects\\(\\)\\.$#"
+			count: 1
+			path: albomon/core/tests/Application/MonitorApplicationService/MonitorApplicationServiceTest.php
+
+		-
+			message: "#^Trying to mock an undefined method log\\(\\) on class Symfony\\\\Component\\\\Console\\\\Style\\\\SymfonyStyle\\.$#"
+			count: 1
+			path: albomon/core/tests/Infrastructure/UI/Cli/CliLogger/CliLoggerTest.php
+

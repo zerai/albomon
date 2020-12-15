@@ -23,7 +23,7 @@ class MonitorApplicationServiceTest extends TestCase
     /** @var LoggerInterface */
     private $logger;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->feedReader = $this->createMock(FeedIoRssReader::class);
         $this->logger = $this->createMock(LoggerInterface::class);
