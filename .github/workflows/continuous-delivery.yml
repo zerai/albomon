@@ -77,3 +77,33 @@ jobs:
         run: |
           bin/console cache:warmup -e test
           vendor/bin/phpstan analyse
+
+  rector:
+    name: Rector (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - '7.2'
+        include:
+          - php: '7.2'
+            coverage: none
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup-php
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-progress --no-suggest --ansi --no-scripts
+          bin/phpunit install
+      - name: Install Rector tool
+        run: composer bin rector update
+      - name: Run rector
+        run: |
+          bin/console cache:warmup -e test
+          vendor/bin/rector process --config rector.php --dry-run
