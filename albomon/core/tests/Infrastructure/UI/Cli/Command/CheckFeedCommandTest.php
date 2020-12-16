@@ -29,37 +29,37 @@ class CheckFeedCommandTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_can_execute(): void
+    public function itCanExecute(): void
     {
+        // pass arguments to the helper
+        // prefix the key with two dashes when passing options,
+        // e.g: '--some-option' => 'option_value',
         $this->commandTester->execute([
             'command' => $this->command->getName(),
-            // pass arguments to the helper
             'feed_url' => self::FEED_URL,
-            // prefix the key with two dashes when passing options,
-            // e.g: '--some-option' => 'option_value',
         ]);
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('AlboPOP Spec. Validation', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('AlboPOP Spec. Validation', $output);
     }
 
     /** @test */
-    public function it_can_execute_with_wrong_url(): void
+    public function itCanExecuteWithWrongUrl(): void
     {
+        // pass arguments to the helper
+        // prefix the key with two dashes when passing options,
+        // e.g: '--some-option' => 'option_value',
         $this->commandTester->execute([
             'command' => $this->command->getName(),
-            // pass arguments to the helper
             'feed_url' => self::WRONG_FEED_URL,
-            // prefix the key with two dashes when passing options,
-            // e.g: '--some-option' => 'option_value',
         ]);
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('NON ATTIVO', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('NON ATTIVO', $output);
     }
 
     protected function tearDown(): void

@@ -7,6 +7,7 @@ namespace Albomon\Tests\Core\Infrastructure\Application\RssReader\FeedIoRssReade
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class FeedIoRssReaderTest extends TestCase
@@ -18,7 +19,7 @@ class FeedIoRssReaderTest extends TestCase
     private const WRONG_FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xmlllll';
 
     /** @test */
-    public function it_can_be_created(): void
+    public function itCanBeCreated(): void
     {
         $rssReader = new FeedIoRssReader();
 
@@ -26,7 +27,7 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
-    public function it_can_change_target_url(): void
+    public function itCanChangeTargetUrl(): void
     {
         $rssReader = new FeedIoRssReader();
 
@@ -37,12 +38,10 @@ class FeedIoRssReaderTest extends TestCase
         self::assertEquals(self::OTHER_FEED_URL, $rssReader->getTargetUrl());
     }
 
-    /**
-     * @test
-     * @expectedException  \InvalidArgumentException
-     */
-    public function invalid_target_url_throw_exception(): void
+    /** @test */
+    public function invalidTargetUrlThrowException(): void
     {
+        self::expectException(InvalidArgumentException::class);
         $rssReader = new FeedIoRssReader();
 
         // TODO use a dataProvider check all case empty|no schema|invalid path
@@ -50,7 +49,7 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
-    public function it_handle_execution(): void
+    public function itHandleExecution(): void
     {
         $rssReader = new FeedIoRssReader();
 
@@ -62,7 +61,7 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
-    public function it_handle_inactive_feed(): void
+    public function itHandleInactiveFeed(): void
     {
         $rssReader = new FeedIoRssReader();
 
@@ -75,7 +74,7 @@ class FeedIoRssReaderTest extends TestCase
     }
 
     /** @test */
-    public function it_handle_xmlDom(): void
+    public function itHandleXmlDom(): void
     {
         //self::markTestSkipped();
         $rssReader = new FeedIoRssReader();

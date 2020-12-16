@@ -11,10 +11,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CliLoggerTest extends TestCase
 {
-    private const  DEFAULT_MESSAGE = 'default message';
+    private const DEFAULT_MESSAGE = 'default message';
 
     /** @test */
-    public function it_can_be_instatiate(): void
+    public function itCanBeInstatiate(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
         $cliLogger = new CliLogger($io);
@@ -23,7 +23,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function emergency_method_should_throw_exception(): void
+    public function emergencyMethodShouldThrowException(): void
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('CliLogger don\'t implement this method.');
@@ -34,7 +34,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function alert_method_should_throw_exception(): void
+    public function alertMethodShouldThrowException(): void
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('CliLogger don\'t implement this method.');
@@ -45,7 +45,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function critical_method_should_throw_exception(): void
+    public function criticalMethodShouldThrowException(): void
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('CliLogger don\'t implement this method.');
@@ -56,7 +56,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_log_error(): void
+    public function itCanLogError(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
         $cliLogger = new CliLogger($io);
@@ -69,7 +69,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_log_warning(): void
+    public function itCanLogWarning(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
         $cliLogger = new CliLogger($io);
@@ -82,7 +82,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_log_notice(): void
+    public function itCanLogNotice(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
         $cliLogger = new CliLogger($io);
@@ -95,7 +95,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_log_info(): void
+    public function itCanLogInfo(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
         $cliLogger = new CliLogger($io);
@@ -108,7 +108,7 @@ class CliLoggerTest extends TestCase
     }
 
     /** @test */
-    public function debug_method_should_throw_exception(): void
+    public function debugMethodShouldThrowException(): void
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('CliLogger don\'t implement this method.');

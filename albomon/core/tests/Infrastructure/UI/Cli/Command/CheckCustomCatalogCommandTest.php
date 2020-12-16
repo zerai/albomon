@@ -26,18 +26,18 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_can_execute(): void
+    public function itCanExecute(): void
     {
+        // pass arguments to the helper
+        // prefix the key with two dashes when passing options,
+        // e.g: '--some-option' => 'option_value',
         $this->commandTester->execute([
             'command' => $this->command->getName(),
-//            // pass arguments to the helper
-//            // prefix the key with two dashes when passing options,
-//            // e.g: '--some-option' => 'option_value',
         ]);
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione albi, origine dati: custom-catalog.json', $output);
-        $this->assertContains('Content Updated At', $output);
+        $this->assertStringContainsString('Inizio scansione albi, origine dati: custom-catalog.json', $output);
+        $this->assertStringContainsString('Content Updated At', $output);
     }
 }

@@ -31,7 +31,7 @@ class MonitorApplicationServiceTest extends TestCase
     }
 
     /** @test */
-    public function it_can_check_a_single_albo(): void
+    public function itCanCheckASingleAlbo(): void
     {
         $rssPositiveResult = new RssReaderResult(true, self::FEED_URL);
 
@@ -46,7 +46,7 @@ class MonitorApplicationServiceTest extends TestCase
     }
 
     /** @test */
-    public function it_can_handle_error_on_check_a_single_albo(): void
+    public function itCanHandleErrorOnCheckASingleAlbo(): void
     {
         $url = 'http://feeds.xxxxxx.it/xxxxx/xxxxx.xml';
 
@@ -64,7 +64,7 @@ class MonitorApplicationServiceTest extends TestCase
     }
 
     /** @test */
-    public function it_can_check_a_multiple_albo(): void
+    public function itCanCheckAMultipleAlbo(): void
     {
         $alboList = [
             ['Muccia' => self::FEED_URL],
@@ -75,6 +75,6 @@ class MonitorApplicationServiceTest extends TestCase
 
         $monitorResponse = $this->monitorApplicationService->checkAlboList($alboList);
 
-        self::assertInternalType('array', $monitorResponse);
+        self::assertIsArray($monitorResponse);
     }
 }

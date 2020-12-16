@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Albomon\Tests\Core\Application\Service\RssReader;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
+use Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +15,7 @@ class RssReaderResultTest extends TestCase
     private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
 
     /** @test */
-    public function it_can_be_created(): void
+    public function itCanBeCreated(): void
     {
         $httpStatus = true;
 
@@ -24,7 +25,7 @@ class RssReaderResultTest extends TestCase
     }
 
     /** @test */
-    public function it_return_http_status(): void
+    public function itReturnHttpStatus(): void
     {
         $httpStatus = true;
 
@@ -34,7 +35,7 @@ class RssReaderResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_http_error(): void
+    public function itCanAddHttpError(): void
     {
         $httpStatus = false;
 
@@ -48,7 +49,7 @@ class RssReaderResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_xml_document(): void
+    public function itCanAddXmlDocument(): void
     {
         $httpStatus = true;
         $xmlDocument = new DOMDocument('1.0', 'ISO-8859-15');
@@ -61,7 +62,7 @@ class RssReaderResultTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_last_item_feed_date(): void
+    public function itCanAddLastItemFeedDate(): void
     {
         $httpStatus = true;
 
@@ -74,12 +75,10 @@ class RssReaderResultTest extends TestCase
         self::assertEquals($date, $rssReaderResult->lastFeedItemDate());
     }
 
-    /**
-     * @test
-     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
-     */
-    public function it_cant_set_http_error_on_active_feed(): void
+    /** @test */
+    public function itCantSetHttpErrorOnActiveFeed(): void
     {
+        self::expectException(RssReaderResultIllegalOperationException::class);
         $httpStatus = true;
 
         $httpError = 'Not Found.';
@@ -89,12 +88,10 @@ class RssReaderResultTest extends TestCase
         $rssReaderResult->setHttpError($httpError);
     }
 
-    /**
-     * @test
-     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
-     */
-    public function it_cant_set_last_feed_date_on_inactive_feed(): void
+    /** @test */
+    public function itCantSetLastFeedDateOnInactiveFeed(): void
     {
+        self::expectException(RssReaderResultIllegalOperationException::class);
         $httpStatus = false;
 
         $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
@@ -102,12 +99,10 @@ class RssReaderResultTest extends TestCase
         $rssReaderResult->setLastFeedItemDate(new \DateTime('now'));
     }
 
-    /**
-     * @test
-     * @expectedException \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
-     */
-    public function it_cant_set_xml_document_on_inactive_feed(): void
+    /** @test */
+    public function itCantSetXmlDocumentOnInactiveFeed(): void
     {
+        self::expectException(RssReaderResultIllegalOperationException::class);
         $httpStatus = false;
 
         $rssReaderResult = new RssReaderResult($httpStatus, self::FEED_URL);
@@ -116,7 +111,7 @@ class RssReaderResultTest extends TestCase
     }
 
     /** @test */
-    public function unset_property_xmlDocument_should_return_null(): void
+    public function unsetPropertyXmlDocumentShouldReturnNull(): void
     {
         $httpStatus = false;
 

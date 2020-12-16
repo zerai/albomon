@@ -28,13 +28,13 @@ class ReportManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create(): void
+    public function itCanCreate(): void
     {
         self::assertInstanceOf(ReportManagerInterface::class, new ReportManager('irrelevantDirectory/'));
     }
 
     /** @test */
-    public function it_can_return_report_filename(): void
+    public function itCanReturnReportFilename(): void
     {
         $directory = 'directory/sub-directory';
 
@@ -44,7 +44,7 @@ class ReportManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_item_to_report(): void
+    public function itCanAddItemToReport(): void
     {
         $reportDataItem = new RssReaderResult(
             true,
@@ -64,13 +64,13 @@ class ReportManagerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_add_itemCollection_to_report(): void
+    public function itCanAddItemCollectionToReport(): void
     {
         self::markTestSkipped();
     }
 
     /** @test */
-    public function it_can_generate_report(): void
+    public function itCanGenerateReport(): void
     {
         $reportDataItem = new RssReaderResult(
             true,
