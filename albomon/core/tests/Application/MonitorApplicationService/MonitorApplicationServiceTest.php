@@ -25,8 +25,8 @@ class MonitorApplicationServiceTest extends TestCase
 
     public function setUp(): void
     {
-        $this->feedReader = $this->createMock(FeedIoRssReader::class);
-        $this->logger = $this->createMock(LoggerInterface::class);
+        $this->feedReader = $this->getMockBuilder(FeedIoRssReader::class);
+        $this->logger = $this->getMockBuilder(LoggerInterface::class);
         $this->monitorApplicationService = new monitorApplicationService($this->feedReader, $this->logger);
     }
 
@@ -35,6 +35,7 @@ class MonitorApplicationServiceTest extends TestCase
     {
         $rssPositiveResult = new RssReaderResult(true, self::FEED_URL);
 
+        $this->feedReader->setMethods(['execute'])->getMock();
         $this->feedReader->method('execute')
             ->willReturn($rssPositiveResult);
 
