@@ -13,6 +13,6 @@ class CatalogFileNotFoundException extends \Exception
 
     public static function withFilename(string $filename, int $code = 0, \Exception $previous = null): self
     {
-        return new self(sprintf('Catalog file not found. %s', $filename), $code, $previous);
+        return new self(\sprintf('Catalog file not found. %s', $filename), $code, $previous);
     }
 }

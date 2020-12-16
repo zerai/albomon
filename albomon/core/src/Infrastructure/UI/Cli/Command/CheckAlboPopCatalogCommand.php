@@ -17,9 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckAlboPopCatalogCommand extends Command
 {
-    use SymfonyStyleTrait;
-    use CatalogFileTrait;
     use AlboResultStyleTrait;
+    use CatalogFileTrait;
+    use SymfonyStyleTrait;
 
     private const CATALOG_FILE_NAME = 'albopop-catalog.json';
 
@@ -62,11 +62,11 @@ class CheckAlboPopCatalogCommand extends Command
 
         $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
 
-        $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+        $io->text('Il catalogo albi contiene '.\count($alboList).' feed da analizzare.');
 
         $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-        $progressBar = new ProgressBar($output, count($alboList));
+        $progressBar = new ProgressBar($output, \count($alboList));
 
         $progressBar->start();
 

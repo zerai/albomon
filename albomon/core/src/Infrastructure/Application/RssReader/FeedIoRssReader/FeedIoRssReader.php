@@ -6,6 +6,7 @@ namespace Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
+use Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use FeedIo\FeedIo;
 use FeedIo\Reader\ReadErrorException;
@@ -32,7 +33,7 @@ class FeedIoRssReader implements RssReaderInterface
     }
 
     /**
-     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     * @throws RssReaderResultIllegalOperationException
      */
     public function execute(string $targetUrl): RssReaderResultInterface
     {
@@ -43,7 +44,7 @@ class FeedIoRssReader implements RssReaderInterface
 
     public function setTargetUrl(string $targetUrl): void
     {
-        if (!filter_var($targetUrl, FILTER_VALIDATE_URL)) {
+        if (!\filter_var($targetUrl, FILTER_VALIDATE_URL)) {
             throw new InvalidArgumentException('Invalid target url in RssReaderService. Url was: '.$targetUrl);
         }
 
@@ -58,7 +59,7 @@ class FeedIoRssReader implements RssReaderInterface
     /**
      * @return RssReaderResult
      *
-     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     * @throws RssReaderResultIllegalOperationException
      */
     private function readRss()
     {

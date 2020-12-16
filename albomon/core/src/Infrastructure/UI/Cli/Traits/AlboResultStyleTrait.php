@@ -21,7 +21,7 @@ trait AlboResultStyleTrait
     protected function formatTableRow(RssReaderResultInterface $monitorResult, Table $table): Table
     {
         if (!$monitorResult->httpStatus()) {
-            $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
+            $table->addRow([$monitorResult->feedUrl(), \sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
         } else {
             $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());
 
