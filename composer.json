@@ -16,7 +16,7 @@
         "symfony/monolog-bundle": "^3.4",
         "symfony/serializer": "4.4.*",
         "symfony/test-pack": "^1.0",
-        "symfony/yaml": "4.4.*"
+        "symfony/yaml": "5.2.*"
     },
     "config": {
         "preferred-install": {
