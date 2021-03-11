@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.7.12",
+            "version": "v4.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "438069b81d64f4c921ea6163323f344ee99e3f34"
+                "reference": "402f804cff2d26221a37dc761de1020ebb4ede35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/438069b81d64f4c921ea6163323f344ee99e3f34",
-                "reference": "438069b81d64f4c921ea6163323f344ee99e3f34",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/402f804cff2d26221a37dc761de1020ebb4ede35",
+                "reference": "402f804cff2d26221a37dc761de1020ebb4ede35",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-11T18:32:23+00:00"
+            "time": "2021-03-10T17:51:15+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -175,16 +175,16 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "60d379c243457e073cff02bc323a2a86cb355631"
+                "reference": "8e7d04f1f6450fef59366c399cfad4b9383aa30d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/60d379c243457e073cff02bc323a2a86cb355631",
-                "reference": "60d379c243457e073cff02bc323a2a86cb355631",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/8e7d04f1f6450fef59366c399cfad4b9383aa30d",
+                "reference": "8e7d04f1f6450fef59366c399cfad4b9383aa30d",
                 "shasum": ""
             },
             "require": {
@@ -222,7 +222,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2020-09-30T07:37:28+00:00"
+            "time": "2021-03-07T09:25:29+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
