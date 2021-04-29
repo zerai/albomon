@@ -1,0 +1,54 @@
+version: 2
+updates:
+- package-ecosystem: composer
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  target-branch: develop
+  ignore:
+  - dependency-name: debril/feed-io
+    versions:
+    - 4.7.16
+    - 4.8.0
+    - 4.8.1
+    - 4.8.2
+    - 4.8.3
+    - 4.9.1
+    - 4.9.2
+    - 4.9.3
+    - 5.0.0
+    - 5.0.1
+  - dependency-name: friendsofphp/php-cs-fixer
+    versions:
+    - 2.18.2
+    - 2.18.3
+    - 2.18.4
+    - 2.18.5
+  - dependency-name: league/csv
+    versions:
+    - 9.6.2
+    - 9.7.0
+  - dependency-name: symfony/yaml
+    versions:
+    - 5.2.2
+    - 5.2.3
+    - 5.2.4
+  - dependency-name: symfony/console
+    versions:
+    - 4.4.19
+    - 4.4.20
+  - dependency-name: symfony/flex
+    versions:
+    - 1.12.1
+  - dependency-name: symfony/serializer
+    versions:
+    - 5.2.2
+    - 5.2.3
+  - dependency-name: symfony/dotenv
+    versions:
+    - 5.2.2
+    - 5.2.3
+  - dependency-name: symfony/framework-bundle
+    versions:
+    - 4.4.19
