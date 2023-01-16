@@ -20,7 +20,7 @@ class CheckFeedCommandTest extends KernelTestCase
     /** @var Command */
     private $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $kernel = static::createKernel();
         $application = new Application($kernel);
@@ -29,7 +29,7 @@ class CheckFeedCommandTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_can_execute()
+    public function it_can_execute(): void
     {
         $this->commandTester->execute([
             'command' => $this->command->getName(),
@@ -41,12 +41,12 @@ class CheckFeedCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('AlboPOP Spec. Validation', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('AlboPOP Spec. Validation', $output);
     }
 
     /** @test */
-    public function it_can_execute_with_wrong_url()
+    public function it_can_execute_with_wrong_url(): void
     {
         $this->commandTester->execute([
             'command' => $this->command->getName(),
@@ -58,11 +58,11 @@ class CheckFeedCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('NON ATTIVO', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('NON ATTIVO', $output);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->commandTester = null;
     }
