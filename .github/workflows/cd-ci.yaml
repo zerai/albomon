@@ -1,0 +1,11 @@
+name: CD/CI
+
+on:
+  push:
+
+jobs:
+  commit-stage-workflow:
+    name: Commit Stage
+    uses: zerai/albomon/.github/workflows/commit-stage.yaml@main
+    with:
+      triggering-sha: "${{ github.sha }}"
