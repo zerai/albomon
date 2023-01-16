@@ -37,7 +37,7 @@ class CheckAlboPopCatalogCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione albi, origine dati: albopop-catalog.json', $output);
-        $this->assertContains('Feed Status', $output);
+        $this->assertStringContainsString('Inizio scansione albi, origine dati: albopop-catalog.json', $output);
+        $this->assertStringContainsString('Feed Status', $output);
     }
 }

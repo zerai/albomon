@@ -41,8 +41,8 @@ class CheckFeedCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('AlboPOP Spec. Validation', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('AlboPOP Spec. Validation', $output);
     }
 
     /** @test */
@@ -58,8 +58,8 @@ class CheckFeedCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione feed albo...', $output);
-        $this->assertContains('NON ATTIVO', $output);
+        $this->assertStringContainsString('Inizio scansione feed albo...', $output);
+        $this->assertStringContainsString('NON ATTIVO', $output);
     }
 
     protected function tearDown(): void

@@ -75,6 +75,6 @@ class MonitorApplicationServiceTest extends TestCase
 
         $monitorResponse = $this->monitorApplicationService->checkAlboList($alboList);
 
-        self::assertInternalType('array', $monitorResponse);
+        self::assertIsArray($monitorResponse);
     }
 }

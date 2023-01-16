@@ -37,7 +37,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertContains('Inizio scansione albi, origine dati: custom-catalog.json', $output);
-        $this->assertContains('Content Updated At', $output);
+        $this->assertStringContainsString('Inizio scansione albi, origine dati: custom-catalog.json', $output);
+        $this->assertStringContainsString('Content Updated At', $output);
     }
 }
