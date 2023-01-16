@@ -6,6 +6,6 @@ on:
 jobs:
   commit-stage-workflow:
     name: Commit Stage
-    uses: zerai/albomon/.github/workflows/commit-stage.yaml@main
+    uses: zerai/albomon/.github/workflows/commit-stage.yaml@master
     with:
       triggering-sha: "${{ github.sha }}"

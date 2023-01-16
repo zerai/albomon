@@ -7,6 +7,7 @@ namespace Albomon\Tests\Core\Infrastructure\Application\RssReader\FeedIoRssReade
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class FeedIoRssReaderTest extends TestCase
@@ -39,10 +40,10 @@ class FeedIoRssReaderTest extends TestCase
 
     /**
      * @test
-     * @expectedException  \InvalidArgumentException
      */
     public function invalid_target_url_throw_exception(): void
     {
+        $this->expectException(InvalidArgumentException::class);
         $rssReader = new FeedIoRssReader();
 
         // TODO use a dataProvider check all case empty|no schema|invalid path
