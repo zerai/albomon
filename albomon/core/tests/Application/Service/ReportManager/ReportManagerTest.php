@@ -22,7 +22,7 @@ class ReportManagerTest extends TestCase
     /**
      * set up test environmemt.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup('exampleDir');
     }

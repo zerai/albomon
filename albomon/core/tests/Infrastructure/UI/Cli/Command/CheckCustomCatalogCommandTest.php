@@ -17,7 +17,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
     /** @var Command */
     private $command;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $kernel = static::createKernel();
         $application = new Application($kernel);
@@ -26,7 +26,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
     }
 
     /** @test */
-    public function it_can_execute()
+    public function it_can_execute(): void
     {
         $this->commandTester->execute([
             'command' => $this->command->getName(),
