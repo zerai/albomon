@@ -5,6 +5,8 @@
 #sonar-project.properties
 #sonar-project.properties_
 deptrac
+/docker
+docker-compose.yml
 ###< develop ###
 ###> symfony/framework-bundle ###
 /.env.local
