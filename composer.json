@@ -26,7 +26,8 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "symfony/flex": true
+            "symfony/flex": true,
+            "bamarni/composer-bin-plugin": true
         }
     },
     "autoload": {
@@ -65,12 +66,18 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false,
+            "target-directory": "tools"
+        },
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
         }
     },
     "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
         "mikey179/vfsstream": "^1.6",
         "php-coveralls/php-coveralls": "^2.1",
         "phpstan/phpstan": "^0.11.19",
