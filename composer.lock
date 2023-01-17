@@ -8,28 +8,31 @@
     "packages": [
         {
             "name": "debril/feed-io",
-            "version": "v4.6.0",
+            "version": "v4.9.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "3feaf0fd9350db77660a1b36f8c28c710265daa1"
+                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/3feaf0fd9350db77660a1b36f8c28c710265daa1",
-                "reference": "3feaf0fd9350db77660a1b36f8c28c710265daa1",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
+                "reference": "1c45bd07837123ec6eacf8cdd612cbb0dc27229c",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "~6.2",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "guzzlehttp/guzzle": "~6.2|~7.0",
                 "php": ">=7.1",
                 "psr/log": "~1.0",
-                "symfony/console": "~3.4|~4.0|~5.0"
+                "symfony/console": "~3.4|~4.0|~5.0|~6.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.4",
                 "monolog/monolog": "1.*",
-                "phpunit/phpunit": "~7.5.0"
+                "phpunit/phpunit": "~9.3.0"
             },
             "suggest": {
                 "monolog/monolog": "Allows to handle logs"
@@ -66,15 +69,9 @@
             ],
             "support": {
                 "issues": "https://github.com/alexdebril/feed-io/issues",
-                "source": "https://github.com/alexdebril/feed-io/tree/v4.6.0"
+                "source": "https://github.com/alexdebril/feed-io/tree/v4.9.15"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/alexdebril",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-04-29T14:07:17+00:00"
+            "time": "2022-10-26T20:16:20+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
