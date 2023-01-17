@@ -29,9 +29,6 @@
     "guzzlehttp/psr7": {
         "version": "1.6.1"
     },
-    "jean85/pretty-package-versions": {
-        "version": "1.2"
-    },
     "jetbrains/phpstorm-stubs": {
         "version": "v2019.1"
     },
@@ -46,30 +43,6 @@
     },
     "monolog/monolog": {
         "version": "1.25.1"
-    },
-    "nette/bootstrap": {
-        "version": "v3.0.0"
-    },
-    "nette/di": {
-        "version": "v3.0.0"
-    },
-    "nette/finder": {
-        "version": "v2.5.0"
-    },
-    "nette/neon": {
-        "version": "v3.0.0"
-    },
-    "nette/php-generator": {
-        "version": "v3.2.3"
-    },
-    "nette/robot-loader": {
-        "version": "v3.2.0"
-    },
-    "nette/schema": {
-        "version": "v1.0.0"
-    },
-    "nette/utils": {
-        "version": "v3.0.1"
     },
     "nikic/php-parser": {
         "version": "v4.2.2"
@@ -94,15 +67,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
-    },
-    "phpstan/phpdoc-parser": {
-        "version": "0.3.5"
-    },
-    "phpstan/phpstan": {
-        "version": "0.11.10"
-    },
-    "phpstan/phpstan-phpunit": {
-        "version": "0.11.2"
     },
     "psr/cache": {
         "version": "1.0.1"
