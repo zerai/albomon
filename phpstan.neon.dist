@@ -1,12 +1,13 @@
 includes:
-    #- vendor/phpstan/phpstan-phpunit/extension.neon
-    #- vendor/phpstan/phpstan-strict-rules/rules.neon
-    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     level: 5
-    autoload_files:
-        - bin/.phpunit/phpunit-6.5-0/vendor/autoload.php
+
+    bootstrapFiles:
+        - ./vendor/bin/.phpunit/phpunit-9.5-0/vendor/autoload.php
+    #scanDirectories:
+        #- ./vendor/bin/.phpunit/phpunit-9.5-0/src
     paths:
         - albomon/core/src
         - albomon/core/tests
@@ -15,7 +16,7 @@ parameters:
         #- '##'
 
 
-    excludes_analyse:
+    excludePaths:
         - '*/vendor/*'
         - '*/extra/*'
 

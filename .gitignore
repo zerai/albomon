@@ -2,8 +2,7 @@
 .idea/
 /extra/
 .scannerwork/
-#sonar-project.properties
-#sonar-project.properties_
+/tools/**/vendor
 deptrac
 /docker
 docker-compose.yml
