@@ -24,7 +24,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "symfony/flex": true,
-            "bamarni/composer-bin-plugin": true
+            "bamarni/composer-bin-plugin": true,
+            "ocramius/package-versions": true
         }
     },
     "autoload": {
@@ -77,7 +78,7 @@
         "bamarni/composer-bin-plugin": "^1.8",
         "mikey179/vfsstream": "^1.6",
         "php-coveralls/php-coveralls": "^2.1",
-        "roave/backward-compatibility-check": "^3.0",
+        "roave/backward-compatibility-check": "^4",
         "symfony/browser-kit": "4.4.*",
         "symfony/css-selector": "4.4.*",
         "symfony/phpunit-bridge": "^6.2"
