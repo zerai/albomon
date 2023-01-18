@@ -19,10 +19,7 @@ class ReportManager implements ReportManagerInterface
      */
     private $reportData;
 
-    /**
-     * @var string
-     */
-    private $reportDir;
+    private ?string $reportDir = null;
 
     public function __construct(?string $reportDir)
     {

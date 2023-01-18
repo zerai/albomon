@@ -11,15 +11,9 @@ use Psr\Log\LoggerInterface;
 
 class MonitorApplicationService
 {
-    /**
-     * @var RssReaderInterface
-     */
-    private $feedReader;
+    private RssReaderInterface $feedReader;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
     public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
     {

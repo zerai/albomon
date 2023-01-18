@@ -8,7 +8,8 @@ use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        //__DIR__ . '/albomon/core/src',
+        __DIR__ . '/albomon/core/src/Domain',
+        __DIR__ . '/albomon/core/src/Application',
         __DIR__ . '/albomon/core/tests',
         //__DIR__ . '/config',
         //__DIR__ . '/public',
