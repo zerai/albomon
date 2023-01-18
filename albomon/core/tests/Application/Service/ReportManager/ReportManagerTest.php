@@ -47,7 +47,9 @@ class ReportManagerTest extends TestCase
 
         $repoManager = new ReportManager($directory);
 
-        self::assertEquals($directory . DIRECTORY_SEPARATOR . self::REPORT_FILE_NAME . '.csv', $repoManager->reportFilename());
+        $expectedReportFile = $directory . DIRECTORY_SEPARATOR . self::REPORT_FILE_NAME . '.csv';
+
+        self::assertEquals($expectedReportFile, $repoManager->reportFilename());
     }
 
     /**
@@ -79,7 +81,7 @@ class ReportManagerTest extends TestCase
      */
     public function it_can_add_itemCollection_to_report(): void
     {
-        self::markTestSkipped();
+        self::markTestSkipped('Not yet implemented.');
     }
 
     /**

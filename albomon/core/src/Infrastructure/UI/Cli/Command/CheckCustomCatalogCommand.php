@@ -60,10 +60,12 @@ class CheckCustomCatalogCommand extends Command
         $this->setDescription('Scansione del catalogo albi personale');
     }
 
+    /**
+     * @see 'console bug' - https://github.com/symfony/symfony/issues/29746
+     * @throws \Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException
+     */
     protected function execute(InputInterface $input, OutputInterface $output): ?int
     {
-        //TODO 'Console BUG'    https://github.com/symfony/symfony/issues/29746
-
         $alboList = $this->getCatalog($this->catalogDir, self::CATALOG_FILE_NAME);
 
         $io = $this->getSymfonyStyle($input, $output);
