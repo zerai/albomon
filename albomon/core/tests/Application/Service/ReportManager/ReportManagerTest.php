@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
 class ReportManagerTest extends TestCase
 {
     private const REPORT_FILE_NAME = 'albomon-report';
+
     /**
      * @var vfsStreamDirectory
      */
@@ -27,33 +28,41 @@ class ReportManagerTest extends TestCase
         $this->root = vfsStream::setup('exampleDir');
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_create(): void
     {
         self::assertInstanceOf(ReportManagerInterface::class, new ReportManager('irrelevantDirectory/'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_return_report_filename(): void
     {
         $directory = 'directory/sub-directory';
 
         $repoManager = new ReportManager($directory);
 
-        self::assertEquals($directory.DIRECTORY_SEPARATOR.self::REPORT_FILE_NAME.'.csv', $repoManager->reportFilename());
+        self::assertEquals($directory . DIRECTORY_SEPARATOR . self::REPORT_FILE_NAME . '.csv', $repoManager->reportFilename());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_add_item_to_report(): void
     {
         $reportDataItem = new RssReaderResult(
             true,
-            'http://feed.irrelevant.com/1');
+            'http://feed.irrelevant.com/1'
+        );
         $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $newReportDataItem = new RssReaderResult(
             true,
-            'http://feed.irrelevant.com/new');
+            'http://feed.irrelevant.com/new'
+        );
         $newReportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $reportManager = new ReportManager('directory');
@@ -63,18 +72,23 @@ class ReportManagerTest extends TestCase
         self::assertInstanceOf(ReportManagerInterface::class, $reportManager);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_add_itemCollection_to_report(): void
     {
         self::markTestSkipped();
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_generate_report(): void
     {
         $reportDataItem = new RssReaderResult(
             true,
-            'http://feed.irrelevant.com/1');
+            'http://feed.irrelevant.com/1'
+        );
         $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
         $reportManager = new ReportManager(vfsStream::url('exampleDir'));

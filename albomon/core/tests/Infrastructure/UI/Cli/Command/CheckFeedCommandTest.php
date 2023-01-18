@@ -12,12 +12,17 @@ use Symfony\Component\Console\Tester\CommandTester;
 class CheckFeedCommandTest extends KernelTestCase
 {
     private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
+
     private const WRONG_FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xmlllll';
 
-    /** @var CommandTester|null */
+    /**
+     * @var CommandTester|null
+     */
     private $commandTester;
 
-    /** @var Command */
+    /**
+     * @var Command
+     */
     private $command;
 
     protected function setUp(): void
@@ -28,7 +33,9 @@ class CheckFeedCommandTest extends KernelTestCase
         $this->commandTester = new CommandTester($this->command);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_execute(): void
     {
         $this->commandTester->execute([
@@ -45,7 +52,9 @@ class CheckFeedCommandTest extends KernelTestCase
         $this->assertStringContainsString('AlboPOP Spec. Validation', $output);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_execute_with_wrong_url(): void
     {
         $this->commandTester->execute([

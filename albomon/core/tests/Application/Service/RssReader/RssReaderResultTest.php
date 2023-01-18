@@ -14,7 +14,9 @@ class RssReaderResultTest extends TestCase
 {
     private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_be_created(): void
     {
         $httpStatus = true;
@@ -24,7 +26,9 @@ class RssReaderResultTest extends TestCase
         self::assertInstanceOf(RssReaderResultInterface::class, $rssReaderResult);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_return_http_status(): void
     {
         $httpStatus = true;
@@ -34,7 +38,9 @@ class RssReaderResultTest extends TestCase
         self::assertEquals($httpStatus, $rssReaderResult->httpStatus());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_add_http_error(): void
     {
         $httpStatus = false;
@@ -48,7 +54,9 @@ class RssReaderResultTest extends TestCase
         self::assertEquals($httpError, $rssReaderResult->httpError());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_add_xml_document(): void
     {
         $httpStatus = true;
@@ -61,7 +69,9 @@ class RssReaderResultTest extends TestCase
         self::assertEquals($xmlDocument, $rssReaderResult->xmlDocument());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_add_last_item_feed_date(): void
     {
         $httpStatus = true;
@@ -116,7 +126,9 @@ class RssReaderResultTest extends TestCase
         $rssReaderResult->setXmlDocument(new DOMDocument('1.0', 'ISO-8859-15'));
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function unset_property_xmlDocument_should_return_null(): void
     {
         $httpStatus = false;

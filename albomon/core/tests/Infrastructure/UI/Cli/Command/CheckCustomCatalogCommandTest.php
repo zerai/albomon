@@ -11,10 +11,14 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CheckCustomCatalogCommandTest extends KernelTestCase
 {
-    /** @var CommandTester|null */
+    /**
+     * @var CommandTester|null
+     */
     private $commandTester;
 
-    /** @var Command */
+    /**
+     * @var Command
+     */
     private $command;
 
     protected function setUp(): void
@@ -25,14 +29,16 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
         $this->commandTester = new CommandTester($this->command);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_execute(): void
     {
         $this->commandTester->execute([
             'command' => $this->command->getName(),
-//            // pass arguments to the helper
-//            // prefix the key with two dashes when passing options,
-//            // e.g: '--some-option' => 'option_value',
+            //            // pass arguments to the helper
+            //            // prefix the key with two dashes when passing options,
+            //            // e.g: '--some-option' => 'option_value',
         ]);
 
         $output = $this->commandTester->getDisplay();
