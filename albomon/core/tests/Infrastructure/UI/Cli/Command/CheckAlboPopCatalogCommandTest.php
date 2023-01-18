@@ -11,15 +11,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CheckAlboPopCatalogCommandTest extends KernelTestCase
 {
-    /**
-     * @var CommandTester|null
-     */
-    private $commandTester;
+    private ?CommandTester $commandTester;
 
-    /**
-     * @var Command
-     */
-    private $command;
+    private Command $command;
 
     protected function setUp(): void
     {
@@ -27,6 +21,7 @@ class CheckAlboPopCatalogCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:check:albopop-catalog');
         $this->commandTester = new CommandTester($this->command);
+        parent::setUp();
     }
 
     /**

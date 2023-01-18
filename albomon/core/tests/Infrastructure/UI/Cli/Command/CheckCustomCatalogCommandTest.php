@@ -11,15 +11,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CheckCustomCatalogCommandTest extends KernelTestCase
 {
-    /**
-     * @var CommandTester|null
-     */
-    private $commandTester;
+    private ?CommandTester $commandTester;
 
-    /**
-     * @var Command
-     */
-    private $command;
+    private Command $command;
 
     protected function setUp(): void
     {
@@ -27,6 +21,7 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:check:custom-catalog');
         $this->commandTester = new CommandTester($this->command);
+        parent::setUp();
     }
 
     /**

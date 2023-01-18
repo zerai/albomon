@@ -16,21 +16,6 @@ parameters:
 			path: albomon/core/tests/Infrastructure/UI/Cli/CliLogger/CliLoggerTest.php
 
 		-
-			message: "#^Missing call to parent\\:\\:setUp\\(\\) method\\.$#"
-			count: 1
-			path: albomon/core/tests/Infrastructure/UI/Cli/Command/CheckAlboPopCatalogCommandTest.php
-
-		-
-			message: "#^Missing call to parent\\:\\:setUp\\(\\) method\\.$#"
-			count: 1
-			path: albomon/core/tests/Infrastructure/UI/Cli/Command/CheckCustomCatalogCommandTest.php
-
-		-
-			message: "#^Missing call to parent\\:\\:setUp\\(\\) method\\.$#"
-			count: 1
-			path: albomon/core/tests/Infrastructure/UI/Cli/Command/CheckFeedCommandTest.php
-
-		-
 			message: "#^Missing call to parent\\:\\:tearDown\\(\\) method\\.$#"
 			count: 1
 			path: albomon/core/tests/Infrastructure/UI/Cli/Command/CheckFeedCommandTest.php

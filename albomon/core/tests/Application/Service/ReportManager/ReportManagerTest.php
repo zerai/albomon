@@ -17,10 +17,7 @@ class ReportManagerTest extends TestCase
 
     private const IRRELEVANT_FEED = 'http://feed.irrelevant.com';
 
-    /**
-     * @var vfsStreamDirectory
-     */
-    private $root;
+    private vfsStreamDirectory $root;
 
     /**
      * set up test environmemt.
