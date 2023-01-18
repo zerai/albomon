@@ -123,6 +123,7 @@ jobs:
           name: ${{ steps.test-doc-artifact-name.outputs.name }}
           path: ${{ env.UNIT_TEST_DOC_FILENAME }}
 
+
   coding-standard:
     name: Coding Standard
     runs-on: ubuntu-22.04
@@ -190,3 +191,75 @@ jobs:
       - name: Run easy-coding-standard
         run: |
           ./vendor/bin/ecs
+
+
+  phpstan:
+    name: Static analysis
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+      fail-fast: true
+    steps:
+      - name: Checkout on SHA-${{ inputs.triggering-sha }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.triggering-sha }}
+
+      - name: Setup php extension cache environment
+        if: ${{ env.USE_PHP_EXTENSION_CACHE  == '1' }}
+        id: cache-php-extensions
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      - name: Cache PHP extensions
+        if: ${{ env.USE_PHP_EXTENSION_CACHE  == '1' }}
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.22.0
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
+          coverage: none
+          tools: composer
+
+      - name: Set Composer Cache Directory
+        if: ${{ env.USE_COMPOSER_CACHE  == '1' }}
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: ${{ env.USE_COMPOSER_CACHE  == '1' }}
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
+      - name: Install Composer dependencies
+        run: |
+          composer install --prefer-dist --no-progress --ansi --no-scripts
+
+      - name: Install psalm
+        run: |
+          composer bin phpstan install  --no-progress --ansi
+
+      - name: Run phpstan
+        run: |
+          ./bin/phpunit install
+          ./vendor/bin/phpstan
+
+
