@@ -2,8 +2,7 @@
 .idea/
 /extra/
 .scannerwork/
-#sonar-project.properties
-#sonar-project.properties_
+/tools/**/vendor
 deptrac
 /docker
 docker-compose.yml
@@ -23,8 +22,3 @@ docker-compose.yml
 /phpunit.xml
 /bin/.phpunit
 ###< symfony/phpunit-bridge ###
-
-###> friendsofphp/php-cs-fixer ###
-/.php_cs
-/.php_cs.cache
-###< friendsofphp/php-cs-fixer ###
