@@ -44,14 +44,24 @@ class FeedIoRssReaderTest extends TestCase
 
     /**
      * @test
+     * @dataProvider invalidFeedUrlDataProvider
      */
-    public function invalid_target_url_throw_exception(): void
+    public function invalid_target_url_throw_exception(string $invalidUrl): void
     {
         $this->expectException(InvalidArgumentException::class);
         $rssReader = new FeedIoRssReader();
 
-        // TODO use a dataProvider check all case empty|no schema|invalid path
-        $rssReader->setTargetUrl('www.invalid.url');
+        $rssReader->setTargetUrl($invalidUrl);
+    }
+
+    public function invalidFeedUrlDataProvider(): array
+    {
+        return [
+            [''],
+            ['http://'],
+            ['https://'],
+            ['www.invalid.url'],
+        ];
     }
 
     /**
