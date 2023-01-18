@@ -1,0 +1,71 @@
+# https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+updates:
+  - package-ecosystem: "composer"
+    target-branch: "master"
+    directory: "/"
+    versioning-strategy: "increase-if-necessary"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "zerai"
+    commit-message:
+      include: "scope"
+      prefix: "composer"
+    labels:
+      - "php dependency"
+    ignore:
+      - dependency-name: "symfony/browser-kit"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/cache"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/config"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/console"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/css-selector"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/dependency-injection"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/dotenv"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/error-handler"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/event-dispatcher"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/filesystem"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/finder"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/framework-bundle"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/http-foundation"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/http-kernel"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/monolog-bridge"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/proxy-manager-bridge"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/routing"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/runtime"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/security-bundle"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/string"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/var-dumper"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/var-exporter"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/web-profiler-bundle"
+        versions: ["5.4.x", "6.x"]
+      - dependency-name: "symfony/yaml"
+        versions: ["5.4.x", "6.x"]
+
+
+
