@@ -329,4 +329,5 @@ jobs:
 
       - name: Run rector
         run: |
+          ./bin/console debug:container
           ./vendor/bin/rector

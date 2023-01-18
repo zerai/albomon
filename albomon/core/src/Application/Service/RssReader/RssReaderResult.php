@@ -6,30 +6,15 @@ namespace Albomon\Core\Application\Service\RssReader;
 
 class RssReaderResult implements RssReaderResultInterface
 {
-    /**
-     * @var bool
-     */
-    private $httpStatus;
+    private bool $httpStatus;
 
-    /**
-     * @var string
-     */
-    private $httpError;
+    private ?string $httpError = null;
 
-    /**
-     * @var string
-     */
-    private $feedUrl;
+    private string $feedUrl;
 
-    /**
-     * @var \DOMDocument
-     */
-    private $xmlDocument;
+    private ?\DOMDocument $xmlDocument = null;
 
-    /**
-     * @var \DateTime
-     */
-    private $lastFeedItemDate;
+    private ?\DateTime $lastFeedItemDate = null;
 
     public function __construct(bool $httpStatus, string $feedUrl)
     {

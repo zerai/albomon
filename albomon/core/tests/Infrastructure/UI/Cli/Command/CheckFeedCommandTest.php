@@ -15,15 +15,9 @@ class CheckFeedCommandTest extends KernelTestCase
 
     private const WRONG_FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xmlllll';
 
-    /**
-     * @var CommandTester|null
-     */
-    private $commandTester;
+    private ?CommandTester $commandTester = null;
 
-    /**
-     * @var Command
-     */
-    private $command;
+    private Command $command;
 
     protected function setUp(): void
     {
@@ -31,6 +25,7 @@ class CheckFeedCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:check:feed');
         $this->commandTester = new CommandTester($this->command);
+        parent::setUp();
     }
 
     /**

@@ -14,10 +14,7 @@ class MonitorApplicationServiceTest extends TestCase
 {
     private const FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xml';
 
-    /**
-     * @var MonitorApplicationService
-     */
-    private $monitorApplicationService;
+    private MonitorApplicationService $monitorApplicationService;
 
     /**
      * @var FeedIoRssReader
