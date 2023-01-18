@@ -15,6 +15,8 @@ class ReportManagerTest extends TestCase
 {
     private const REPORT_FILE_NAME = 'albomon-report';
 
+    private const IRRELEVANT_FEED = 'http://feed.irrelevant.com';
+
     /**
      * @var vfsStreamDirectory
      */
@@ -55,7 +57,7 @@ class ReportManagerTest extends TestCase
     {
         $reportDataItem = new RssReaderResult(
             true,
-            'http://feed.irrelevant.com/1'
+            self::IRRELEVANT_FEED . '/foo'
         );
         $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
@@ -87,7 +89,7 @@ class ReportManagerTest extends TestCase
     {
         $reportDataItem = new RssReaderResult(
             true,
-            'http://feed.irrelevant.com/1'
+            self::IRRELEVANT_FEED . '/foo'
         );
         $reportDataItem->setLastFeedItemDate(new \DateTime('now'));
 
