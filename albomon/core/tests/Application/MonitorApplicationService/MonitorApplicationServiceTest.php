@@ -70,7 +70,7 @@ class MonitorApplicationServiceTest extends TestCase
 
         self::assertInstanceOf(RssReaderResult::class, $monitorResponse);
 
-        self::assertEquals($rssNegativeResult, $rssNegativeResult);
+        self::assertEquals($rssNegativeResult, $monitorResponse);
     }
 
     /**
