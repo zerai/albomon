@@ -15,9 +15,7 @@ interface RssReaderResultInterface
 
     public function feedUrl(): string;
 
-
     public function xmlDocument(): ?\DOMDocument;
-
 
     public function lastFeedItemDate(): \DateTime;
 }

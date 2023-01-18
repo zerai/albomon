@@ -16,7 +16,6 @@ class CliLogger implements CliLoggerInterface
      */
     private $io;
 
-    
     public function __construct(SymfonyStyle $io)
     {
         $this->io = $io;

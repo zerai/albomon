@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Albomon\Core\Application\Service\RssReader;
 
-
 class RssReaderResult implements RssReaderResultInterface
 {
     /**
@@ -32,7 +31,6 @@ class RssReaderResult implements RssReaderResultInterface
      */
     private $lastFeedItemDate;
 
-    
     public function __construct(bool $httpStatus, string $feedUrl)
     {
         $this->httpStatus = $httpStatus;
@@ -76,7 +74,6 @@ class RssReaderResult implements RssReaderResultInterface
         $this->xmlDocument = $xmlDocument;
     }
 
-
     public function xmlDocument(): ?\DOMDocument
     {
         return $this->xmlDocument;
@@ -92,7 +89,6 @@ class RssReaderResult implements RssReaderResultInterface
         }
         $this->lastFeedItemDate = $lastFeedItemDate;
     }
-
 
     public function lastFeedItemDate(): \DateTime
     {

@@ -12,7 +12,6 @@ use FeedIo\Reader\ReadErrorException;
 use FeedIo\Reader\Result;
 use InvalidArgumentException;
 
-
 class FeedIoRssReader implements RssReaderInterface
 {
     /**
@@ -25,7 +24,6 @@ class FeedIoRssReader implements RssReaderInterface
      */
     private $targetUrl;
 
-    
     public function __construct()
     {
         $this->feedIo = \FeedIo\Factory::create()->getFeedIo();

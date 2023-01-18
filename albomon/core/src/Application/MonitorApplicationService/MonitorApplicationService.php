@@ -21,7 +21,6 @@ class MonitorApplicationService
      */
     private $logger;
 
-    
     public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
     {
         $this->feedReader = $feedReader;
