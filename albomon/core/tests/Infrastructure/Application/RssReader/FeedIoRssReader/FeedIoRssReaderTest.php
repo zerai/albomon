@@ -18,7 +18,9 @@ class FeedIoRssReaderTest extends TestCase
 
     private const WRONG_FEED_URL = 'http://feeds.ricostruzionetrasparente.it/albi_pretori/Muccia_feed.xmlllll';
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_be_created(): void
     {
         $rssReader = new FeedIoRssReader();
@@ -26,7 +28,9 @@ class FeedIoRssReaderTest extends TestCase
         self::assertInstanceOf(RssReaderInterface::class, $rssReader);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_change_target_url(): void
     {
         $rssReader = new FeedIoRssReader();
@@ -50,7 +54,9 @@ class FeedIoRssReaderTest extends TestCase
         $rssReader->setTargetUrl('www.invalid.url');
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_handle_execution(): void
     {
         $rssReader = new FeedIoRssReader();
@@ -62,7 +68,9 @@ class FeedIoRssReaderTest extends TestCase
         self::assertEquals(self::FEED_URL, $readerResult->feedUrl());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_handle_inactive_feed(): void
     {
         $rssReader = new FeedIoRssReader();
@@ -75,7 +83,9 @@ class FeedIoRssReaderTest extends TestCase
         self::assertNotNull($readerResult->httpError());
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_handle_xmlDom(): void
     {
         //self::markTestSkipped();

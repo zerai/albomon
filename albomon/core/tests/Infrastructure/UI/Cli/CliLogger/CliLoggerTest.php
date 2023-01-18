@@ -11,9 +11,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CliLoggerTest extends TestCase
 {
-    private const  DEFAULT_MESSAGE = 'default message';
+    private const DEFAULT_MESSAGE = 'default message';
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_be_instatiate(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
@@ -22,7 +24,9 @@ class CliLoggerTest extends TestCase
         self::assertInstanceOf(CliLogger::class, $cliLogger);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function emergency_method_should_throw_exception(): void
     {
         $this->expectException(BadMethodCallException::class);
@@ -33,7 +37,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->emergency(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function alert_method_should_throw_exception(): void
     {
         $this->expectException(BadMethodCallException::class);
@@ -44,7 +50,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->alert(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function critical_method_should_throw_exception(): void
     {
         $this->expectException(BadMethodCallException::class);
@@ -55,7 +63,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->critical(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_log_error(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
@@ -68,7 +78,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->error(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_log_warning(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
@@ -81,7 +93,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->warning(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_log_notice(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
@@ -94,7 +108,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->notice(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_can_log_info(): void
     {
         $io = $this->createMock(SymfonyStyle::class);
@@ -107,7 +123,9 @@ class CliLoggerTest extends TestCase
         $cliLogger->info(self::DEFAULT_MESSAGE);
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function debug_method_should_throw_exception(): void
     {
         $this->expectException(BadMethodCallException::class);

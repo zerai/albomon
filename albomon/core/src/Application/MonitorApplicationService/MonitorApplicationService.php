@@ -11,15 +11,17 @@ use Psr\Log\LoggerInterface;
 
 class MonitorApplicationService
 {
-    /** @var RssReaderInterface */
+    /**
+     * @var RssReaderInterface
+     */
     private $feedReader;
 
-    /** @var LoggerInterface */
+    /**
+     * @var LoggerInterface
+     */
     private $logger;
 
-    /**
-     * MonitorApplicationService constructor.
-     */
+    
     public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
     {
         $this->feedReader = $feedReader;
@@ -29,15 +31,17 @@ class MonitorApplicationService
     public function checkAlbo(string $alboUrl): RssReaderResultInterface
     {
         $this->logger->info(
-            'Check albo: '.$alboUrl, []
+            'Check albo: ' . $alboUrl,
+            []
         );
 
         /** @var RssReaderResult $result */
         $result = $this->feedReader->execute($alboUrl);
 
-        if (!$result->httpStatus()) {
+        if (! $result->httpStatus()) {
             $this->logger->info(
-                'Check failed for albo: '.$alboUrl, []
+                'Check failed for albo: ' . $alboUrl,
+                []
             );
         }
 

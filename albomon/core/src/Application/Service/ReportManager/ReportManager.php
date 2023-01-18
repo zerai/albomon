@@ -14,10 +14,14 @@ class ReportManager implements ReportManagerInterface
 
     private const XML_SPEC_VALIDATION = 'NON RILEVATO';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     private $reportData;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $reportDir;
 
     public function __construct(?string $reportDir)
@@ -58,7 +62,7 @@ class ReportManager implements ReportManagerInterface
 
     public function reportFilename(): string
     {
-        return $this->reportDir.DIRECTORY_SEPARATOR.self::REPORT_FILE_NAME.'.csv';
+        return $this->reportDir . DIRECTORY_SEPARATOR . self::REPORT_FILE_NAME . '.csv';
     }
 
     private function formatContentUpdatedAt(DateTime $contenteDateTime): string
@@ -67,6 +71,6 @@ class ReportManager implements ReportManagerInterface
 
         $diff = $dateNow->diff($contenteDateTime)->days;
 
-        return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
+        return $contenteDateTime->format('Y-m-d') . '  -' . $diff . ' gg.';
     }
 }

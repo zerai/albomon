@@ -16,7 +16,9 @@ class CheckFeedCommand extends Command
 {
     use SymfonyStyleTrait;
 
-    /** @var MonitorApplicationService */
+    /**
+     * @var MonitorApplicationService
+     */
     private $monitorService;
 
     public function __construct(MonitorApplicationService $monitorService)
@@ -54,7 +56,7 @@ class CheckFeedCommand extends Command
         $monitorResult = $this->monitorService->checkAlbo($feedUrl);
 
         if ($input->isInteractive()) {
-            if (!$monitorResult->httpStatus()) {
+            if (! $monitorResult->httpStatus()) {
                 $output->writeln('<info>Feed Status: </info> <error>NON ATTIVO</error>');
 
                 $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
@@ -78,6 +80,6 @@ class CheckFeedCommand extends Command
 
         $diff = $dateNow->diff($contenteDateTime)->days;
 
-        return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
+        return $contenteDateTime->format('Y-m-d') . '  -' . $diff . ' gg.';
     }
 }

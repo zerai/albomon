@@ -25,16 +25,24 @@ class CheckCustomCatalogCommand extends Command
 
     private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
-    /** @var MonitorApplicationService */
+    /**
+     * @var MonitorApplicationService
+     */
     private $monitorService;
 
-    /** @var ReportManagerInterface */
+    /**
+     * @var ReportManagerInterface
+     */
     private $reportManager;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $catalogDir;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $reportDir;
 
     public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
@@ -60,13 +68,13 @@ class CheckCustomCatalogCommand extends Command
 
         $io = $this->getSymfonyStyle($input, $output);
 
-        $io->text('Inizio scansione albi, origine dati: '.self::CATALOG_FILE_NAME);
+        $io->text('Inizio scansione albi, origine dati: ' . self::CATALOG_FILE_NAME);
 
-        $io->text('Il catalogo albi contiene '.count($alboList).' feed da analizzare.');
+        $io->text('Il catalogo albi contiene ' . \count($alboList) . ' feed da analizzare.');
 
         $io->note('Il tempo necessario alla scansione può variare in base al tipo di connessione ed alle condizioni della rete.');
 
-        $progressBar = new ProgressBar($output, count($alboList));
+        $progressBar = new ProgressBar($output, \count($alboList));
 
         $progressBar->start();
 

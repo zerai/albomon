@@ -15,12 +15,12 @@ trait AlboResultStyleTrait
 
         $diff = $dateNow->diff($contenteDateTime)->days;
 
-        return $contenteDateTime->format('Y-m-d').'  -'.$diff.' gg.';
+        return $contenteDateTime->format('Y-m-d') . '  -' . $diff . ' gg.';
     }
 
     protected function formatTableRow(RssReaderResultInterface $monitorResult, Table $table): Table
     {
-        if (!$monitorResult->httpStatus()) {
+        if (! $monitorResult->httpStatus()) {
             $table->addRow([$monitorResult->feedUrl(), sprintf('<error>%s</error>', 'NON ATTIVO'), self::XML_SPEC_VALIDATION, '', 'server error']);
         } else {
             $lastFeedItemDateWithDifference = $this->formatContentUpdatedAt($monitorResult->lastFeedItemDate());

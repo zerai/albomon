@@ -12,20 +12,20 @@ use FeedIo\Reader\ReadErrorException;
 use FeedIo\Reader\Result;
 use InvalidArgumentException;
 
-/**
- * Class FeedIoRssReader.
- */
+
 class FeedIoRssReader implements RssReaderInterface
 {
-    /** @var FeedIo */
+    /**
+     * @var FeedIo
+     */
     private $feedIo;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $targetUrl;
 
-    /**
-     * FeedIoRssReader constructor.
-     */
+    
     public function __construct()
     {
         $this->feedIo = \FeedIo\Factory::create()->getFeedIo();
@@ -43,8 +43,8 @@ class FeedIoRssReader implements RssReaderInterface
 
     public function setTargetUrl(string $targetUrl): void
     {
-        if (!filter_var($targetUrl, FILTER_VALIDATE_URL)) {
-            throw new InvalidArgumentException('Invalid target url in RssReaderService. Url was: '.$targetUrl);
+        if (! filter_var($targetUrl, FILTER_VALIDATE_URL)) {
+            throw new InvalidArgumentException('Invalid target url in RssReaderService. Url was: ' . $targetUrl);
         }
 
         $this->targetUrl = $targetUrl;
@@ -83,7 +83,7 @@ class FeedIoRssReader implements RssReaderInterface
 
     private function getDomDocument(Result $rssReaderResult): ?\DOMDocument
     {
-        if (!$rssReaderResult->getDocument()->isXml()) {
+        if (! $rssReaderResult->getDocument()->isXml()) {
             return null;
         }
 
