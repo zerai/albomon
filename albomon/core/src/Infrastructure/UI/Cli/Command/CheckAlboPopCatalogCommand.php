@@ -6,6 +6,7 @@ namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
 use Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService;
 use Albomon\Core\Application\Service\ReportManager\ReportManagerInterface;
+use Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\AlboResultStyleTrait;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\CatalogFileTrait;
 use Albomon\Core\Infrastructure\UI\Cli\Traits\SymfonyStyleTrait;
@@ -17,6 +18,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckAlboPopCatalogCommand extends Command
 {
+    protected static $defaultName = 'albomon:check:albopop-catalog';
+
     use SymfonyStyleTrait;
     use CatalogFileTrait;
     use AlboResultStyleTrait;
@@ -25,29 +28,17 @@ class CheckAlboPopCatalogCommand extends Command
 
     private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
-    /**
-     * @var MonitorApplicationService
-     */
-    private $monitorService;
+    private MonitorApplicationService $monitorService;
 
-    /**
-     * @var ReportManagerInterface
-     */
-    private $reportManager;
+    private ReportManagerInterface $reportManager;
 
-    /**
-     * @var string
-     */
-    private $reportDir;
+    private string $reportDir;
 
-    /**
-     * @var string
-     */
-    private $catalogDir;
+    private string $catalogDir;
 
     public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
     {
-        parent::__construct('albomon:check:albopop-catalog');
+        parent::__construct();
 
         $this->monitorService = $monitorService;
 
@@ -62,9 +53,9 @@ class CheckAlboPopCatalogCommand extends Command
 
     /**
      * @see console bug - https://github.com/symfony/symfony/issues/29746
-     * @throws \Albomon\Core\Infrastructure\UI\Cli\Exception\CatalogFileNotFoundException
+     * @throws CatalogFileNotFoundException
      */
-    protected function execute(InputInterface $input, OutputInterface $output): ?int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $alboList = $this->getCatalog($this->catalogDir, self::CATALOG_FILE_NAME);
 

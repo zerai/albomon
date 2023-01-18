@@ -6,7 +6,9 @@ namespace Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader;
 
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
+use Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
+use FeedIo\Factory;
 use FeedIo\FeedIo;
 use FeedIo\Reader\ReadErrorException;
 use FeedIo\Reader\Result;
@@ -14,23 +16,17 @@ use InvalidArgumentException;
 
 class FeedIoRssReader implements RssReaderInterface
 {
-    /**
-     * @var FeedIo
-     */
-    private $feedIo;
+    private FeedIo $feedIo;
 
-    /**
-     * @var string
-     */
-    private $targetUrl;
+    private ?string $targetUrl = null;
 
     public function __construct()
     {
-        $this->feedIo = \FeedIo\Factory::create()->getFeedIo();
+        $this->feedIo = Factory::create()->getFeedIo();
     }
 
     /**
-     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     * @throws RssReaderResultIllegalOperationException
      */
     public function execute(string $targetUrl): RssReaderResultInterface
     {

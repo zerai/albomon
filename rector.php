@@ -8,8 +8,7 @@ use Rector\Symfony\Set\SymfonySetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        __DIR__ . '/albomon/core/src/Domain',
-        __DIR__ . '/albomon/core/src/Application',
+        __DIR__ . '/albomon/core/src',
         __DIR__ . '/albomon/core/tests',
         //__DIR__ . '/config',
         //__DIR__ . '/public',
@@ -18,7 +17,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->phpVersion(PhpVersion::PHP_74);
-    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
+    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/srcApp_KernelDevDebugContainer.xml');
 
     // register a single rule
     //$rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
@@ -30,11 +29,10 @@ return static function (RectorConfig $rectorConfig): void {
          */
         LevelSetList::UP_TO_PHP_74,
 
-    /**
-     * SYMFONY
-     */
-        //SymfonySetList::SYMFONY_44,
-        //SymfonySetList::SYMFONY_CODE_QUALITY,
-
+        /**
+         * SYMFONY
+         */
+        SymfonySetList::SYMFONY_44,
+        SymfonySetList::SYMFONY_CODE_QUALITY,
     ]);
 };

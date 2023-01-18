@@ -14,16 +14,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CheckFeedCommand extends Command
 {
+    protected static $defaultName = 'albomon:check:feed';
+
     use SymfonyStyleTrait;
 
-    /**
-     * @var MonitorApplicationService
-     */
-    private $monitorService;
+    private MonitorApplicationService $monitorService;
 
     public function __construct(MonitorApplicationService $monitorService)
     {
-        parent::__construct('albomon:check:feed');
+        parent::__construct();
 
         $this->monitorService = $monitorService;
 
@@ -37,7 +36,7 @@ class CheckFeedCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): ?int
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $AlboPopSpecValidation = 'Non Rilevato';
 

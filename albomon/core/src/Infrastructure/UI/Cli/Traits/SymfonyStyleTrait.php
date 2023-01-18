@@ -18,7 +18,7 @@ trait SymfonyStyleTrait
         OutputInterface $output,
         ?bool $clearScreen = null
     ): SymfonyStyle {
-        $clearScreen = $clearScreen ?? true;
+        $clearScreen ??= true;
 
         $io = new SymfonyStyle($input, $output);
 
