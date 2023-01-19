@@ -20,7 +20,7 @@ AlboMON valuta, e restituisce in output, i seguenti parametri:
 
 
 ## Requisiti:
-- PHP >=7.1.3
+- PHP >=7.4
 
 
 
