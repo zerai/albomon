@@ -24,7 +24,7 @@ class MonitorApplicationService
     public function checkAlbo(string $alboUrl): RssReaderResultInterface
     {
         $this->logger->info(
-            'Check albo: ' . $alboUrl,
+            'Check albo feed: ' . $alboUrl,
             []
         );
 
