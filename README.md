@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/zerai/albomon.svg?branch=master)](https://travis-ci.org/zerai/albomon)
+[![CD/CI](https://github.com/zerai/albomon/actions/workflows/cd-ci.yaml/badge.svg)](https://github.com/zerai/albomon/actions/workflows/cd-ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/zerai/albomon/badge.svg?branch=%28no+branch%29)](https://coveralls.io/github/zerai/albomon?branch=%28no+branch%29)
 
 [![](https://codescene.io/projects/6064/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/6064/jobs/latest-successful/results)
