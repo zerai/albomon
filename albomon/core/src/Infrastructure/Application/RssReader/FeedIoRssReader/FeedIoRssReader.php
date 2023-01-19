@@ -59,11 +59,18 @@ class FeedIoRssReader implements RssReaderInterface
         try {
             $feed = $this->feedIo->read($this->targetUrl);
 
-            $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
+            //check http status code and content type before process
+            if (200 === $feed->getResponse()->getStatusCode() && $feed->getDocument()->isXml()) {
+                $rssReaderResult = new RssReaderResult(true, $this->targetUrl);
 
-            $rssReaderResult->setXmlDocument($this->getDomDocument($feed));
+                $rssReaderResult->setXmlDocument($this->getDomDocument($feed));
 
-            $rssReaderResult->setLastFeedItemDate($this->getLastFeedItemDate($feed));
+                $rssReaderResult->setLastFeedItemDate($this->getLastFeedItemDate($feed));
+            } else {
+                $rssReaderResult = new RssReaderResult(false, $this->targetUrl);
+
+                $rssReaderResult->setHttpError('HTTP error.');
+            }
 
             return $rssReaderResult;
         } catch (ReadErrorException $exception) {
