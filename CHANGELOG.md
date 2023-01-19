@@ -9,6 +9,10 @@
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
 
+## [0.6.1] -  2023-01-19
+###### (Maintenance release)
+- fix bug [#300](https://github.com/zerai/albomon/issues/300)
+
 ## [0.6.0] -  2023-01-19
 ### added
 - support php8.0
