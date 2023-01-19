@@ -52,7 +52,7 @@ class FeedIoRssReader implements RssReaderInterface
     /**
      * @return RssReaderResult
      *
-     * @throws \Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException
+     * @throws RssReaderResultIllegalOperationException
      */
     private function readRss()
     {
