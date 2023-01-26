@@ -11,6 +11,8 @@ parameters:
     paths:
         - albomon/core/src
         - albomon/core/tests
+        - albomon/catalog/src
+        - albomon/catalog/tests
 
     ignoreErrors:
         #- '##'
