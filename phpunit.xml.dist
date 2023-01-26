@@ -24,6 +24,7 @@
         </testsuite>
         <testsuite name="core">
             <directory>albomon/core/tests</directory>
+            <directory>albomon/catalog/tests</directory>
         </testsuite>
     </testsuites>
 
@@ -31,6 +32,7 @@
         <include>
             <directory suffix=".php">src</directory>
             <directory suffix=".php">albomon/core/src</directory>
+            <directory suffix=".php">albomon/catalog/src</directory>
         </include>
     </coverage>
 
