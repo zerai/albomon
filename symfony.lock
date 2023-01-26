@@ -26,6 +26,18 @@
     "php-coveralls/php-coveralls": {
         "version": "v2.1.0"
     },
+    "php-http/httplug-bundle": {
+        "version": "1.27",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.6",
+            "ref": "87b3d491d593d2c6e3b90bf0689ac69a188bfa5f"
+        },
+        "files": [
+            "config/packages/httplug.yaml"
+        ]
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
