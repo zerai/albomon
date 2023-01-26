@@ -18,6 +18,8 @@ return static function (ECSConfig $ecsConfig): void {
         __DIR__ . '/tests',
         __DIR__ . '/albomon/core/src',
         __DIR__ . '/albomon/core/tests',
+        __DIR__ . '/albomon/catalog/src',
+        __DIR__ . '/albomon/catalog/tests',
         __DIR__ . '/ecs.php',
         __DIR__ . '/rector.php',
     ]);
