@@ -1,0 +1,94 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    custom_catalog_filename: 'custom-catalog.json'
+    albopop_catalog_filename: 'albopop-catalog.json'
+
+    catalog_dir: '%kernel.project_dir%/catalog'
+    report_dir: '%kernel.project_dir%/report'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+#        bind:
+#            $catalogDir: '%catalog_dir%'
+#            $reportDir: '%report_dir%'
+
+
+
+    #######################################################################
+    ##
+    ##  Application Service
+    ##
+    #######################################################################
+
+#    Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService:
+#        arguments:
+#            - '@core.feed_reader'
+#            - '@logger'
+#
+
+
+
+    #######################################################################
+    ##
+    ##  Adapter Service
+    ##
+    #######################################################################
+
+    Albomon\Catalog\Adapter\GithubHttpClient:
+        public: true
+    Albomon\Catalog\Adapter\GithubDataReader:
+        public: true
+
+
+
+
+    #######################################################################
+    ##
+    ##  Infrastructure Service
+    ##
+    #######################################################################
+
+#    core.feed_reader:
+#        alias: 'core.feedio_reader'
+#        public: true
+#
+#    core.feedio_reader:
+#        class: Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader
+#
+#    core.report_manager:
+#        class: Albomon\Core\Application\Service\ReportManager\ReportManager
+
+
+    #######################################################################
+    ##
+    ##  UI Cli
+    ##
+    #######################################################################
+
+#    Albomon\Core\Infrastructure\UI\Cli\Command\CheckFeedCommand:
+#        arguments:
+#            - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+#        tags:
+#            - { name: 'console.command' }
+#
+#    Albomon\Core\Infrastructure\UI\Cli\Command\CheckCustomCatalogCommand:
+#        arguments:
+#            - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+#            - '@core.report_manager'
+#        tags:
+#            - { name: 'console.command' }
+#
+#    Albomon\Core\Infrastructure\UI\Cli\Command\CheckAlboPopCatalogCommand:
+#        arguments:
+#            - '@Albomon\Core\Application\MonitorApplicationService\MonitorApplicationService'
+#            - '@core.report_manager'
+#        tags:
+#            - { name: 'console.command' }

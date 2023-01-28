@@ -1,6 +1,31 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Variable \\$title might not be defined\\.$#"
+			count: 1
+			path: albomon/catalog/src/Adapter/MarkdownToCatalogItemConverter.php
+
+		-
+			message: "#^Variable \\$lineValue might not be defined\\.$#"
+			count: 1
+			path: albomon/catalog/tests/ConvertMarkdownToCatalogItemTest.php
+
+		-
+			message: "#^Variable \\$lineValue1 might not be defined\\.$#"
+			count: 2
+			path: albomon/catalog/tests/ConvertMarkdownToCatalogItemTest.php
+
+		-
+			message: "#^Variable \\$lineValue2 might not be defined\\.$#"
+			count: 2
+			path: albomon/catalog/tests/ConvertMarkdownToCatalogItemTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: albomon/catalog/tests/GithubDataReaderTest.php
+
+		-
 			message: "#^Property Albomon\\\\Core\\\\Infrastructure\\\\UI\\\\Cli\\\\Command\\\\CheckAlboPopCatalogCommand\\:\\:\\$reportDir is never read, only written\\.$#"
 			count: 1
 			path: albomon/core/src/Infrastructure/UI/Cli/Command/CheckAlboPopCatalogCommand.php
