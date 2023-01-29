@@ -1,0 +1,29 @@
+httplug:
+    plugins:
+        retry:
+            retry: 1
+        cache:
+            cache_pool: 'cache.app'
+            stream_factory: 'httplug.stream_factory'
+            config:
+                respect_response_cache_directives:
+                    - 'no-cache'
+                    - 'max-age'
+        authentication:
+            github:
+                type: 'bearer'
+                #TODO use env vars
+                token: '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'
+
+    discovery:
+        client: 'auto'
+
+    clients:
+        github:
+            http_methods_client: true
+            plugins:
+                - 'httplug.plugin.content_length'
+                - 'httplug.plugin.redirect'
+                - 'httplug.plugin.retry'
+                - 'httplug.plugin.authentication.github'
+                - 'httplug.plugin.cache'
