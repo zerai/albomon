@@ -42,6 +42,8 @@ updates:
         versions: ["5.x", "6.x"]
       - dependency-name: "symfony/framework-bundle"
         versions: ["5.x", "6.x"]
+      - dependency-name: "symfony/http-client"
+        versions: ["5.x", "6.x"]
       - dependency-name: "symfony/http-foundation"
         versions: ["5.x", "6.x"]
       - dependency-name: "symfony/http-kernel"
@@ -55,6 +57,8 @@ updates:
       - dependency-name: "symfony/runtime"
         versions: ["5.x", "6.x"]
       - dependency-name: "symfony/security-bundle"
+        versions: ["5.x", "6.x"]
+      - dependency-name: "symfony/serializer"
         versions: ["5.x", "6.x"]
       - dependency-name: "symfony/string"
         versions: ["5.x", "6.x"]
