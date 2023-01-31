@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
@@ -18,13 +16,10 @@ class CheckFeedCommand extends Command
 
     use SymfonyStyleTrait;
 
-    private MonitorApplicationService $monitorService;
-
-    public function __construct(MonitorApplicationService $monitorService)
-    {
+    public function __construct(
+        private MonitorApplicationService $monitorService
+    ) {
         parent::__construct();
-
-        $this->monitorService = $monitorService;
 
         $this->setDescription('Console command check a single albo');
     }

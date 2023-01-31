@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Albomon\Core\Application\MonitorApplicationService;
 
@@ -11,14 +9,10 @@ use Psr\Log\LoggerInterface;
 
 class MonitorApplicationService
 {
-    private RssReaderInterface $feedReader;
-
-    private LoggerInterface $logger;
-
-    public function __construct(RssReaderInterface $feedReader, LoggerInterface $logger)
-    {
-        $this->feedReader = $feedReader;
-        $this->logger = $logger;
+    public function __construct(
+        private RssReaderInterface $feedReader,
+        private LoggerInterface $logger,
+    ) {
     }
 
     public function checkAlbo(string $alboUrl): RssReaderResultInterface

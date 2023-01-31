@@ -1,25 +1,19 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Albomon\Core\Application\Service\RssReader;
 
 class RssReaderResult implements RssReaderResultInterface
 {
-    private bool $httpStatus;
-
     private ?string $httpError = null;
-
-    private string $feedUrl;
 
     private ?\DOMDocument $xmlDocument = null;
 
     private ?\DateTime $lastFeedItemDate = null;
 
-    public function __construct(bool $httpStatus, string $feedUrl)
-    {
-        $this->httpStatus = $httpStatus;
-        $this->feedUrl = $feedUrl;
+    public function __construct(
+        private bool $httpStatus,
+        private string $feedUrl,
+    ) {
     }
 
     public function httpStatus(): bool

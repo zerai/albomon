@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Albomon\Core\Application\Service\ReportManager;
 
@@ -14,18 +12,12 @@ class ReportManager implements ReportManagerInterface
 
     private const XML_SPEC_VALIDATION = 'NON RILEVATO';
 
-    /**
-     * @var array
-     */
-    private $reportData;
+    private array $reportData;
 
-    private ?string $reportDir = null;
-
-    public function __construct(?string $reportDir)
-    {
+    public function __construct(
+        private ?string $reportDir,
+    ) {
         $this->reportData = [];
-
-        $this->reportDir = $reportDir;
     }
 
     public function generateReport(): void
