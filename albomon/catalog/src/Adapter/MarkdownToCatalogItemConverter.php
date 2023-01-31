@@ -24,7 +24,7 @@ class MarkdownToCatalogItemConverter
         $lines = explode("\n", $this->markdownContent);
 
         foreach ($lines as $contentLine) {
-            if ('---' === $contentLine || '#' === substr($contentLine, 0, 1)) {
+            if ('---' === $contentLine || str_starts_with($contentLine, '#')) {
                 continue;
             }
             try {
@@ -34,7 +34,7 @@ class MarkdownToCatalogItemConverter
                     $title = trim($lineValue);
                 }
                 return $title;
-            } catch (\Exception $exception) {
+            } catch (\Exception) {
                 throw new \RuntimeException('Markdown conversion error: unable to find a title');
             }
         }

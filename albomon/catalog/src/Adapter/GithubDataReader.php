@@ -4,11 +4,9 @@ namespace Albomon\Catalog\Adapter;
 
 class GithubDataReader
 {
-    private GithubHttpClient $httpClient;
-
-    public function __construct(GithubHttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
+    public function __construct(
+        private GithubHttpClient $httpClient
+    ) {
     }
 
     public function getComuniCatalogData(): array

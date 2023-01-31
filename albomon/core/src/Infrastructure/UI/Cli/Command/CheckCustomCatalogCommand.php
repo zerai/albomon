@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Albomon\Core\Infrastructure\UI\Cli\Command;
 
@@ -28,25 +26,13 @@ class CheckCustomCatalogCommand extends Command
 
     private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
-    private MonitorApplicationService $monitorService;
-
-    private ReportManagerInterface $reportManager;
-
-    private string $catalogDir;
-
-    private string $reportDir;
-
-    public function __construct(MonitorApplicationService $monitorService, ReportManagerInterface $reportManager, string $catalogDir, string $reportDir)
-    {
+    public function __construct(
+        private MonitorApplicationService $monitorService,
+        private ReportManagerInterface $reportManager,
+        private string $catalogDir,
+        private string $reportDir,
+    ) {
         parent::__construct();
-
-        $this->monitorService = $monitorService;
-
-        $this->reportManager = $reportManager;
-
-        $this->catalogDir = $catalogDir;
-
-        $this->reportDir = $reportDir;
 
         $this->setDescription('Scansione del catalogo albi personale');
     }

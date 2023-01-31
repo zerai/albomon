@@ -15,11 +15,9 @@ class GithubHttpClient
 
     private const MARKDOWN_FILE_INDEX_URL = 'content/comune';
 
-    private HttpClient $httpClient;
-
-    public function __construct(HttpClient $httpClient)
-    {
-        $this->httpClient = $httpClient;
+    public function __construct(
+        private HttpClient $httpClient
+    ) {
     }
 
     /**
