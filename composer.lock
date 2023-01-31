@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8061044b7e7874580d44259e25cff560",
+    "content-hash": "f7149e52d2a024b0e33b5361bc525b24",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -2859,40 +2859,46 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v4.4.49",
+            "version": "v5.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "0185497cd61440bdf68df7d81241b97a543e9c3f"
+                "reference": "0c22562d0601e19bd01c4480893f5438e6b12db5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/0185497cd61440bdf68df7d81241b97a543e9c3f",
-                "reference": "0185497cd61440bdf68df7d81241b97a543e9c3f",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/0c22562d0601e19bd01c4480893f5438e6b12db5",
+                "reference": "0c22562d0601e19bd01c4480893f5438e6b12db5",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3",
+                "php": ">=7.2.5",
                 "psr/log": "^1|^2|^3",
-                "symfony/http-client-contracts": "^1.1.10|^2",
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/http-client-contracts": "^2.4",
                 "symfony/polyfill-php73": "^1.11",
                 "symfony/polyfill-php80": "^1.16",
-                "symfony/service-contracts": "^1.0|^2"
+                "symfony/service-contracts": "^1.0|^2|^3"
             },
             "provide": {
                 "php-http/async-client-implementation": "*",
                 "php-http/client-implementation": "*",
                 "psr/http-client-implementation": "1.0",
-                "symfony/http-client-implementation": "1.1|2.0"
+                "symfony/http-client-implementation": "2.4"
             },
             "require-dev": {
+                "amphp/amp": "^2.5",
+                "amphp/http-client": "^4.2.1",
+                "amphp/http-tunnel": "^1.0",
+                "amphp/socket": "^1.1",
                 "guzzlehttp/promises": "^1.4",
                 "nyholm/psr7": "^1.0",
                 "php-http/httplug": "^1.0|^2.0",
                 "psr/http-client": "^1.0",
-                "symfony/dependency-injection": "^4.3|^5.0",
-                "symfony/http-kernel": "^4.4.13",
-                "symfony/process": "^4.2|^5.0"
+                "symfony/dependency-injection": "^4.4|^5.0|^6.0",
+                "symfony/http-kernel": "^4.4.13|^5.1.5|^6.0",
+                "symfony/process": "^4.4|^5.0|^6.0",
+                "symfony/stopwatch": "^4.4|^5.0|^6.0"
             },
             "type": "library",
             "autoload": {
@@ -2920,7 +2926,7 @@
             "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v4.4.49"
+                "source": "https://github.com/symfony/http-client/tree/v5.4.19"
             },
             "funding": [
                 {
@@ -2936,7 +2942,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T19:03:45+00:00"
+            "time": "2023-01-12T15:47:53+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
