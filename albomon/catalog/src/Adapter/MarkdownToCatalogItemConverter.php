@@ -24,67 +24,59 @@ class MarkdownToCatalogItemConverter
         $lines = explode("\n", $this->markdownContent);
 
         foreach ($lines as $contentLine) {
-            if ('---' === $contentLine || str_starts_with($contentLine, '#')) {
+            if ($this->isSeparatorLine($contentLine) || $this->isCommentLine($contentLine)) {
                 continue;
             }
-            try {
-                $x = explode(':', $contentLine);
-                [$lineKey, $lineValue] = $x;
-                if ('title' === $lineKey) {
-                    $title = trim($lineValue);
-                }
-                return $title;
-            } catch (\Exception) {
+            if (str_starts_with(trim($contentLine), 'title:')) {
+                $title = substr($contentLine, 6, \strlen($contentLine));
+            } else {
                 throw new \RuntimeException('Markdown conversion error: unable to find a title');
             }
+            break;
         }
+
+        return trim($title);
     }
 
     public function getOriginalAlboUrl(): string
     {
+        $originalAlboUrl = '';
         $lines = explode("\n", $this->markdownContent);
-
         foreach ($lines as $contentLine) {
-            if ('---' === $contentLine) {
+            if ($this->isSeparatorLine($contentLine) || $this->isCommentLine($contentLine)) {
                 continue;
             }
-            $x = explode(':', $contentLine);
-            if (3 === \count($x)) {
-                [$lineKey, $lineValue1, $lineValue2] = $x;
-                if ('original' === $lineKey) {
-                    return trim($lineValue1) . ':' . trim($lineValue2);
-                }
-            } else {
-                continue;
+            if (str_starts_with(trim($contentLine), 'original:')) {
+                $originalAlboUrl = substr($contentLine, 9, \strlen($contentLine));
+                break;
             }
-
+        }
+        if ('' === $originalAlboUrl) {
             throw new \RuntimeException('Markdown conversion error: unable to find a original albo url');
         }
+
+        return trim($originalAlboUrl);
     }
 
     public function getRssFeedUrl(): string
     {
+        $rssFeedUrl = '';
         $lines = explode("\n", $this->markdownContent);
 
         foreach ($lines as $contentLine) {
-            if ('---' === $contentLine) {
+            if ($this->isSeparatorLine($contentLine) || $this->isCommentLine($contentLine)) {
                 continue;
             }
-            $x = explode(':', $contentLine);
-            if (3 === \count($x)) {
-                [$lineKey, $lineValue1, $lineValue2] = $x;
-                if ('original' === $lineKey) {
-                    continue;
-                }
-                if ('rss' === $lineKey) {
-                    return trim($lineValue1) . ':' . trim($lineValue2);
-                }
-            } else {
-                continue;
+            if (str_starts_with(trim($contentLine), 'rss:')) {
+                $rssFeedUrl = substr($contentLine, 4, \strlen($contentLine));
+                break;
             }
-
-            throw new \RuntimeException('Markdown conversion error: unable to find a rss feed url');
         }
+        if ('' === $rssFeedUrl) {
+            throw new \RuntimeException('Markdown conversion error: unable to find an rss feed url.');
+        }
+
+        return trim($rssFeedUrl);
     }
 
     public function asArray(): array
@@ -94,5 +86,15 @@ class MarkdownToCatalogItemConverter
             'original' => $this->getOriginalAlboUrl(),
             'rss' => $this->getRssFeedUrl(),
         ];
+    }
+
+    private function isCommentLine(string $line): bool
+    {
+        return str_starts_with(trim($line), '#');
+    }
+
+    private function isSeparatorLine(string $line): bool
+    {
+        return '---' === trim($line);
     }
 }
