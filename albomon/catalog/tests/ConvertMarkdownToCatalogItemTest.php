@@ -9,7 +9,9 @@ class ConvertMarkdownToCatalogItemTest extends TestCase
 {
     public function testCreateWithEmptyStringThrowException(): void
     {
-        self::markTestIncomplete('implementare validazione nel constructor');
+        self::expectException(\InvalidArgumentException::class);
+
+        MarkdownToCatalogItemConverter::createFromMarkdownContent('');
     }
 
     /**
@@ -56,51 +58,6 @@ class ConvertMarkdownToCatalogItemTest extends TestCase
         $converter = MarkdownToCatalogItemConverter::createFromMarkdownContent($markdownContent);
 
         self::assertEquals($expectedResult, $converter->asArray());
-    }
-
-    /**
-     * @dataProvider getMarkdownContentDataProvider
-     */
-    public function testConversion(string $markdownContent)
-    {
-        $catalogItem = [];
-
-        $lines = explode("\n", $markdownContent);
-
-        foreach ($lines as $line) {
-            if ('---' === $line) {
-                continue;
-            }
-            $x = explode(':', $line);
-
-            if (2 === \count($x)) {
-                [$lineKey, $lineValue] = $x;
-            } elseif (3 === \count($x)) {
-                [$lineKey, $lineValue1, $lineValue2] = $x;
-            } else {
-                continue;
-            }
-
-            if ('title' === $lineKey) {
-                $catalogItem['title'] = trim($lineValue);
-            }
-
-            if ('original' === $lineKey) {
-                $catalogItem['original'] = trim($lineValue1) . ':' . trim($lineValue2);
-            }
-
-            if ('rss' === $lineKey) {
-                $catalogItem['rss'] = trim($lineValue1) . ':' . trim($lineValue2);
-            }
-        }
-
-        self::assertIsArray($catalogItem);
-        self::assertArrayHasKey('title', $catalogItem);
-        self::assertEquals('Accumoli', $catalogItem['title']);
-        self::assertArrayHasKey('original', $catalogItem);
-        self::assertEquals('http://www.comune.accumoli.ri.it/albo-pretorio/', $catalogItem['original']);
-        self::assertArrayHasKey('rss', $catalogItem);
-        self::assertEquals('http://feeds.ricostruzionetrasparente.it/albi_pretori/Accumoli_feed.xml', $catalogItem['rss']);
     }
 
     public function getMarkdownContentDataProvider(): array
