@@ -7,9 +7,10 @@ use Albomon\Catalog\Application\Model\CatalogRepositoryInterface;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
+    private array $items = [];
+
     public function __construct(
         private string $catalogDataDirectory,
-        private array $items = [],
         private string $comuniCatalogFilename
     ) {
         $this->LoadFromFilesystem();

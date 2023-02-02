@@ -30,7 +30,7 @@ class CatalogRepositoryTest extends TestCase
 
     public function testShouldReturnCatalogItems(): void
     {
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], '/test-preloaded-catalog.json');
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-preloaded-catalog.json');
 
         self::assertNotEquals([], $sut->getItems());
     }
@@ -38,7 +38,7 @@ class CatalogRepositoryTest extends TestCase
     public function testShouldAddCatalogItem(): void
     {
         $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], self::DEFAULT_FIXTURES_FILENAME);
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
 
         $sut->save($item);
 
@@ -50,7 +50,7 @@ class CatalogRepositoryTest extends TestCase
     {
         $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
         $itemSecond = CatalogItem::with(self::SECOND_UUID, self::SECOND_RSS_FEED_URL);
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], self::DEFAULT_FIXTURES_FILENAME);
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
 
         $sut->save($itemFirst, $itemSecond);
 
@@ -60,7 +60,7 @@ class CatalogRepositoryTest extends TestCase
 
     public function testShouldPersistCatalogOnDisk(): void
     {
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], self::DEFAULT_FIXTURES_FILENAME);
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
 
         $sut->persist();
 
@@ -69,14 +69,14 @@ class CatalogRepositoryTest extends TestCase
 
     public function testShouldLoadAnEmptyCatalogFromFilesystem(): void
     {
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], '/test-empty-catalog.json');
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-empty-catalog.json');
 
         self::assertEquals([], $sut->getItems());
     }
 
     public function testShouldLoadAPreloadedCatalogFromFilesystem(): void
     {
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, [], '/test-preloaded-catalog.json');
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-preloaded-catalog.json');
 
         self::assertNotEquals([], $sut->getItems());
         self::assertEquals(2, \count($sut->getItems()));
