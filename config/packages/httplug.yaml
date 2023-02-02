@@ -12,7 +12,7 @@ httplug:
         authentication:
             github:
                 type: 'bearer'
-                token: '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'
+                token: '%github_token%'
 
     discovery:
         client: 'auto'
