@@ -21,7 +21,8 @@
         "symfony/http-client": "4.4.*",
         "symfony/monolog-bundle": "^3.4",
         "symfony/serializer": "4.4.*",
-        "symfony/yaml": "4.4.*"
+        "symfony/yaml": "4.4.*",
+        "webmozart/assert": "^1.11"
     },
     "config": {
         "preferred-install": {

@@ -21,6 +21,7 @@ class MarkdownToCatalogItemConverter
 
     public function getTitle(): string
     {
+        $title = null;
         $lines = explode("\n", $this->markdownContent);
 
         foreach ($lines as $contentLine) {
