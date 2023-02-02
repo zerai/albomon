@@ -43,7 +43,7 @@ class CatalogRepositoryTest extends TestCase
         $sut->save($item);
 
         self::assertEquals(1, \count($sut->getItems()));
-        self::assertFileExists(self::DEFAULT_FIXTURES_DIR . '/test-single-item.json');
+        self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
     public function testShouldAddMultipleCatalogItem(): void
@@ -55,7 +55,7 @@ class CatalogRepositoryTest extends TestCase
         $sut->save($itemFirst, $itemSecond);
 
         self::assertEquals(2, \count($sut->getItems()));
-        self::assertFileExists(self::DEFAULT_FIXTURES_DIR . '/test-multiple-item.json');
+        self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
     public function testShouldPersistCatalogOnDisk(): void

@@ -4,8 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    comuni_catalog_filename: 'comuni-catalog.json'
-    catalog_catalog_dir: '%kernel.project_dir%/catalog'
+    catalog.comuni_filename: 'comuni-catalog.json'
+    catalog.catalog_directory: '%kernel.project_dir%/catalog'
 
 services:
     # default configuration for services in *this* file
@@ -14,8 +14,8 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $catalogDataDirectoryDir: '%catalog_catalog_dir%'
-            $comuniCataloFilename: '%comuni_catalog_filename%'
+            $catalogDataDirectory: '%catalog.catalog_directory%'
+            $comuniCatalogFilename: '%catalog.comuni_filename%'
 
 
 
