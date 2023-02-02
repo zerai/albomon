@@ -4,6 +4,8 @@ namespace Albomon\Catalog\Adapter\Persistence;
 
 use Albomon\Catalog\Application\Model\CatalogItem;
 use Albomon\Catalog\Application\Model\CatalogRepositoryInterface;
+use Webmozart\Assert\Assert;
+use Webmozart\Assert\InvalidArgumentException;
 
 class CatalogRepository implements CatalogRepositoryInterface
 {
@@ -13,6 +15,10 @@ class CatalogRepository implements CatalogRepositoryInterface
         private string $catalogDataDirectory,
         private string $comuniCatalogFilename
     ) {
+        Assert::stringNotEmpty($this->catalogDataDirectory, 'Expected a catalog directory parameter');
+        if (! str_ends_with($comuniCatalogFilename, '.json')) {
+            throw new InvalidArgumentException('Expected a filename with "json" extension');
+        }
         $this->LoadFromFilesystem();
     }
 

@@ -5,6 +5,7 @@ namespace Albomon\Tests\Catalog\Integration\CatalogRepository;
 use Albomon\Catalog\Adapter\Persistence\CatalogRepository;
 use Albomon\Catalog\Application\Model\CatalogItem;
 use PHPUnit\Framework\TestCase;
+use Webmozart\Assert\InvalidArgumentException;
 
 class CatalogRepositoryTest extends TestCase
 {
@@ -26,6 +27,22 @@ class CatalogRepositoryTest extends TestCase
         if (file_exists($defaultFile)) {
             unlink($defaultFile);
         }
+    }
+
+    public function testThrowExceptionIfEmptyCatalogDirectoryParam(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('Expected a catalog directory parameter');
+
+        new CatalogRepository('', '/test-preloaded-catalog.json');
+    }
+
+    public function testThrowExceptionIfCatalogFilenameParamIsNotJson(): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage('Expected a filename with "json" extension');
+
+        new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/irrelevant.txt');
     }
 
     public function testShouldReturnCatalogItems(): void
