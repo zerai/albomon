@@ -75,15 +75,6 @@ class CatalogRepositoryTest extends TestCase
         self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
-    public function testShouldPersistCatalogOnDisk(): void
-    {
-        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
-
-        $sut->persist();
-
-        self::assertFileExists(self::DEFAULT_FIXTURES_DIR . '/' . self::DEFAULT_FIXTURES_FILENAME);
-    }
-
     public function testShouldLoadAnEmptyCatalogFromFilesystem(): void
     {
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-empty-catalog.json');

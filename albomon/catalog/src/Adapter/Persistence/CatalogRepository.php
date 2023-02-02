@@ -38,7 +38,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         return $this->items;
     }
 
-    public function persist(): void
+    private function persist(): void
     {
         $path = $this->catalogDataDirectory . $this->comuniCatalogFilename;
         $jsonContent = json_encode($this->getItems(), JSON_PRETTY_PRINT);
@@ -47,7 +47,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         fclose($fp);
     }
 
-    public function LoadFromFilesystem(): void
+    private function LoadFromFilesystem(): void
     {
         $filePath = $this->catalogDataDirectory . $this->comuniCatalogFilename;
         if (file_exists($filePath)) {
