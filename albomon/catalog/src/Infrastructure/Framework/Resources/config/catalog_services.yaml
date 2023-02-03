@@ -6,7 +6,7 @@
 parameters:
     github_token: '%env(GITHUB_TOKEN)%'
     catalog.comuni_filename: 'comuni-catalog.json'
-    catalog.catalog_directory: '%kernel.project_dir%/catalog'
+    catalog.catalog_directory: '%kernel.project_dir%/catalog/'
 
 services:
     # default configuration for services in *this* file
@@ -18,6 +18,15 @@ services:
             $catalogDataDirectory: '%catalog.catalog_directory%'
             $comuniCatalogFilename: '%catalog.comuni_filename%'
 
+    # makes classes in albomon/catalog/src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Albomon\Catalog\:
+        resource: '%kernel.project_dir%/albomon/catalog/src/'
+        exclude:
+            - '%kernel.project_dir%/albomon/catalog/src/Application/Model/'
+            - '%kernel.project_dir%/albomon/catalog/src/Infrastructure/Resources/'
+            #- '../src/Kernel.php'
+
 
 
 
@@ -27,7 +36,7 @@ services:
     ##  Application
     ##
     #######################################################################
-
+    Albomon\Catalog\Application\UpdateCatalog: ~
 
     #######################################################################
     ##
@@ -41,6 +50,8 @@ services:
         public: true
     Albomon\Catalog\Adapter\Persistence\CatalogRepository:
         public: true
+    Albomon\Catalog\Application\Model\CatalogRepositoryInterface:
+        alias: 'Albomon\Catalog\Adapter\Persistence\CatalogRepository'
 
     #######################################################################
     ##

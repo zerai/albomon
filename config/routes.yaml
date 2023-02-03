@@ -5,3 +5,7 @@
 catalog_update:
     path: /catalog/update
     controller: App\Controller\UpdateCatalogController
+
+catalog_persist:
+    path: /catalog/persist
+    controller: App\Controller\UpdateAndPersistCatalogController
