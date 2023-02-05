@@ -56,6 +56,7 @@ class CatalogItemTest extends TestCase
         return [
             ['', 'Catalog item must have an rss feed url'],
             ['invalid url', 'Expected a rss feed url value to be a valid URL'],
+            ['http://www.example.com/a-feed with-space.xml', 'Expected a rss feed url value to be a valid URL'],
         ];
     }
 }

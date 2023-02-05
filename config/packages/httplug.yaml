@@ -13,6 +13,9 @@ httplug:
             github:
                 type: 'bearer'
                 token: '%github_token%'
+        logger:
+            logger: 'logger'
+            formatter: null
 
     discovery:
         client: 'auto'
@@ -26,3 +29,4 @@ httplug:
                 - 'httplug.plugin.retry'
                 - 'httplug.plugin.authentication.github'
                 - 'httplug.plugin.cache'
+                - 'httplug.plugin.logger'

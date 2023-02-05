@@ -25,12 +25,22 @@ class CatalogRepository implements CatalogRepositoryInterface
     public function save(CatalogItem ...$items): void
     {
         foreach ($items as $item) {
-            $this->items[] = [
+            $this->items[$item->identity()] = [
                 $item->identity() => $item->rssFeedUrl(),
             ];
         }
 
         $this->persist();
+    }
+
+    public function itemExist(string $identity): bool
+    {
+        $result = false;
+        if (\array_key_exists($identity, $this->getItems())) {
+            $result = true;
+        }
+
+        return $result;
     }
 
     public function getItems(): array

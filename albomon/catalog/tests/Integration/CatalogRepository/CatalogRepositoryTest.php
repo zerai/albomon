@@ -45,14 +45,14 @@ class CatalogRepositoryTest extends TestCase
         new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/irrelevant.txt');
     }
 
-    public function testShouldReturnCatalogItems(): void
+    public function testItReturnCatalogItems(): void
     {
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-preloaded-catalog.json');
 
         self::assertNotEquals([], $sut->getItems());
     }
 
-    public function testShouldAddCatalogItem(): void
+    public function testItAddCatalogItem(): void
     {
         $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
@@ -63,7 +63,27 @@ class CatalogRepositoryTest extends TestCase
         self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
-    public function testShouldAddMultipleCatalogItem(): void
+    public function testItUpdateExistingCatalogItem(): void
+    {
+        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
+        $itemToUpdate = CatalogItem::with(self::FIRST_UUID, 'https://updated.catalog.item');
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
+        $sut->save($item);
+
+        $sut->save($itemToUpdate);
+
+        self::assertEquals(1, \count($sut->getItems()));
+        self::assertEquals(
+            [
+                self::FIRST_UUID => [
+                    self::FIRST_UUID => 'https://updated.catalog.item',
+                ],
+            ],
+            $sut->getItems()
+        );
+    }
+
+    public function testItAddMultipleCatalogItem(): void
     {
         $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
         $itemSecond = CatalogItem::with(self::SECOND_UUID, self::SECOND_RSS_FEED_URL);
@@ -75,14 +95,14 @@ class CatalogRepositoryTest extends TestCase
         self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
-    public function testShouldLoadAnEmptyCatalogFromFilesystem(): void
+    public function testItLoadAnEmptyCatalogFromFilesystem(): void
     {
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-empty-catalog.json');
 
         self::assertEquals([], $sut->getItems());
     }
 
-    public function testShouldLoadAPreloadedCatalogFromFilesystem(): void
+    public function testItLoadAPreloadedCatalogFromFilesystem(): void
     {
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-preloaded-catalog.json');
 
