@@ -63,6 +63,26 @@ class CatalogRepositoryTest extends TestCase
         self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
+    public function testItUpdateExistingCatalogItem(): void
+    {
+        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
+        $itemToUpdate = CatalogItem::with(self::FIRST_UUID, 'https://updated.catalog.item');
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
+        $sut->save($item);
+
+        $sut->save($itemToUpdate);
+
+        self::assertEquals(1, \count($sut->getItems()));
+        self::assertEquals(
+            [
+                self::FIRST_UUID => [
+                    self::FIRST_UUID => 'https://updated.catalog.item',
+                ],
+            ],
+            $sut->getItems()
+        );
+    }
+
     public function testShouldAddMultipleCatalogItem(): void
     {
         $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
