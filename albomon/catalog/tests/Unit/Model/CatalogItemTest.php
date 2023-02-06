@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Albomon\Tests\Catalog\CatalogItem;
+namespace Albomon\Tests\Catalog\Unit\Model;
 
 use Albomon\Catalog\Application\Model\CatalogItem;
 use PHPUnit\Framework\TestCase;
@@ -10,13 +10,28 @@ class CatalogItemTest extends TestCase
 {
     private const IDENTITY = '29a042da-5e75-4490-8b64-6e2d86176180';
 
-    private const RSS_FEED_URL = 'irrelevant_rss_url';
+    private const RSS_FEED_URL = 'https://www.foobar.example/feed.xml';
 
-    public function testShouldHaveIdentityAndRssFeed(): void
+    private const ITEM_NAME = 'irrelevant';
+
+    public function testShouldHaveAnIdentity(): void
     {
-        $item = new CatalogItem(self::IDENTITY, self::RSS_FEED_URL);
+        $item = CatalogItem::with(self::IDENTITY, self::ITEM_NAME, self::RSS_FEED_URL);
 
         self::assertNotEmpty($item->identity());
+    }
+
+    public function testShouldHaveAName(): void
+    {
+        $item = CatalogItem::with(self::IDENTITY, self::ITEM_NAME, self::RSS_FEED_URL);
+
+        self::assertNotEmpty($item->name());
+    }
+
+    public function testShouldHaveAnRssFeed(): void
+    {
+        $item = CatalogItem::with(self::IDENTITY, self::ITEM_NAME, self::RSS_FEED_URL);
+
         self::assertNotEmpty($item->rssFeedUrl());
     }
 
@@ -28,7 +43,7 @@ class CatalogItemTest extends TestCase
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage($expectedExceptionMessage);
 
-        CatalogItem::with($identity, self::RSS_FEED_URL);
+        CatalogItem::with($identity, self::ITEM_NAME, self::RSS_FEED_URL);
     }
 
     public function invalidIdentityDataProvider(): array
@@ -41,6 +56,25 @@ class CatalogItemTest extends TestCase
     }
 
     /**
+     * @dataProvider invalidItemNameDataProvider
+     */
+    public function testThrowExceptionWhenInvalidItemName(string $name, string $expectedExceptionMessage): void
+    {
+        self::expectException(InvalidArgumentException::class);
+        self::expectExceptionMessage($expectedExceptionMessage);
+
+        CatalogItem::with(self::IDENTITY, $name, self::RSS_FEED_URL);
+    }
+
+    public function invalidItemNameDataProvider(): array
+    {
+        return [
+
+            ['', 'Catalog item must have a name'],
+        ];
+    }
+
+    /**
      * @dataProvider invalidRssFeedUrlDataProvider
      */
     public function testThrowExceptionWhenInvalidRssFeedUrl(string $rssFeedUrl, $expectedExceptionMessage): void
@@ -48,7 +82,7 @@ class CatalogItemTest extends TestCase
         self::expectException(InvalidArgumentException::class);
         self::expectExceptionMessage($expectedExceptionMessage);
 
-        CatalogItem::with(self::IDENTITY, $rssFeedUrl);
+        CatalogItem::with(self::IDENTITY, self::ITEM_NAME, $rssFeedUrl);
     }
 
     public function invalidRssFeedUrlDataProvider(): array

@@ -17,6 +17,10 @@ class CatalogRepositoryTest extends TestCase
 
     private const SECOND_UUID = '1ecd8953-9785-4f37-988a-8e83e9a12ddb';
 
+    private const FIRST_ITEM_NAME = 'irrelevant';
+
+    private const SECOND_ITEM_NAME = 'other irrelevant';
+
     private const FIRST_RSS_FEED_URL = 'https://first.irrelevant.feed';
 
     private const SECOND_RSS_FEED_URL = 'https://second.irrelevant.feed';
@@ -54,7 +58,7 @@ class CatalogRepositoryTest extends TestCase
 
     public function testItAddCatalogItem(): void
     {
-        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
+        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, self::FIRST_RSS_FEED_URL);
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
 
         $sut->save($item);
@@ -65,8 +69,8 @@ class CatalogRepositoryTest extends TestCase
 
     public function testItUpdateExistingCatalogItem(): void
     {
-        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
-        $itemToUpdate = CatalogItem::with(self::FIRST_UUID, 'https://updated.catalog.item');
+        $item = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, self::FIRST_RSS_FEED_URL);
+        $itemToUpdate = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, 'https://updated.catalog.item');
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
         $sut->save($item);
 
@@ -85,8 +89,8 @@ class CatalogRepositoryTest extends TestCase
 
     public function testItAddMultipleCatalogItem(): void
     {
-        $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_RSS_FEED_URL);
-        $itemSecond = CatalogItem::with(self::SECOND_UUID, self::SECOND_RSS_FEED_URL);
+        $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, self::FIRST_RSS_FEED_URL);
+        $itemSecond = CatalogItem::with(self::SECOND_UUID, self::SECOND_ITEM_NAME, self::SECOND_RSS_FEED_URL);
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
 
         $sut->save($itemFirst, $itemSecond);
