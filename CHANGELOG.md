@@ -9,6 +9,12 @@
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
 
+## [Unreleased] -  2023-xx-xx
+### added
+- catalog application module
+### removed
+- support for php-7.4
+
 ## [0.6.1] -  2023-01-19
 ###### (Maintenance release)
 - fix bug [#300](https://github.com/zerai/albomon/issues/300)
