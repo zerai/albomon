@@ -12,6 +12,7 @@
 ## [Unreleased] -  2023-xx-xx
 ### added
 - catalog application module
+- cli command 'catalog:list'
 ### removed
 - support for php-7.4
 
