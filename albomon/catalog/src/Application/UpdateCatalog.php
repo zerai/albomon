@@ -21,7 +21,7 @@ class UpdateCatalog implements CatalogUpdaterInterface
         $comuniData = $this->githubDataReader->getComuniCatalogData();
 
         foreach ($comuniData as $comune) {
-            $catalogItems[] = CatalogItem::with(Uuid::uuid4()->toString(), $comune['rss']);
+            $catalogItems[] = CatalogItem::with(Uuid::uuid4()->toString(), $comune['title'], $comune['rss']);
         }
 
         $this->catalogRepository->save(...$catalogItems);

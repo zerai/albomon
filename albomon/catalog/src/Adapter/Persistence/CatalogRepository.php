@@ -26,7 +26,7 @@ class CatalogRepository implements CatalogRepositoryInterface
     {
         foreach ($items as $item) {
             $this->items[$item->identity()] = [
-                $item->identity() => $item->rssFeedUrl(),
+                $item->identity(), $item->name(), $item->rssFeedUrl(),
             ];
         }
 
