@@ -80,7 +80,9 @@ class CatalogRepositoryTest extends TestCase
         self::assertEquals(
             [
                 self::FIRST_UUID => [
-                    self::FIRST_UUID => 'https://updated.catalog.item',
+                    self::FIRST_UUID,
+                    self::FIRST_ITEM_NAME,
+                    'https://updated.catalog.item',
                 ],
             ],
             $sut->getItems()
