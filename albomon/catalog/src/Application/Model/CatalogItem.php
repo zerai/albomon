@@ -3,7 +3,6 @@
 namespace Albomon\Catalog\Application\Model;
 
 use Webmozart\Assert\Assert;
-use Webmozart\Assert\InvalidArgumentException;
 
 class CatalogItem
 {
@@ -20,9 +19,6 @@ class CatalogItem
         Assert::uuid($identity, 'Catalog item identity should be an uuid. Got %s');
         Assert::stringNotEmpty($name, 'Catalog item must have a name');
         Assert::stringNotEmpty($rssFeedUrl, 'Catalog item must have an rss feed url');
-        if (false === filter_var($rssFeedUrl, FILTER_VALIDATE_URL)) {
-            throw new InvalidArgumentException('Expected a rss feed url value to be a valid URL');
-        }
 
         return new self($identity, $name, $rssFeedUrl);
     }
