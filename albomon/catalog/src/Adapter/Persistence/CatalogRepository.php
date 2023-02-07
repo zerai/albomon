@@ -33,16 +33,6 @@ class CatalogRepository implements CatalogRepositoryInterface
         $this->persist();
     }
 
-    public function itemExist(string $identity): bool
-    {
-        $result = false;
-        if (\array_key_exists($identity, $this->getItems())) {
-            $result = true;
-        }
-
-        return $result;
-    }
-
     public function getItems(): array
     {
         return $this->items;
