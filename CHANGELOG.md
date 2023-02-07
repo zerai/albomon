@@ -13,6 +13,7 @@
 ### added
 - catalog application module
 - cli command 'catalog:list'
+- cli command 'catalog:update'
 ### removed
 - support for php-7.4
 
