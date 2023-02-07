@@ -101,6 +101,34 @@ class CatalogRepositoryTest extends TestCase
         self::assertFileExists(self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME);
     }
 
+    public function testItCalculateTotalItemWhenEmptyCatalog(): void
+    {
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-empty-catalog.json');
+
+        self::assertEquals(0, $sut->totalItems());
+    }
+
+    public function testItCalculateTotalItemWhenOneItemInCatalog(): void
+    {
+        $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, self::FIRST_RSS_FEED_URL);
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
+
+        $sut->save($itemFirst);
+
+        self::assertEquals(1, $sut->totalItems());
+    }
+
+    public function testItCalculateTotalItemWhenTwoItemInCatalog(): void
+    {
+        $itemFirst = CatalogItem::with(self::FIRST_UUID, self::FIRST_ITEM_NAME, self::FIRST_RSS_FEED_URL);
+        $itemSecond = CatalogItem::with(self::SECOND_UUID, self::SECOND_ITEM_NAME, self::SECOND_RSS_FEED_URL);
+        $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, self::DEFAULT_FIXTURES_FILENAME);
+
+        $sut->save($itemFirst, $itemSecond);
+
+        self::assertEquals(2, $sut->totalItems());
+    }
+
     public function testItLoadAnEmptyCatalogFromFilesystem(): void
     {
         $sut = new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/test-empty-catalog.json');

@@ -33,16 +33,6 @@ class CatalogRepository implements CatalogRepositoryInterface
         $this->persist();
     }
 
-    public function itemExist(string $identity): bool
-    {
-        $result = false;
-        if (\array_key_exists($identity, $this->getItems())) {
-            $result = true;
-        }
-
-        return $result;
-    }
-
     public function getItems(): array
     {
         return $this->items;
@@ -64,5 +54,10 @@ class CatalogRepository implements CatalogRepositoryInterface
             $jsonContent = file_get_contents($filePath);
             $this->items = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
         }
+    }
+
+    public function totalItems(): int
+    {
+        return \count($this->items);
     }
 }
