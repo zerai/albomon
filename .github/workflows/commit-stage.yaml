@@ -98,6 +98,8 @@ jobs:
           bin/phpunit --testsuite=core --testdox --no-interaction --colors=always \
           --coverage-clover $UNIT_TEST_CLOVER_FILENAME \
           --testdox-text $UNIT_TEST_DOC_FILENAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Coverage artifact name
         if: ${{ matrix.generate-coverage-report }}

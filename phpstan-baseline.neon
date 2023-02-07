@@ -6,6 +6,16 @@ parameters:
 			path: albomon/catalog/tests/GithubDataReaderTest.php
 
 		-
+			message: "#^Property Albomon\\\\Tests\\\\Catalog\\\\Integration\\\\CliCommand\\\\CatalogUpdateCommandTest\\:\\:\\$commandTester is never read, only written\\.$#"
+			count: 1
+			path: albomon/catalog/tests/Integration/CliCommand/CatalogUpdateCommandTest.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: albomon/catalog/tests/Integration/CliCommand/CatalogUpdateCommandTest.php
+
+		-
 			message: "#^Property Albomon\\\\Core\\\\Infrastructure\\\\UI\\\\Cli\\\\Command\\\\CheckAlboPopCatalogCommand\\:\\:\\$reportDir is never read, only written\\.$#"
 			count: 1
 			path: albomon/core/src/Infrastructure/UI/Cli/Command/CheckAlboPopCatalogCommand.php
