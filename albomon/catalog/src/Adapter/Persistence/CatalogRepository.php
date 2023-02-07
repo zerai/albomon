@@ -55,4 +55,9 @@ class CatalogRepository implements CatalogRepositoryInterface
             $this->items = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
         }
     }
+
+    public function totalItems(): int
+    {
+        return \count($this->items);
+    }
 }

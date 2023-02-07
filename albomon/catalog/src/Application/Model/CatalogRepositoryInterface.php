@@ -7,4 +7,6 @@ interface CatalogRepositoryInterface
     public function save(CatalogItem ...$items): void;
 
     public function getItems(): array;
+
+    public function totalItems(): int;
 }
