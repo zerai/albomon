@@ -35,7 +35,7 @@ class CatalogUpdateCommandTest extends KernelTestCase
 
         $output = $this->commandTester->getDisplay();
 
-        $this->assertStringContainsString('Albomon: starting update...', $output);
+        $this->assertStringContainsString('Albomon: inizio aggiornamento...', $output);
     }
 
     protected function tearDown(): void

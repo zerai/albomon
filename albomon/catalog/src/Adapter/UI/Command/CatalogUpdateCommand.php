@@ -21,9 +21,11 @@ class CatalogUpdateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $output->writeln("<info>Albomon: starting update...</info>");
+        $output->writeln("<info>Albomon: inizio aggiornamento...</info>");
 
         $this->updater->updateCatalog();
+
+        $output->writeln("<info>Aggiornamento terminato...</info>");
 
         return 0;
     }
