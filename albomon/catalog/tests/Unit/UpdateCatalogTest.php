@@ -2,7 +2,7 @@
 
 namespace Albomon\Tests\Catalog\Unit;
 
-use Albomon\Catalog\Adapter\GithubDataReader;
+use Albomon\Catalog\Application\ComuniDataDownloaderInterface;
 use Albomon\Catalog\Application\Model\CatalogRepositoryInterface;
 use Albomon\Catalog\Application\UpdateCatalog;
 use PHPUnit\Framework\TestCase;
@@ -11,7 +11,7 @@ class UpdateCatalogTest extends TestCase
 {
     public function testShouldUpdateTheCatalog(): void
     {
-        $githubReaderMock = self::getMockBuilder(GithubDataReader::class)
+        $githubReaderMock = self::getMockBuilder(ComuniDataDownloaderInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -19,7 +19,7 @@ class UpdateCatalogTest extends TestCase
             ->getMock();
 
         $githubReaderMock->expects(self::once())
-            ->method('getComuniCatalogData');
+            ->method('downloadComuniData');
 
         $catalogRepositoryMock->expects(self::once())
             ->method('save');
