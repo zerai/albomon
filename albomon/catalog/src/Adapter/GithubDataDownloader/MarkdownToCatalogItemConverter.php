@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Albomon\Catalog\Adapter;
+namespace Albomon\Catalog\Adapter\GithubDataDownloader;
 
 class MarkdownToCatalogItemConverter
 {

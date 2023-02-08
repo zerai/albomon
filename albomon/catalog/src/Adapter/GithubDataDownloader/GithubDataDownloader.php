@@ -3,7 +3,6 @@
 namespace Albomon\Catalog\Adapter\GithubDataDownloader;
 
 use Albomon\Catalog\Adapter\GithubHttpClient;
-use Albomon\Catalog\Adapter\MarkdownToCatalogItemConverter;
 use Albomon\Catalog\Application\ComuniDataDownloaderInterface;
 
 class GithubDataDownloader implements ComuniDataDownloaderInterface

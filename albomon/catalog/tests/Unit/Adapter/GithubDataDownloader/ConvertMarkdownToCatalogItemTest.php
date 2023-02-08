@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Albomon\Tests\Catalog;
+namespace Albomon\Tests\Catalog\Unit\Adapter\GithubDataDownloader;
 
-use Albomon\Catalog\Adapter\MarkdownToCatalogItemConverter;
+use Albomon\Catalog\Adapter\GithubDataDownloader\MarkdownToCatalogItemConverter;
 use PHPUnit\Framework\TestCase;
 
 class ConvertMarkdownToCatalogItemTest extends TestCase
