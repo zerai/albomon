@@ -35,7 +35,7 @@ class CatalogListCommand extends Command
         }
         $table->render();
 
-        return 1;
+        return 0;
     }
 
     private function getCatalogItems(): array
