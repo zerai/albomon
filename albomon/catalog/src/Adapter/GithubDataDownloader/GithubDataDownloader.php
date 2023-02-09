@@ -1,15 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Albomon\Catalog\Adapter;
+namespace Albomon\Catalog\Adapter\GithubDataDownloader;
 
-class GithubDataReader
+use Albomon\Catalog\Application\ComuniDataDownloaderInterface;
+
+class GithubDataDownloader implements ComuniDataDownloaderInterface
 {
     public function __construct(
         private GithubHttpClient $httpClient
     ) {
     }
 
-    public function getComuniCatalogData(): array
+    public function downloadComuniData(): array
     {
         $comuniCatalogData = [];
 

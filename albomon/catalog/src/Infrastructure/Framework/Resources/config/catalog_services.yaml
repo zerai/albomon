@@ -44,9 +44,7 @@ services:
     ##
     #######################################################################
 
-    Albomon\Catalog\Adapter\GithubHttpClient:
-        public: true
-    Albomon\Catalog\Adapter\GithubDataReader:
+    Albomon\Catalog\Adapter\GithubDataDownloader\GithubHttpClient:
         public: true
     Albomon\Catalog\Adapter\Persistence\CatalogRepository:
         public: true
