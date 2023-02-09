@@ -9,6 +9,9 @@
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
 
+## [0.7.1] -  2023-02-09
+###### (Maintenance release)
+
 ## [0.7.0] -  2023-02-09
 ### added
 - catalog application module
