@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Albomon\Tests\Catalog;
+namespace Albomon\Tests\Catalog\Integration\GithubHttpClient;
 
-use Albomon\Catalog\Adapter\GithubHttpClient;
+use Albomon\Catalog\Adapter\GithubDataDownloader\GithubHttpClient;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class GithubHttpClientTest extends KernelTestCase

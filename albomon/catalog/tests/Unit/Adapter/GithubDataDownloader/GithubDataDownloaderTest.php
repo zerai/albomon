@@ -3,7 +3,7 @@
 namespace Albomon\Tests\Catalog\Unit\Adapter\GithubDataDownloader;
 
 use Albomon\Catalog\Adapter\GithubDataDownloader\GithubDataDownloader;
-use Albomon\Catalog\Adapter\GithubHttpClient;
+use Albomon\Catalog\Adapter\GithubDataDownloader\GithubHttpClient;
 use Albomon\Catalog\Application\ComuniDataDownloaderInterface;
 use PHPUnit\Framework\TestCase;
 
