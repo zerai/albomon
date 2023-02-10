@@ -21,7 +21,6 @@ class CheckCustomCatalogCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:check:custom-catalog');
         $this->commandTester = new CommandTester($this->command);
-        parent::setUp();
     }
 
     /**

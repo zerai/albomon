@@ -19,7 +19,6 @@ class CatalogUpdateCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:catalog:update');
         $this->commandTester = new CommandTester($this->command);
-        parent::setUp();
     }
 
     /**
