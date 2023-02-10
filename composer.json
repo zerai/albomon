@@ -21,6 +21,7 @@
         "symfony/framework-bundle": "5.4.*",
         "symfony/http-client": "5.4.*",
         "symfony/monolog-bundle": "^3.4",
+        "symfony/runtime": "5.4.*",
         "symfony/serializer": "5.4.*",
         "symfony/yaml": "5.4.*",
         "webmozart/assert": "^1.11"
@@ -33,7 +34,8 @@
         "allow-plugins": {
             "symfony/flex": true,
             "bamarni/composer-bin-plugin": true,
-            "ocramius/package-versions": true
+            "ocramius/package-versions": true,
+            "symfony/runtime": true
         }
     },
     "autoload": {
