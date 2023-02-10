@@ -21,7 +21,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function emergency($message, array $context = [])
+    public function emergency($message, array $context = []): void
     {
         throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
@@ -34,7 +34,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function alert($message, array $context = [])
+    public function alert($message, array $context = []): void
     {
         throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
@@ -46,7 +46,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function critical($message, array $context = [])
+    public function critical($message, array $context = []): void
     {
         throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
@@ -57,7 +57,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function error($message, array $context = [])
+    public function error($message, array $context = []): void
     {
         $this->io->error($message);
     }
@@ -70,7 +70,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function warning($message, array $context = [])
+    public function warning($message, array $context = []): void
     {
         $this->io->warning($message);
     }
@@ -80,7 +80,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function notice($message, array $context = [])
+    public function notice($message, array $context = []): void
     {
         $this->io->text($message);
     }
@@ -92,7 +92,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function info($message, array $context = [])
+    public function info($message, array $context = []): void
     {
         $this->io->text($message);
     }
@@ -102,7 +102,7 @@ class CliLogger implements CliLoggerInterface
      *
      * @param string $message
      */
-    public function debug($message, array $context = [])
+    public function debug($message, array $context = []): void
     {
         throw new BadMethodCallException(self::BAD_METHOD_CALL_EXCEPTION_MESSAGE);
     }
@@ -113,7 +113,7 @@ class CliLogger implements CliLoggerInterface
      * @param mixed  $level
      * @param string $message
      */
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = []): void
     {
         $this->io->text($message);
     }
