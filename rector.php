@@ -19,7 +19,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->phpVersion(PhpVersion::PHP_80);
-    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/srcApp_KernelDevDebugContainer.xml');
+    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
 
     // register a single rule
     //$rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
