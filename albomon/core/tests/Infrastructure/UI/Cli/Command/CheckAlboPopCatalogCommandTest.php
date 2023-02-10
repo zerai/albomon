@@ -21,7 +21,6 @@ class CheckAlboPopCatalogCommandTest extends KernelTestCase
         $application = new Application($kernel);
         $this->command = $application->find('albomon:check:albopop-catalog');
         $this->commandTester = new CommandTester($this->command);
-        parent::setUp();
     }
 
     /**

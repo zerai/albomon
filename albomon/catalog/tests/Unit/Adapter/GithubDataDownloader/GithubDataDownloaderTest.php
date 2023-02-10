@@ -38,7 +38,7 @@ class GithubDataDownloaderTest extends TestCase
             ->getMock();
         $sut = new GithubDataDownloader($githubHttpClientMock);
 
-        $response = self::createMock('Psr\Http\Message\ResponseInterface');
+        $response = self::createMock(\Psr\Http\Message\ResponseInterface::class);
         $githubHttpClientMock
             ->expects(self::once())
             ->method('getComuniMarkdownFileIndex')
