@@ -100,6 +100,7 @@ jobs:
           --testdox-text $UNIT_TEST_DOC_FILENAME
         env:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN_ALBOMON_FOR_CI_TEST }}
+          SYMFONY_DEPRECATIONS_HELPER: 0
 
       - name: Get Coverage artifact name
         if: ${{ matrix.generate-coverage-report }}
