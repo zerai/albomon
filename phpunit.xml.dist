@@ -26,6 +26,14 @@
             <directory>albomon/core/tests</directory>
             <directory>albomon/catalog/tests</directory>
         </testsuite>
+        <testsuite name="unit">
+            <directory>albomon/core/tests/Unit</directory>
+            <directory>albomon/catalog/tests/Unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>albomon/core/tests/Integration</directory>
+            <directory>albomon/catalog/tests/Integration</directory>
+        </testsuite>
     </testsuites>
 
     <coverage processUncoveredFiles="true">
