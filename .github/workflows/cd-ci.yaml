@@ -7,5 +7,6 @@ jobs:
   commit-stage-workflow:
     name: Commit Stage
     uses: zerai/albomon/.github/workflows/commit-stage.yaml@master
+    secrets: inherit
     with:
       triggering-sha: "${{ github.sha }}"
