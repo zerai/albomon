@@ -2,6 +2,9 @@ name: Commit stage
 
 on:
   workflow_call:
+    secrets:
+      GHA_TOKEN_ALBOMON_FOR_CI_TEST:
+        required: true
     # Map the workflow outputs to job outputs
     inputs:
       triggering-sha:
