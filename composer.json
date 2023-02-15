@@ -35,7 +35,8 @@
             "symfony/flex": true,
             "bamarni/composer-bin-plugin": true,
             "ocramius/package-versions": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "php-http/discovery": true
         }
     },
     "autoload": {
