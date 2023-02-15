@@ -17,7 +17,7 @@ env:
   USE_COMPOSER_CACHE: '1'
   USE_PHP_EXTENSION_CACHE: '1'
   # PHP SETTINGS
-  PHP_EXTENSIONS: 'ctype, iconv, json, curl, gd, intl, opcache, openssl, mbstring, mysql, pdo_sqlite, openswoole'
+  PHP_EXTENSIONS: 'ctype, iconv, json, curl, gd, intl, opcache, openssl, mbstring, mysql, pdo_sqlite, openswoole, igbinary'
   PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
   # ARTIFACTS SETTINGS
   ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE: 'Unit-test-coverage-reports-on-SHA'
