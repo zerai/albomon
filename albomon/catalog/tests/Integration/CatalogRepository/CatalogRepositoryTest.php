@@ -4,6 +4,7 @@ namespace Albomon\Tests\Catalog\Integration\CatalogRepository;
 
 use Albomon\Catalog\Adapter\Persistence\CatalogRepository;
 use Albomon\Catalog\Application\Model\CatalogItem;
+use Albomon\Catalog\Application\Model\Exception\CatalogRepositoryException;
 use PHPUnit\Framework\TestCase;
 use Webmozart\Assert\InvalidArgumentException;
 
@@ -27,10 +28,12 @@ class CatalogRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $defaultFile = self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME;
-        if (file_exists($defaultFile)) {
-            unlink($defaultFile);
-        }
+        /* reset json catalog file */
+        $defaultCatalogFile = self::DEFAULT_FIXTURES_DIR . self::DEFAULT_FIXTURES_FILENAME;
+        $jsonContent = json_encode([], JSON_PRETTY_PRINT);
+        $fp = fopen($defaultCatalogFile, 'w');
+        fwrite($fp, $jsonContent);
+        fclose($fp);
     }
 
     public function testThrowExceptionIfEmptyCatalogDirectoryParam(): void
@@ -47,6 +50,15 @@ class CatalogRepositoryTest extends TestCase
         self::expectExceptionMessage('Expected a filename with "json" extension');
 
         new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/irrelevant.txt');
+    }
+
+    public function testThrowExceptionIfJsonCatalogFileDoesNotExist(): void
+    {
+        $expectedCatalogFile = self::DEFAULT_FIXTURES_DIR . '/notexist.json';
+        self::expectException(CatalogRepositoryException::class);
+        self::expectExceptionMessage("Expected catalog file '$expectedCatalogFile' not found.");
+
+        new CatalogRepository(self::DEFAULT_FIXTURES_DIR, '/notexist.json');
     }
 
     public function testItReturnCatalogItems(): void

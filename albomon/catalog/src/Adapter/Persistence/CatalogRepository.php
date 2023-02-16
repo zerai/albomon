@@ -4,6 +4,7 @@ namespace Albomon\Catalog\Adapter\Persistence;
 
 use Albomon\Catalog\Application\Model\CatalogItem;
 use Albomon\Catalog\Application\Model\CatalogRepositoryInterface;
+use Albomon\Catalog\Application\Model\Exception\CatalogRepositoryException;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
@@ -50,10 +51,11 @@ class CatalogRepository implements CatalogRepositoryInterface
     private function LoadFromFilesystem(): void
     {
         $filePath = $this->catalogDataDirectory . $this->comuniCatalogFilename;
-        if (file_exists($filePath)) {
-            $jsonContent = file_get_contents($filePath);
-            $this->items = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
+        if (! file_exists($filePath)) {
+            throw CatalogRepositoryException::catalogFileNotFound($filePath);
         }
+        $jsonContent = file_get_contents($filePath);
+        $this->items = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
     }
 
     public function totalItems(): int
