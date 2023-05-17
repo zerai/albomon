@@ -51,9 +51,7 @@ class CatalogRepository implements CatalogRepositoryInterface
     private function LoadFromFilesystem(): void
     {
         $filePath = $this->catalogDataDirectory . $this->comuniCatalogFilename;
-        if (! file_exists($filePath)) {
-            throw CatalogRepositoryException::catalogFileNotFound($filePath);
-        }
+        $this->verifyCatalogFileOrInit($filePath);
         $jsonContent = file_get_contents($filePath);
         $this->items = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
     }
@@ -61,5 +59,12 @@ class CatalogRepository implements CatalogRepositoryInterface
     public function totalItems(): int
     {
         return \count($this->items);
+    }
+
+    private function verifyCatalogFileOrInit(string $filePath): void
+    {
+        if (! file_exists($filePath)) {
+            file_put_contents($filePath, json_encode([]));
+        }
     }
 }
