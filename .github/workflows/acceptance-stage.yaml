@@ -1,0 +1,134 @@
+name: Acceptance stage
+
+on:
+  workflow_call:
+    # Map the workflow outputs to job outputs
+    inputs:
+      triggering-sha:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  # GHA SETTINGS
+  USE_COMPOSER_CACHE: '1'
+  USE_PHP_EXTENSION_CACHE: '1'
+  # PHP SETTINGS
+  PHP_EXTENSIONS: 'ctype, iconv, json, curl, gd, intl, opcache, openssl, mbstring, mysql, pdo_sqlite, openswoole, igbinary'
+  PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
+
+jobs:
+  integration-test:
+    name: Integration tests (php-${{ matrix.php }})
+    runs-on: ubuntu-22.04
+    timeout-minutes: 7
+    continue-on-error: ${{ matrix.is-php-experimental }}
+    strategy:
+      matrix:
+        php:
+          - '8.0'
+        is-php-experimental: [false]
+        generate-coverage-report: [false]
+        include:
+          - php: '8.1'
+            is-php-experimental: false
+            generate-coverage-report: false
+          - php: '8.2'
+            is-php-experimental: false
+            generate-coverage-report: false
+      fail-fast: true
+    steps:
+      - name: Checkout on SHA-${{ inputs.triggering-sha }}
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.triggering-sha }}
+
+      - name: Setup php extension cache environment
+        if: ${{ env.USE_PHP_EXTENSION_CACHE  == '1' }}
+        id: cache-php-extensions
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      - name: Cache PHP extensions
+        if: ${{ env.USE_PHP_EXTENSION_CACHE  == '1' }}
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.22.0
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: memory_limit=-1
+          coverage: pcov
+
+      - name: Set Composer Cache Directory
+        if: ${{ env.USE_COMPOSER_CACHE  == '1' }}
+        id: composer-cache
+        run: |
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        if: ${{ env.USE_COMPOSER_CACHE  == '1' }}
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
+      - name: Install dependencies
+        run: |
+          composer install --prefer-dist --no-progress --ansi
+
+      # TODO add integration test coverage filename
+      - name: Run integration tests with coverage
+        if: ${{ matrix.generate-coverage-report }}
+        run: |
+          bin/phpunit --testsuite=integration --testdox --no-interaction --colors=always \
+          --coverage-clover $UNIT_TEST_CLOVER_FILENAME \
+          --testdox-text $UNIT_TEST_DOC_FILENAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN_ALBOMON_FOR_CI_TEST }}
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+
+      - name: Run integration tests without coverage
+        if: ${{ !matrix.generate-coverage-report }}
+        run: |
+          bin/phpunit --testsuite=integration --testdox --no-interaction --colors=always
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN_ALBOMON_FOR_CI_TEST }}
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+
+      - name: Get Coverage artifact name
+        if: ${{ matrix.generate-coverage-report }}
+        id: coverage-artifact-name
+        run: echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_COVERAGE-$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Save coverage reports
+        if: ${{ matrix.generate-coverage-report }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.coverage-artifact-name.outputs.name }}
+          path: ${{ env.UNIT_TEST_CLOVER_FILENAME }}
+
+      - name: Get Test doc artifact name
+        if: ${{ matrix.generate-coverage-report }}
+        id: test-doc-artifact-name
+        run: echo "name=$ARTIFATC_NAME_FOR_UNIT_TESTS_DOCUMENTATION_REPORT-$GITHUB_SHA" >> $GITHUB_OUTPUT
+
+      - name: Save test doc reports
+        if: ${{ matrix.generate-coverage-report }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.test-doc-artifact-name.outputs.name }}
+          path: ${{ env.UNIT_TEST_DOC_FILENAME }}
