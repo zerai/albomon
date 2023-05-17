@@ -4,7 +4,6 @@ namespace Albomon\Catalog\Adapter\Persistence;
 
 use Albomon\Catalog\Application\Model\CatalogItem;
 use Albomon\Catalog\Application\Model\CatalogRepositoryInterface;
-use Albomon\Catalog\Application\Model\Exception\CatalogRepositoryException;
 use Webmozart\Assert\Assert;
 use Webmozart\Assert\InvalidArgumentException;
 
