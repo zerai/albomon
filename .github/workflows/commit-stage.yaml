@@ -37,9 +37,9 @@ jobs:
         php:
           - '8.0'
         is-php-experimental: [false]
-        generate-coverage-report: [false]
+        generate-coverage-report: [true]
         include:
-          - php: '8.0'
+          - php: '8.1'
             is-php-experimental: true
             generate-coverage-report: false
       fail-fast: true
@@ -93,11 +93,20 @@ jobs:
         run: |
           composer install --prefer-dist --no-progress --ansi
 
-      - name: Run unit tests
+      - name: Run unit tests with coverage
+        if: ${{ matrix.generate-coverage-report }}
         run: |
           bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always \
           --coverage-clover $UNIT_TEST_CLOVER_FILENAME \
           --testdox-text $UNIT_TEST_DOC_FILENAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN_ALBOMON_FOR_CI_TEST }}
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+
+      - name: Run unit tests without coverage
+        if: ${{ matrix.generate-coverage-report }}
+        run: |
+          bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always
         env:
           GITHUB_TOKEN: ${{ secrets.GHA_TOKEN_ALBOMON_FOR_CI_TEST }}
           SYMFONY_DEPRECATIONS_HELPER: disabled
