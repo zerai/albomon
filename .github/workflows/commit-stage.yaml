@@ -107,7 +107,7 @@ jobs:
           SYMFONY_DEPRECATIONS_HELPER: disabled
 
       - name: Run unit tests without coverage
-        if: ${{ matrix.generate-coverage-report }}
+        if: ${{ !matrix.generate-coverage-report }}
         run: |
           bin/phpunit --testsuite=unit --testdox --no-interaction --colors=always
         env:
