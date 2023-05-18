@@ -11,6 +11,7 @@ class CatalogItem
         private string $name,
         private string $rssFeedUrl,
     ) {
+        $this->name = $this->sanitizeCatalogItemName($name);
     }
 
     public static function with(string $identity, string $name, string $rssFeedUrl): self
@@ -36,5 +37,15 @@ class CatalogItem
     public function rssFeedUrl(): string
     {
         return $this->rssFeedUrl;
+    }
+
+    private function sanitizeCatalogItemName(string $name): string
+    {
+        $result = $name;
+        if (str_starts_with($name, '"') && str_ends_with($name, '"')) {
+            $result = trim($result, '"');
+        }
+
+        return $result;
     }
 }

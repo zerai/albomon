@@ -91,4 +91,13 @@ class CatalogItemTest extends TestCase
             ['', 'Catalog item must have an rss feed url'],
         ];
     }
+
+    public function testShouldSanitizeCatalogItemName(): void
+    {
+        $invalidName = '"irrelevant name"';
+
+        $catalogItem = CatalogItem::with(self::IDENTITY, $invalidName, self::RSS_FEED_URL);
+
+        self::assertSame('irrelevant name', $catalogItem->name());
+    }
 }
