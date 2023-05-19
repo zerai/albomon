@@ -60,10 +60,22 @@ class CatalogRepository implements CatalogRepositoryInterface
         return \count($this->items);
     }
 
+    public function reset(): void
+    {
+        $filePath = $this->catalogDataDirectory . $this->comuniCatalogFilename;
+        $this->initCatalogFile($filePath);
+        $this->items = [];
+    }
+
     private function verifyCatalogFileOrInit(string $filePath): void
     {
         if (! file_exists($filePath)) {
-            file_put_contents($filePath, json_encode([]));
+            $this->initCatalogFile($filePath);
         }
+    }
+
+    private function initCatalogFile(string $filePath): void
+    {
+        file_put_contents($filePath, json_encode([]));
     }
 }

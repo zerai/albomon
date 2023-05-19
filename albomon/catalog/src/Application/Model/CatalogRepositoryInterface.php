@@ -9,4 +9,6 @@ interface CatalogRepositoryInterface
     public function getItems(): array;
 
     public function totalItems(): int;
+
+    public function reset(): void;
 }
