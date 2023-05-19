@@ -8,6 +8,11 @@
  - [#07](https://github.com/zerai/albomon/issues/7) validazione specifiche AlboPOP
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
+
+## [0.8.2] -  2023-05-19
+### added
+- CatalogRepository reset function.
+
 ## [0.8.1] -  2023-05-18
 ### added
 - sanitize name (CataligItem)
