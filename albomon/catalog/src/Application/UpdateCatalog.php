@@ -16,6 +16,7 @@ class UpdateCatalog implements CatalogUpdaterInterface
 
     public function updateCatalog(): void
     {
+        $this->catalogRepository->reset();
         $catalogItems = [];
         $comuniData = $this->githubDataDownloader->downloadComuniData();
 
