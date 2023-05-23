@@ -214,19 +214,6 @@
     "symfony/test-pack": {
         "version": "v1.0.6"
     },
-    "symfony/twig-bundle": {
-        "version": "5.4",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "5.4",
-            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
-        },
-        "files": [
-            "config/packages/twig.yaml",
-            "templates/base.html.twig"
-        ]
-    },
     "symfony/var-dumper": {
         "version": "v4.4.8"
     },
