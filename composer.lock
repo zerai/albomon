@@ -4266,16 +4266,16 @@
         },
         {
             "name": "symfony/runtime",
-            "version": "v5.4.19",
+            "version": "v5.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/runtime.git",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486"
+                "reference": "4a78e519d40a3845437e29dc514959631badfed4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/runtime/zipball/a33478ef6d8e6ea642449001949aafd330ca0486",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486",
+                "url": "https://api.github.com/repos/symfony/runtime/zipball/4a78e519d40a3845437e29dc514959631badfed4",
+                "reference": "4a78e519d40a3845437e29dc514959631badfed4",
                 "shasum": ""
             },
             "require": {
@@ -4322,8 +4322,11 @@
             ],
             "description": "Enables decoupling PHP applications from global state",
             "homepage": "https://symfony.com",
+            "keywords": [
+                "runtime"
+            ],
             "support": {
-                "source": "https://github.com/symfony/runtime/tree/v5.4.19"
+                "source": "https://github.com/symfony/runtime/tree/v5.4.22"
             },
             "funding": [
                 {
@@ -4339,7 +4342,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-20T16:47:48+00:00"
+            "time": "2023-03-14T15:48:23+00:00"
         },
         {
             "name": "symfony/serializer",
