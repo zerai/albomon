@@ -65,6 +65,7 @@ class CheckAlboPopCatalogCommand extends Command
             foreach ($alboUrl as $valueUrl) {
                 $monitorResult = $this->monitorService->checkAlbo($valueUrl);
                 $this->formatTableRow($monitorResult, $table);
+                $this->reportManager->addReportItem($monitorResult);
             }
             $progressBar->advance();
         }
