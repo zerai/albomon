@@ -4266,16 +4266,16 @@
         },
         {
             "name": "symfony/runtime",
-            "version": "v5.4.19",
+            "version": "v5.4.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/runtime.git",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486"
+                "reference": "03e9c5d74464213a47a2ad8dc8eb249613701d6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/runtime/zipball/a33478ef6d8e6ea642449001949aafd330ca0486",
-                "reference": "a33478ef6d8e6ea642449001949aafd330ca0486",
+                "url": "https://api.github.com/repos/symfony/runtime/zipball/03e9c5d74464213a47a2ad8dc8eb249613701d6f",
+                "reference": "03e9c5d74464213a47a2ad8dc8eb249613701d6f",
                 "shasum": ""
             },
             "require": {
@@ -4288,7 +4288,7 @@
             },
             "require-dev": {
                 "composer/composer": "^1.0.2|^2.0",
-                "symfony/console": "^4.4.30|^5.3.7|^6.0",
+                "symfony/console": "^4.4.30|^5.4.9|^6.0.9",
                 "symfony/dotenv": "^5.1|^6.0",
                 "symfony/http-foundation": "^4.4.30|^5.3.7|^6.0",
                 "symfony/http-kernel": "^4.4.30|^5.3.7|^6.0"
@@ -4322,8 +4322,11 @@
             ],
             "description": "Enables decoupling PHP applications from global state",
             "homepage": "https://symfony.com",
+            "keywords": [
+                "runtime"
+            ],
             "support": {
-                "source": "https://github.com/symfony/runtime/tree/v5.4.19"
+                "source": "https://github.com/symfony/runtime/tree/v5.4.25"
             },
             "funding": [
                 {
@@ -4339,7 +4342,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-20T16:47:48+00:00"
+            "time": "2023-06-20T11:49:54+00:00"
         },
         {
             "name": "symfony/serializer",
