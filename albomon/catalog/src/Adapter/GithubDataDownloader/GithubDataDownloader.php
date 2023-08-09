@@ -31,7 +31,7 @@ class GithubDataDownloader implements ComuniDataDownloaderInterface
         $comuniMarkdownFileIndex = [];
 
         try {
-            $responseData = json_decode($this->httpClient->getComuniMarkdownFileIndex()->getBody()->getContents(), null, 512, JSON_THROW_ON_ERROR);
+            $responseData = json_decode($this->httpClient->getComuniMarkdownFileIndex()->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
             foreach ($responseData as $dataItem) {
                 if ('_index.md' === $dataItem->name ||
                     'altamura.md' === $dataItem->name ||
