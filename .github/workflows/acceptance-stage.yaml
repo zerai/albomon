@@ -27,6 +27,7 @@ jobs:
     timeout-minutes: 7
     continue-on-error: ${{ matrix.is-php-experimental }}
     strategy:
+      max-parallel: 3
       matrix:
         php:
           - '8.0'
