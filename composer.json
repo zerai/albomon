@@ -71,7 +71,29 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "ca": "./bin/phpunit --testsuite=unit,integration,functional --coverage-html=var/coverage",
+        "cs": "./vendor/bin/ecs",
+        "cs:fix": "./vendor/bin/ecs --fix",
+        "cu": "./bin/phpunit --testsuite=unit --coverage-html=var/coverage",
+        "rc": "./vendor/bin/rector --dry-run",
+        "rc:fix": "./vendor/bin/rector",
+        "sa": "./vendor/bin/phpstan",
+        "tf": "./bin/phpunit --testsuite=functional --testdox",
+        "ti": "./bin/phpunit --testsuite=integration --testdox",
+        "tu": "./bin/phpunit --testsuite=unit --testdox"
+    },
+    "scripts-descriptions": {
+        "ca": "Execute phpunit with html coverage report (all testsuites)",
+        "cs": "Check php coding style",
+        "cs:fix": "Fix php coding style",
+        "cu": "Execute phpunit with html coverage report (only unit testsuite)",
+        "rc": "Check rector roules",
+        "rc:fix": "Fix rector issues",
+        "sa": "Check static analysis (psalm)",
+        "tf": "Run functional testsuite",
+        "ti": "Run integration testsuite",
+        "tu": "Run unit testsuite"
     },
     "conflict": {
         "symfony/symfony": "*"
