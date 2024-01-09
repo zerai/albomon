@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "baa004f155378beffc856b72f0d6e69a",
+    "content-hash": "31ab8ce876ff480df72af6588b91ac68",
     "packages": [
         {
             "name": "brick/math",
@@ -5372,27 +5372,27 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v6.3.8",
+            "version": "v7.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "45610900872a35b77db7698651f36129906041ea"
+                "reference": "92df075808c9437beca9540e25ae0c40eea1c061"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/45610900872a35b77db7698651f36129906041ea",
-                "reference": "45610900872a35b77db7698651f36129906041ea",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/92df075808c9437beca9540e25ae0c40eea1c061",
+                "reference": "92df075808c9437beca9540e25ae0c40eea1c061",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3"
+                "php": ">=7.2.5"
             },
             "conflict": {
                 "phpunit/phpunit": "<7.5|9.1.2"
             },
             "require-dev": {
                 "symfony/deprecation-contracts": "^2.5|^3.0",
-                "symfony/error-handler": "^5.4|^6.0",
+                "symfony/error-handler": "^5.4|^6.4|^7.0",
                 "symfony/polyfill-php81": "^1.27"
             },
             "bin": [
@@ -5433,7 +5433,7 @@
             "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/phpunit-bridge/tree/v6.3.8"
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v7.0.2"
             },
             "funding": [
                 {
@@ -5449,7 +5449,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-31T08:07:48+00:00"
+            "time": "2023-12-19T11:23:03+00:00"
         }
     ],
     "aliases": [],
