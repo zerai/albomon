@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
-        "debril/feed-io": "^4.3",
+        "debril/feed-io": "^5.3",
         "league/csv": "^9.8",
         "php-http/cache-plugin": "^1.7",
         "php-http/httplug-bundle": "^1.27",
