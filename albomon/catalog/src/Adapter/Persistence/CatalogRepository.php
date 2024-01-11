@@ -19,7 +19,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         if (! str_ends_with($comuniCatalogFilename, '.json')) {
             throw new InvalidArgumentException('Expected a filename with "json" extension');
         }
-        $this->LoadFromFilesystem();
+        $this->loadFromFilesystem();
     }
 
     public function save(CatalogItem ...$items): void
@@ -47,7 +47,7 @@ class CatalogRepository implements CatalogRepositoryInterface
         fclose($fp);
     }
 
-    private function LoadFromFilesystem(): void
+    private function loadFromFilesystem(): void
     {
         $filePath = $this->catalogDataDirectory . $this->comuniCatalogFilename;
         $this->verifyCatalogFileOrInit($filePath);

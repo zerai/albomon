@@ -44,6 +44,6 @@ class GithubDataDownloaderTest extends TestCase
             ->method('getComuniMarkdownFileIndex')
             ->willReturn($response);
 
-        $result = $sut->downloadComuniData();
+        $sut->downloadComuniData();
     }
 }

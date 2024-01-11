@@ -98,7 +98,6 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_handle_xmlDom(): void
     {
-        //self::markTestSkipped();
         $rssReader = new FeedIoRssReader();
 
         $readerResult = $rssReader->execute(self::FEED_URL);
