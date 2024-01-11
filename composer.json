@@ -4,7 +4,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-dom": "*",
         "ext-iconv": "*",
@@ -14,16 +14,16 @@
         "php-http/httplug-bundle": "^1.27",
         "psr/http-client": "^1.0",
         "ramsey/uuid": "^4.7",
-        "symfony/cache": "5.4.*",
-        "symfony/console": "6.0.*",
-        "symfony/dotenv": "5.4.*",
+        "symfony/cache": "6.4.*",
+        "symfony/console": "6.4.*",
+        "symfony/dotenv": "6.4.*",
         "symfony/flex": "^2.2",
-        "symfony/framework-bundle": "5.4.*",
-        "symfony/http-client": "5.4.*",
+        "symfony/framework-bundle": "6.4.*",
+        "symfony/http-client": "6.4.*",
         "symfony/monolog-bundle": "^3.4",
-        "symfony/runtime": "5.4.*",
-        "symfony/serializer": "5.4.*",
-        "symfony/yaml": "5.4.*",
+        "symfony/runtime": "6.4.*",
+        "symfony/serializer": "6.4.*",
+        "symfony/yaml": "6.4.*",
         "webmozart/assert": "^1.11"
     },
     "config": {
@@ -106,16 +106,16 @@
         },
         "symfony": {
             "allow-contrib": false,
-            "require": "5.4.*"
+            "require": "6.4.*"
         }
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
         "mikey179/vfsstream": "^1.6",
         "php-coveralls/php-coveralls": "^2.1",
-        "symfony/browser-kit": "5.4.*",
-        "symfony/css-selector": "5.4.*",
+        "symfony/browser-kit": "6.4.*",
+        "symfony/css-selector": "6.4.*",
         "symfony/phpunit-bridge": "^7.0",
-        "symfony/stopwatch": "5.4.*"
+        "symfony/stopwatch": "6.4.*"
     }
 }
