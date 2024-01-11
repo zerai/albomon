@@ -33,7 +33,7 @@ class CheckFeedCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $AlboPopSpecValidation = 'Non Rilevato';
+        $alboPopSpecValidation = 'Non Rilevato';
 
         $io = $this->getSymfonyStyle($input, $output);
 
@@ -53,7 +53,7 @@ class CheckFeedCommand extends Command
             if (! $monitorResult->httpStatus()) {
                 $output->writeln('<info>Feed Status: </info> <error>NON ATTIVO</error>');
 
-                $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
+                $output->writeln("<info>AlboPOP Spec. Validation: $alboPopSpecValidation</info>");
 
                 $output->writeln("<error>Error Message: {$monitorResult->httpError()}</error>");
             } else {
@@ -61,7 +61,7 @@ class CheckFeedCommand extends Command
 
                 $output->writeln("<info>Content Updated At: {$this->formatContentUpdatedAt($monitorResult->lastFeedItemDate())}</info>");
 
-                $output->writeln("<info>AlboPOP Spec. Validation: $AlboPopSpecValidation</info>");
+                $output->writeln("<info>AlboPOP Spec. Validation: $alboPopSpecValidation</info>");
             }
         }
 
