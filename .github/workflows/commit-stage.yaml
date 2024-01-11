@@ -43,9 +43,9 @@ jobs:
           - php: '8.2'
             is-php-experimental: false
             generate-coverage-report: false
-#          - php: '8.2'
-#            is-php-experimental: false
-#            generate-coverage-report: false
+          - php: '8.3'
+            is-php-experimental: false
+            generate-coverage-report: false
       fail-fast: true
     steps:
       - name: Checkout on SHA-${{ inputs.triggering-sha }}
