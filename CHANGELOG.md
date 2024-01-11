@@ -8,6 +8,10 @@
  - [#07](https://github.com/zerai/albomon/issues/7) validazione specifiche AlboPOP
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
+## [0.9.0] -  2024-01-11
+###### (Maintenance release)
+- update to symfony 6.4
+
 ## [0.8.5] -  2024-01-10
 ###### (Maintenance release)
 - update dependencies
