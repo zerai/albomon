@@ -15,7 +15,7 @@ class ReportManager implements ReportManagerInterface
     private array $reportData;
 
     public function __construct(
-        private ?string $reportDir,
+        private readonly ?string $reportDir,
     ) {
         $this->reportData = [];
     }

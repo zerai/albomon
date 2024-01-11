@@ -7,9 +7,9 @@ use Webmozart\Assert\Assert;
 class CatalogItem
 {
     private function __construct(
-        private string $identity,
+        private readonly string $identity,
         private string $name,
-        private string $rssFeedUrl,
+        private readonly string $rssFeedUrl,
     ) {
         $this->name = $this->sanitizeCatalogItemName($name);
     }

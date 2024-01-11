@@ -30,7 +30,7 @@ class CatalogUpdateCommandTest extends KernelTestCase
             $this->commandTester->execute([
                 'command' => $this->command->getName(),
             ]);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // dd($e);
             //self::markTestSkipped('Hit Github Api limit');
         }

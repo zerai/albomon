@@ -12,8 +12,8 @@ class CatalogRepository implements CatalogRepositoryInterface
     private array $items = [];
 
     public function __construct(
-        private string $catalogDataDirectory,
-        private string $comuniCatalogFilename
+        private readonly string $catalogDataDirectory,
+        private readonly string $comuniCatalogFilename
     ) {
         Assert::stringNotEmpty($this->catalogDataDirectory, 'Expected a catalog directory parameter');
         if (! str_ends_with($comuniCatalogFilename, '.json')) {

@@ -13,8 +13,8 @@ class CatalogUpdateCommand extends Command
     protected static $defaultName = 'albomon:catalog:update';
 
     public function __construct(
-        private CatalogUpdaterInterface $updater,
-        private CatalogRepositoryInterface $catalogRepository,
+        private readonly CatalogUpdaterInterface $updater,
+        private readonly CatalogRepositoryInterface $catalogRepository,
     ) {
         parent::__construct();
 

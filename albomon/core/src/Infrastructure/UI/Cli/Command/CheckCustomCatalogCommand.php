@@ -27,10 +27,10 @@ class CheckCustomCatalogCommand extends Command
     private const XML_SPEC_VALIDATION = 'Non Rilevato';
 
     public function __construct(
-        private MonitorApplicationService $monitorService,
-        private ReportManagerInterface $reportManager,
-        private string $catalogDir,
-        private string $reportDir,
+        private readonly MonitorApplicationService $monitorService,
+        private readonly ReportManagerInterface $reportManager,
+        private readonly string $catalogDir,
+        private readonly string $reportDir,
     ) {
         parent::__construct();
 

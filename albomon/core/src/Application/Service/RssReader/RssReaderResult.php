@@ -11,8 +11,8 @@ class RssReaderResult implements RssReaderResultInterface
     private ?\DateTime $lastFeedItemDate = null;
 
     public function __construct(
-        private bool $httpStatus,
-        private string $feedUrl,
+        private readonly bool $httpStatus,
+        private readonly string $feedUrl,
     ) {
     }
 

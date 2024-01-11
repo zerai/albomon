@@ -16,7 +16,7 @@ use InvalidArgumentException;
 
 class FeedIoRssReader implements RssReaderInterface
 {
-    private FeedIo $feedIo;
+    private readonly FeedIo $feedIo;
 
     private ?string $targetUrl = null;
 

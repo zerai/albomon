@@ -17,7 +17,7 @@ class CheckFeedCommand extends Command
     use SymfonyStyleTrait;
 
     public function __construct(
-        private MonitorApplicationService $monitorService
+        private readonly MonitorApplicationService $monitorService
     ) {
         parent::__construct();
 

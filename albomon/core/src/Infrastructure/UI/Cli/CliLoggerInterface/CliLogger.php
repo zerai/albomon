@@ -12,7 +12,7 @@ class CliLogger implements CliLoggerInterface
     private const BAD_METHOD_CALL_EXCEPTION_MESSAGE = 'CliLogger don\'t implement this method.';
 
     public function __construct(
-        private SymfonyStyle $io
+        private readonly SymfonyStyle $io
     ) {
     }
 
