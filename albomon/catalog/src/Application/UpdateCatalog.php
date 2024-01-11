@@ -9,8 +9,8 @@ use Ramsey\Uuid\Uuid;
 class UpdateCatalog implements CatalogUpdaterInterface
 {
     public function __construct(
-        private CatalogRepositoryInterface $catalogRepository,
-        private ComuniDataDownloaderInterface $githubDataDownloader,
+        private readonly CatalogRepositoryInterface $catalogRepository,
+        private readonly ComuniDataDownloaderInterface $githubDataDownloader,
     ) {
     }
 

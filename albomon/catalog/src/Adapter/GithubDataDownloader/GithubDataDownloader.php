@@ -7,7 +7,7 @@ use Albomon\Catalog\Application\ComuniDataDownloaderInterface;
 class GithubDataDownloader implements ComuniDataDownloaderInterface
 {
     public function __construct(
-        private GithubHttpClient $httpClient
+        private readonly GithubHttpClient $httpClient
     ) {
     }
 

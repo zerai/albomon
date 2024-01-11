@@ -29,12 +29,12 @@ return static function (RectorConfig $rectorConfig): void {
         /**
          * PHP
          */
-        LevelSetList::UP_TO_PHP_80,
+        LevelSetList::UP_TO_PHP_81,
 
         /**
          * SYMFONY
          */
-        SymfonySetList::SYMFONY_54,
+        SymfonySetList::SYMFONY_62,
         SymfonySetList::SYMFONY_CODE_QUALITY,
     ]);
 };

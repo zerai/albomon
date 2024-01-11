@@ -4,7 +4,7 @@ namespace Albomon\Catalog\Adapter\GithubDataDownloader;
 
 class MarkdownToCatalogItemConverter
 {
-    private string $markdownContent;
+    private readonly string $markdownContent;
 
     public function __construct(string $markdownContent)
     {

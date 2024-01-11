@@ -13,7 +13,7 @@ class CatalogListCommand extends Command
     protected static $defaultName = 'albomon:catalog:list';
 
     public function __construct(
-        private CatalogRepository $repository,
+        private readonly CatalogRepository $repository,
     ) {
         parent::__construct();
 
@@ -31,7 +31,7 @@ class CatalogListCommand extends Command
         $table->setHeaders(['Nome', 'Feed']);
 
         foreach ($items as $item) {
-            $table->addRow([trim($item[1]), trim($item[2])]);
+            $table->addRow([trim((string) $item[1]), trim((string) $item[2])]);
         }
         $table->render();
 

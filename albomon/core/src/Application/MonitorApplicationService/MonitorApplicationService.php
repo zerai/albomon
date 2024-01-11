@@ -10,8 +10,8 @@ use Psr\Log\LoggerInterface;
 class MonitorApplicationService
 {
     public function __construct(
-        private RssReaderInterface $feedReader,
-        private LoggerInterface $logger,
+        private readonly RssReaderInterface $feedReader,
+        private readonly LoggerInterface $logger,
     ) {
     }
 
