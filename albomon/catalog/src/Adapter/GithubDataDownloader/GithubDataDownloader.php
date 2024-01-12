@@ -34,22 +34,8 @@ class GithubDataDownloader implements ComuniDataDownloaderInterface
             $responseData = json_decode($this->httpClient->getComuniMarkdownFileIndex()->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
             foreach ($responseData as $dataItem) {
                 if ('_index.md' === $dataItem->name ||
-                    'altamura.md' === $dataItem->name ||
-                    'altopascio.md' === $dataItem->name ||
-                    'campli.md' === $dataItem->name ||
-                    'crema.md' === $dataItem->name ||
-                    'crispiano.md' === $dataItem->name ||
-                    'francavillafontana.md' === $dataItem->name ||
-                    'isola-del-gran-sasso-ditalia.md' === $dataItem->name ||
-                    'montorio-al-vomano.md' === $dataItem->name ||
-                    'narni.md' === $dataItem->name ||
-                    'offida.md' === $dataItem->name ||
-                    'pisticci.md' === $dataItem->name ||
                     'potenza.md' === $dataItem->name ||
-                    'teramo.md' === $dataItem->name ||
-                    'torresantasusanna.md' === $dataItem->name ||
-                    'trabia.md' === $dataItem->name ||
-                    'treviso.md' === $dataItem->name
+                    'trabia.md' === $dataItem->name
                 ) {
                     continue;
                 }
