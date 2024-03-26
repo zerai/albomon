@@ -12,8 +12,6 @@ jobs:
       triggering-sha: "${{ github.sha }}"
   acceptance-stage-workflow:
     name: Acceptance Stage
-    needs:
-      - commit-stage-workflow
     uses: zerai/albomon/.github/workflows/acceptance-stage.yaml@master
     secrets: inherit
     with:
