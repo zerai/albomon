@@ -122,7 +122,7 @@ jobs:
 
       - name: Save coverage reports
         if: ${{ matrix.generate-coverage-report }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.coverage-artifact-name.outputs.name }}
           path: ${{ env.UNIT_TEST_CLOVER_FILENAME }}
@@ -134,7 +134,7 @@ jobs:
 
       - name: Save test doc reports
         if: ${{ matrix.generate-coverage-report }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.test-doc-artifact-name.outputs.name }}
           path: ${{ env.UNIT_TEST_DOC_FILENAME }}
