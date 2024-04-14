@@ -4,6 +4,8 @@ includes:
 parameters:
     level: 5
 
+    tmpDir: var/cache_tools/phpstan
+
     bootstrapFiles:
         - ./vendor/bin/.phpunit/phpunit-9.6-0/vendor/autoload.php
     #scanDirectories:
