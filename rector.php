@@ -1,40 +1,35 @@
-<?php declare(strict_types=1);
+<?php
 
-use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+declare(strict_types=1);
+
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
 use Rector\Symfony\Set\SymfonySetList;
-use Rector\ValueObject\PhpVersion;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPhpSets(php81: true)
+    ->withSymfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml')
+    ->withPaths([
         __DIR__ . '/albomon/core/src',
         __DIR__ . '/albomon/core/tests',
         __DIR__ . '/albomon/catalog/src',
         __DIR__ . '/albomon/catalog/tests',
-        //__DIR__ . '/config',
-        //__DIR__ . '/public',
         __DIR__ . '/src',
         __DIR__ . '/tests',
-    ]);
 
-    $rectorConfig->phpVersion(PhpVersion::PHP_80);
-    $rectorConfig->symfonyContainerXml(__DIR__ . '/var/cache/dev/App_KernelDevDebugContainer.xml');
-
-    // register a single rule
-    //$rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
-
-    // define sets of rules
-    $rectorConfig->sets([
-        /**
-         * PHP
-         */
-        LevelSetList::UP_TO_PHP_81,
-
-        /**
-         * SYMFONY
-         */
+    ])
+    ->withPreparedSets(
+        deadCode: false,
+        codeQuality: false,
+        codingStyle: false
+    )
+    // uncomment to reach your current PHP version
+    // ->withPhpSets()
+    ->withRules([
+        //AddVoidReturnTypeWhereNoReturnRector::class,
+    ])
+    ->withSets([
         SymfonySetList::SYMFONY_62,
         SymfonySetList::SYMFONY_CODE_QUALITY,
+        SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
     ]);
-};

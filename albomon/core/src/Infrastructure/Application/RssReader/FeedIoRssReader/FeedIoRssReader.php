@@ -15,13 +15,11 @@ use InvalidArgumentException;
 
 class FeedIoRssReader implements RssReaderInterface
 {
-    private readonly FeedIo $feedIo;
-
     private ?string $targetUrl = null;
 
-    public function __construct(FeedIo $feedIo)
-    {
-        $this->feedIo = $feedIo;
+    public function __construct(
+        private readonly FeedIo $feedIo
+    ) {
     }
 
     /**

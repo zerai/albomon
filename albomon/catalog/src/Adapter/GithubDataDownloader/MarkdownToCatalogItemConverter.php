@@ -36,7 +36,7 @@ class MarkdownToCatalogItemConverter
             break;
         }
 
-        return trim($title);
+        return trim((string) $title);
     }
 
     public function getOriginalAlboUrl(): string
