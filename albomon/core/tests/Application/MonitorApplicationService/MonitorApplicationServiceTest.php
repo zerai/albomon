@@ -30,7 +30,7 @@ class MonitorApplicationServiceTest extends TestCase
     {
         $this->feedReader = $this->createMock(FeedIoRssReader::class);
         $this->logger = $this->createMock(LoggerInterface::class);
-        $this->monitorApplicationService = new monitorApplicationService($this->feedReader, $this->logger);
+        $this->monitorApplicationService = new MonitorApplicationService($this->feedReader, $this->logger);
     }
 
     /**
