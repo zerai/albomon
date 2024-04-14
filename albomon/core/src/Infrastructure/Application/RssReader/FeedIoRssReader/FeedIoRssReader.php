@@ -8,7 +8,6 @@ use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResult;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultIllegalOperationException;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
-use FeedIo\Factory;
 use FeedIo\FeedIo;
 use FeedIo\Reader\ReadErrorException;
 use FeedIo\Reader\Result;
@@ -20,9 +19,9 @@ class FeedIoRssReader implements RssReaderInterface
 
     private ?string $targetUrl = null;
 
-    public function __construct()
+    public function __construct(FeedIo $feedIo)
     {
-        $this->feedIo = Factory::create()->getFeedIo();
+        $this->feedIo = $feedIo;
     }
 
     /**
