@@ -7,6 +7,7 @@ namespace Albomon\Tests\Core\Infrastructure\Application\RssReader\FeedIoRssReade
 use Albomon\Core\Application\Service\RssReader\RssReaderInterface;
 use Albomon\Core\Application\Service\RssReader\RssReaderResultInterface;
 use Albomon\Core\Infrastructure\Application\RssReader\FeedIoRssReader\FeedIoRssReader;
+use FeedIo\FeedIo;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,8 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_can_be_created(): void
     {
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         self::assertInstanceOf(RssReaderInterface::class, $rssReader);
     }
@@ -33,7 +35,8 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_can_change_target_url(): void
     {
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         $rssReader->setTargetUrl(self::FEED_URL);
 
@@ -49,7 +52,8 @@ class FeedIoRssReaderTest extends TestCase
     public function invalid_target_url_throw_exception(string $invalidUrl): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         $rssReader->setTargetUrl($invalidUrl);
     }
@@ -69,7 +73,8 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_handle_execution(): void
     {
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         $readerResult = $rssReader->execute(self::FEED_URL);
 
@@ -83,7 +88,8 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_handle_inactive_feed(): void
     {
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         $readerResult = $rssReader->execute(self::WRONG_FEED_URL);
 
@@ -98,7 +104,8 @@ class FeedIoRssReaderTest extends TestCase
      */
     public function it_handle_xmlDom(): void
     {
-        $rssReader = new FeedIoRssReader();
+        $feedIoMock = $this->createMock(FeedIo::class);
+        $rssReader = new FeedIoRssReader($feedIoMock);
 
         $readerResult = $rssReader->execute(self::FEED_URL);
 
