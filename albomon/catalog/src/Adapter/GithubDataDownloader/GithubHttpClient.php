@@ -2,9 +2,9 @@
 
 namespace Albomon\Catalog\Adapter\GithubDataDownloader;
 
-use GuzzleHttp\Psr7\Request;
-use Http\Client\HttpClient;
+use Nyholm\Psr7\Request;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class GithubHttpClient
@@ -16,7 +16,7 @@ class GithubHttpClient
     private const MARKDOWN_FILE_INDEX_URL = 'content/comune';
 
     public function __construct(
-        private readonly HttpClient $httpClient
+        private readonly ClientInterface $httpClient
     ) {
     }
 
