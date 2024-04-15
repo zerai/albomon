@@ -8,6 +8,9 @@
  - [#07](https://github.com/zerai/albomon/issues/7) validazione specifiche AlboPOP
  - [#22](https://github.com/zerai/albomon/issues/22) add logging UI/CLI layer (same log of application layer)  
 
+## [0.9.4] -  2024-04-15
+###### (Maintenance release)
+
 ## [0.9.3] -  2024-04-15
 ###### (Maintenance release)
 
