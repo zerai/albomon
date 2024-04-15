@@ -13,6 +13,7 @@ use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ECSConfig $ecsConfig): void {
+    $ecsConfig->cacheDirectory(__DIR__ . '/var/cache_tools/ecs');
     $ecsConfig->paths([
         __DIR__ . '/src',
         __DIR__ . '/tests',

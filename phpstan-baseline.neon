@@ -1,16 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: albomon/catalog/tests/Unit/Adapter/GithubDataDownloader/GithubDataDownloaderTest.php
-
-		-
-			message: "#^Property Albomon\\\\Core\\\\Infrastructure\\\\UI\\\\Cli\\\\Command\\\\CheckAlboPopCatalogCommand\\:\\:\\$reportDir is never read, only written\\.$#"
-			count: 1
-			path: albomon/core/src/Infrastructure/UI/Cli/Command/CheckAlboPopCatalogCommand.php
-
-		-
-			message: "#^Property Albomon\\\\Core\\\\Infrastructure\\\\UI\\\\Cli\\\\Command\\\\CheckCustomCatalogCommand\\:\\:\\$reportDir is never read, only written\\.$#"
-			count: 1
-			path: albomon/core/src/Infrastructure/UI/Cli/Command/CheckCustomCatalogCommand.php
