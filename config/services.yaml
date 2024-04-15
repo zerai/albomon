@@ -27,7 +27,7 @@ services:
 
     FeedIo\Adapter\Http\Client:
         arguments:
-            - '@httplug.async_client.default'
+            - '@httplug.client.default'
     FeedIo\FeedIo:
         arguments:
             - '@FeedIo\Adapter\Http\Client'
