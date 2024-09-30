@@ -20,7 +20,7 @@ AlboMON valuta, e restituisce in output, i seguenti parametri:
 
 
 ## Requisiti:
-- PHP >=8.0
+- PHP >=8.1
 
 
 ## Installazione:
