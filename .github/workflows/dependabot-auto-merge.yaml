@@ -24,7 +24,7 @@ jobs:
           echo ${{steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
           echo ${{steps.metadata.outputs.dependency-type}}
           echo ${{steps.metadata.outputs.dependency-type == 'direct:development'}}
-      - name: Enable auto-merge only for develpment dependencies with patch-update
+      - name: Enable auto-merge only for development dependencies with patch-update
         if: ${{ steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
