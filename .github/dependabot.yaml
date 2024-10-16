@@ -7,7 +7,7 @@ updates:
     target-branch: "master"
     directory: "/"
     versioning-strategy: "increase-if-necessary"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 15
     schedule:
       interval: "weekly"
     assignees:
