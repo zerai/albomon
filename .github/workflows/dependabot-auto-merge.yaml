@@ -25,8 +25,8 @@ jobs:
           echo ${{steps.metadata.outputs.dependency-type}}
           echo ${{steps.metadata.outputs.dependency-type == 'direct:development'}}
       - name: Enable auto-merge only for develpment dependencies with patch-update
-          if: ${{ steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
-          run: gh pr merge --auto --merge "$PR_URL"
-          env:
-            PR_URL: ${{github.event.pull_request.html_url}}
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        if: ${{ steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-patch') }}
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
