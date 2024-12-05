@@ -11,7 +11,7 @@
         "debril/feed-io": "^6.0",
         "league/csv": "^9.8",
         "php-http/cache-plugin": "^1.7",
-        "php-http/httplug-bundle": "^1.27",
+        "php-http/httplug-bundle": "^2.1",
         "psr/http-client": "^1.0",
         "ramsey/uuid": "^4.7",
         "symfony/cache": "6.4.*",
